@@ -48,6 +48,7 @@
                                 <select name="roles" class="form-control">
 									<option value="Guest" <?= (!empty($user) && $user->roles=='Guest')?"selected":"" ?>>Guest</option>
 									<option value="Admin" <?= (!empty($user) && $user->roles=='Admin')?"selected":"" ?>>Admin</option>
+									<option value="Operator" <?= (!empty($user) && $user->roles=='Operator')?"selected":"" ?>>Operator</option>
 								</select>
                             </div>
                         </div>

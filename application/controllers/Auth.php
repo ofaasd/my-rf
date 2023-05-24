@@ -24,6 +24,7 @@ class Auth extends CI_Controller {
         if($hasil){
             
             if( $this->session->userdata('roles') == 'Admin') redirect(base_url('index.php/admin/dashboard'));
+            elseif($this->session->userdata('roles') == 'Operator') redirect(base_url('index.php/operator/dashboard'));
             else redirect(base_url('/'));
             
         }else{

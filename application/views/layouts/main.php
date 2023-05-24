@@ -91,6 +91,15 @@
                         <?php
                             }
                         ?>
+                        <?php
+                            if($this->session->userdata('roles') == 'Operator'){
+                        ?>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="<?php echo base_url('index.php/operator/dashboard') ?>">Dashboard </a>
+                                </li>
+                        <?php
+                            }
+                        ?>
                     <!--<li class="nav-item">
                         <a class="nav-link text-white" href="<?php echo base_url('index.php/auth/profile') ?>">Profile </a>
                     </li>-->
