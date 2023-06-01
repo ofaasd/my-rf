@@ -6,13 +6,15 @@ Class Wa_model extends CI_Model{
 	
     public function validasi($id, $status){
 		$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
+		$siswa = $this->db->where('id',$pembayaran->nama_santri)->get('ref_siswa')->row();
 		$atas_nama = $pembayaran->atas_nama;
 		$jumlah = number_format($pembayaran->jumlah,0,",",".");
 		$no_wa = $pembayaran->no_wa;
 		if($status == 1){
 		//jika status pembayaran valid
 		$message = '
-*Pesan ini otomatis dikirim dari sistem*
+*Pesan ini otomatis dikirim dari sistem manajemen  laporan pembayaran*
+
 Yth. (Bp/Ibu) ' . $atas_nama . ', Alhamdulillah melalui petugas kami Bp. Muhadi, bulan  ini kami telah menerima : 
 
 ';
@@ -28,9 +30,12 @@ foreach($detail as $row){
 
 }
 $message .= '
-Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . '  Yang tetap istiqomah menyisihkan sebagian hartanya untuk kewajiban pembayaran bulanan di PPATQ RF. 
+Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . ' (Wali santri ' . $siswa->nama . ' Kelas ' . $siswa->kode .'), Yang senantiasa istiqomah menyisihkan sebagian hartanya untuk kewajiban pembayaran bulanan di PPATQ RF. 
 
-Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor ini.
+Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor ini.
+
+Dan apabila ada keluhan / masuk / saran, dapat disalurkan melalui link berikut
+(https://payment.ppatq-rf.id/index.php/keluhan)
 					';
 		}elseif($status == 2){
 			//jika status pembayaran tidak valid
@@ -111,7 +116,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 						
 						curl_close($curl);
 						
-						$siswa = $this->db->where('id',$pembayaran->nama_santri)->get('ref_siswa')->row();
+						
 						$convert_res = json_decode($response);
 						$status = 0;
 						if($convert_res->status == 200){
@@ -128,6 +133,103 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 						
 
 						return $response;
+	}
+
+	public function get_all()
+    {
+            $query = $this->db->get('tb_send_wa');
+            return $query->result();
+    }
+	public function get_not_send(){
+		$query = $this->db->where('status',0)->get('tb_send_wa');
+		return $query->result();
+	}
+	public function get_send(){
+		$query = $this->db->where('status',1)->get('tb_send_wa');
+		return $query->result();
+	}
+    public function get_by_id($id)
+    {
+            $query = $this->db->where('id',$id)->get('tb_send_wa');
+            return $query->row();
+    }
+    
+    public function insert(){
+        $data = array(
+			'nama' => $this->input->post('nama'),	
+			'no_wa' => $this->input->post('no_wa'),	
+			'pesan' => $this->input->post('pesan'),	
+		);
+        if($this->db->insert('tb_send_wa',$data)){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+
+    public function update(){
+        $data = array(
+			'nama' => $this->input->post('nama'),	
+			'no_wa' => $this->input->post('no_wa'),	
+			'pesan' => $this->input->post('pesan'),	
+		);
+
+        if($this->db->update('tb_send_wa', $data, array('id' => $this->input->post('id')))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+	public function update_status($status,$id){
+		$data = array(
+			'status' => $status,	
+		);
+
+        if($this->db->update('tb_send_wa', $data, array('id' => $id))){
+            return true;
+        }else{
+            return false;
+        }
+	}
+
+    public function delete($id)
+    {
+        if($this->db->delete('tb_send_wa', array('id' => $id))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+	public function send_wa($data){
+		
+		$curl = curl_init();
+		
+		$dataSending = array();
+		$dataSending["api_key"] = $this->wa_api;
+		$dataSending["number_key"] = $this->number_key;
+		$dataSending["phone_no"] = $data['no_wa'];
+		$dataSending["message"] = $data['message'];
+		
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://api.watzap.id/v1/send_message',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => json_encode($dataSending),
+			CURLOPT_HTTPHEADER => array(
+			'Content-Type: application/json'
+			),
+		));
+
+		$response = curl_exec($curl);
+		
+		curl_close($curl);
+		return $response;
 	}
 }
 
