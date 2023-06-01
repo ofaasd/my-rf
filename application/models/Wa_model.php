@@ -110,10 +110,24 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 						$response = curl_exec($curl);
 						
 						curl_close($curl);
+						
+						$siswa = $this->db->where('id',$pembayaran->nama_santri)->get('ref_siswa')->row();
+						$convert_res = json_decode($response);
+						$status = 0;
+						if($convert_res->status == 200){
+							$status = 1;
+						}
+						$data = array(
+							'id_pembayaran' => $id,
+							'nama' => $siswa->nama,
+							'no_wa' => $pembayaran->no_wa,
+							'pesan' => $message,
+							'status' => $status,
+						);
+						$hasil = $this->db->insert('tb_send_wa',$data);
+						
+
 						return $response;
-	}
-	function send_lapor($id){
-		
 	}
 }
 

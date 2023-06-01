@@ -375,5 +375,27 @@ class Siswa extends CI_Controller {
 		}
 		return $list_provinsi;
 	}
+	public function show($no_induk){
+		//$siswa = $this->siswa->get_by_id($this->session->userdata('siswa_id'));
+        $data['siswa'] = $this->db->where('no_induk',$no_induk)->get('tb_siswa_detail')->row();
+		$data['provinsi'] = $this->db->get('provinces')->result();
+		$data['prov_curr']  = $this->db->where('prov_id',$data['siswa']->provinsi)->get('provinces')->row();
+		$data['kota'] = $this->db->where('prov_id',$data['siswa']->provinsi)->get('cities')->result();
+		$data['kota_curr']  = $this->db->where('city_id',$data['siswa']->kabkota)->get('cities')->row();
+        
+		$var['title'] = 'PPATQ Roudlotul Falah';
+		$var['content'] = $this->load->view('admin/siswa/show',$data,true);
+		
+		$this->load->view('layouts/admin',$var);
+	}
+	public function simpan_detail(){
+        $update = $this->siswa->update_siswa_detail();
+        if($update){
+            $this->session->set_flashdata('message','data berhasil diupdate');
+            redirect(base_url('index.php/admin/siswa/index'));
+        }else{
+            redirect(base_url('index.php/admin/siswa/show/' . $this->input->post('no_induk')));
+        }
+	}
 
 }

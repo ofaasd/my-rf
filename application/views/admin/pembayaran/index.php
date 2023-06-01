@@ -172,10 +172,24 @@
 				method:"POST",
 				success : function (data){
 					$.ajax(settings).done(function (response) {
-					  console.log(response);
-					  $('#modal_wa').modal('hide');
-					  $(".alert").append('<div class="alert alert-success" role="alert"> Pesan Berhasil Terkirim </div>')
-					  $(".preloader").children().hide();
+						if(response.status != 200){
+							$(".alert").html('<div class="alert alert-danger" role="alert"> Pesan Gagal Terkirim (kode : '+response.status+') </div>')
+						}else{
+							$.ajax({
+								url : "<?=base_url('index.php/admin/pembayaran/update_status_wa' )?>",
+								data:{
+									status : 1,
+									id : data,
+								},
+								method:"POST",
+								success: function(){
+									$(".alert").html('<div class="alert alert-success" role="alert"> Pesan Berhasil Terkirim </div>')
+								}
+							});
+						}
+					  	console.log(response);
+					 	$('#modal_wa').modal('hide');
+					  	$(".preloader").children().hide();
 						$(".preloader").css('height', 0);
 					});
 				}

@@ -35,10 +35,13 @@
                             <td><?= $row->kode ?></td>
                             <td><?= $row->kode_murroby ?></td>
                             <td><?= $row->nama ?></td>
-                            <th>
-                                <a href='<?php echo base_url('index.php/admin/siswa/edit/' . $row->id) ?>' class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
-                                <a href='<?php echo base_url('index.php/admin/siswa/delete/' . $row->id) ?>' class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus ?');"><i class="fa fa-trash"></i></a>
-                            </th>
+                            <td>
+								<div class="btn-group btn-group-xs">
+                                    <a href='<?php echo base_url('index.php/admin/siswa/edit/' . $row->id) ?>' class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
+                                    <a href='<?php echo base_url('index.php/admin/siswa/show/' . $row->no_induk) ?>' class="btn btn-success"><i class="fa fa-eye"></i></i></a>
+                                    <a href='<?php echo base_url('index.php/admin/siswa/delete/' . $row->id) ?>' class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus ?');"><i class="fa fa-trash"></i></a>
+								</div>
+                            </td>
                         </tr>
                         <?php
                         $i++;

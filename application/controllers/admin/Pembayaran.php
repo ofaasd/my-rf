@@ -259,13 +259,9 @@ class Pembayaran extends CI_Controller {
 		$validasi = $this->pembayaran->get_by_id($id)->validasi;
         $new_validasi = $status;
 		$get_pembayaran_tunggakan = $this->db->where('id_pembayaran',$id)->get('tb_pembayaran_tunggakan')->num_rows();
-		$wa= "";
-		if($new_validasi == 1){
-			$wa = $this->wa->validasi($id,$new_validasi);
-			//echo "masuk sini";
-		}elseif($new_validasi == 2){
-			$wa = $this->wa->validasi($id,$new_validasi);
-		}
+		
+        $wa = $this->wa->validasi($id,$new_validasi);
+        
 		if($get_pembayaran_tunggakan > 0){
 			if($validasi == 0 && $new_validasi == 1){
 				//memasukan data ke tunggakan dari sebelumnya blm validasi jadi valid
@@ -282,7 +278,7 @@ class Pembayaran extends CI_Controller {
 		}
 		$update = $this->pembayaran->new_validasi($id,$status);
 		//echo $validasi . " " . $new_validasi;
-		//echo $wa;
+		$convert_wa = json_decode($wa);
         if($update){
             $this->session->set_flashdata('message','data berhasil diupdate ' . $wa);
             redirect(base_url('index.php/admin/pembayaran/show/' . $id));
@@ -478,7 +474,14 @@ class Pembayaran extends CI_Controller {
 			'no_wa' => $this->input->post('no_wa'),
 			'pesan' => $this->input->post('pesan'),
 		);
-		return $this->db->insert('tb_send_wa',$data);
+		$hasil = $this->db->insert('tb_send_wa',$data);
+        return $this->db->last_insert_id;
 	}
+    public function update_status_wa(){
+        $data = array(
+            'status' => $this->input->post('status')
+        );
+        return $this->db->update('tb_send_wa',$data,['id'=>$this->input->post('id')]);
+    }
 	
 }

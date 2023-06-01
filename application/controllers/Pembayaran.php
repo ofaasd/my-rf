@@ -37,7 +37,11 @@ class Pembayaran extends CI_Controller {
 		$this->load->view('layouts/main',$var);
 	}
 	public function check_pembayaran(){
-		if(empty($this->input->post('nama_santri')) || empty($this->session->userdata('siswa_id'))){
+		if(!empty($this->session->userdata('siswa_id'))){
+			redirect(base_url('index.php/pembayaran/detail_pembayaran'));
+		}
+
+		if(empty($this->input->post('nama_santri'))){
 			$this->session->set_flashdata('error','Nama Santri atau kode belum diisi');
 			redirect(base_url('index.php/pembayaran'));
 		}else{
@@ -54,8 +58,8 @@ class Pembayaran extends CI_Controller {
 				}
 				
 				$this->session->set_userdata('siswa_id', $data['siswa']->id);
-				$this->session->set_userdata('kode', $data['kode']);
-				$this->session->set_userdata('periode', $data['periode']);
+				$this->session->set_userdata('kode', $kode);
+				$this->session->set_userdata('periode', $periode);
 				redirect(base_url('index.php/pembayaran/detail_pembayaran'));
 			}else{
 				$this->session->set_flashdata('error','Nama Santri dengan kode tidak cocok');
@@ -75,6 +79,7 @@ class Pembayaran extends CI_Controller {
 		
 		$data['nama_santri'] = $siswa_id;
 		$data['kode'] = $kode;
+		
 		$data['jenis_pembayaran'] = $this->jenis->get_all();
 		$data['bank_pengirim'] = $this->bank->get_all();
 		$data['siswa'] = $this->siswa->get_by_id($data['nama_santri']);
@@ -224,6 +229,22 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 						$response = curl_exec($curl);
 
 						curl_close($curl);
+						$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
+						$siswa = $this->db->where('id',$pembayaran->nama_santri)->get('ref_siswa')->row();
+						$convert_res = json_decode($response);
+						$status = 0;
+						if($convert_res->status == 200){
+							$status = 1;
+						}
+						$data = array(
+							'id_pembayaran' => $id,
+							'nama' => $atas_nama,
+							'no_wa' => $np_wa,
+							'pesan' => $message,
+							'status' => $status,
+						);
+						$hasil = $this->db->insert('tb_send_wa',$data);
+
 						//echo $response;
 						$this->session->set_flashdata('message','data berhasil disimpan');
                     }else{

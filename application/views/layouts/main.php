@@ -80,7 +80,7 @@
 
                 <ul class="navbar-nav ml-auto">
                     <?php
-                        if(!empty($this->session->userdata('roles'))){
+                        if(!empty($this->session->userdata('roles')) || !empty($this->session->userdata('siswa_id'))){
                     ?>
                         <?php
                             if($this->session->userdata('roles') == 'Admin'){
@@ -111,15 +111,16 @@
                     <?php
                         }else{
                     ?>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a class="nav-link text-white" href="<?php echo base_url('index.php/auth/register') ?>">Register</a>
-                    </li>
+                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link text-white" href="<?php echo base_url('index.php/auth/login') ?>">Login</a>
                     </li>
                     <?php
                         }
                     ?>
+                    
                 </ul>
             </div>
         </nav>
