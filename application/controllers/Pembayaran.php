@@ -199,6 +199,9 @@ Kami akan memberikan informasi apabila pembayaran tsb diatas sesuai.
 
 
 Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor ini.
+
+Dan apabila ada keluhan / masuk / saran, dapat disalurkan melalui link berikut
+(https://payment.ppatq-rf.id/index.php/keluhan)
 					';
                     if($update){
                        /*  echo "berhasil";
@@ -210,7 +213,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 						$dataSending["number_key"] = "2Z17zDLogBMOaxnc";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
-						
+
 						$curl = curl_init();
 						
 						curl_setopt_array($curl, array(
