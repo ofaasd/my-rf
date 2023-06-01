@@ -209,7 +209,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 		$dataSending["api_key"] = $this->wa_api;
 		$dataSending["number_key"] = $this->number_key;
 		$dataSending["phone_no"] = $data['no_wa'];
-		$dataSending["message"] = $data['message'];
+		$dataSending["message"] = $data['pesan'];
 		
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => 'https://api.watzap.id/v1/send_message',
