@@ -90,6 +90,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?php echo base_url('index.php/admin/whatsapp') ?>" class="nav-link  <?= ($this->uri->segment(2)=="whatsapp" || $this->uri->segment(3)=="whatsapp")?"active":""?>">
+              <i class="nav-icon fas fa-envelope"></i>
+              <p>
+                Log Whatsapp
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?php echo base_url('/') ?>" class="nav-link">
               <i class="nav-icon fas fa-long-arrow-alt-left"></i>
               <p>

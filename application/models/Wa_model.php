@@ -137,7 +137,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 
 	public function get_all()
     {
-            $query = $this->db->get('tb_send_wa');
+            $query = $this->db->order_by('id','desc')->get('tb_send_wa');
             return $query->result();
     }
 	public function get_not_send(){

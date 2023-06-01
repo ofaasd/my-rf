@@ -27,10 +27,10 @@ class Whatsapp extends CI_Controller {
 
     public function create(){
 
-        $data['kategori'] = '';
+        $data['whatsapp'] = '';
 
-		$var['title'] = 'Tambah Kategori';
-		$var['content'] = $this->load->view('admin/kategori/create',$data,true);
+		$var['title'] = 'Tambah Pesan Whatsapp Baru';
+		$var['content'] = $this->load->view('admin/wa/create',$data,true    );
 
 		$this->load->view('layouts/admin',$var);
     }
@@ -38,41 +38,70 @@ class Whatsapp extends CI_Controller {
     
     public function edit($id){
 
-        $data['kategori'] = $this->kategori->get_by_id($id);
+        $data['wa'] = $this->wa->get_by_id($id);
 
-		$var['title'] = 'Edit Kategori';
-		$var['content'] = $this->load->view('admin/kategori/create',$data,true);
+		$var['title'] = 'Edit whatsapp';
+		$var['content'] = $this->load->view('admin/wa/create',$data,true);
 
 		$this->load->view('layouts/admin',$var);
     }
 
     public function insert(){
-        $insert = $this->kategori->insert();
-        if($insert){
-            $this->session->set_flashdata('message','data berhasil ditambahkan');
-            redirect(base_url('index.php/admin/kategori'));
+        $insert = $this->wa->insert();
+        $data = array(
+            'no_wa' => $this->input->post('no_wa'),
+            'pesan' => $this->input->post('pesan'),
+        );
+        $send = $this->wa->send_wa($data);
+        $decode = json_decode($send);
+        $msg = "";
+        if($decode->status != 200){
+            $msg = "pesan gagal dikirimkan";
         }else{
-            redirect(base_url('index.php/admin/kategori/create'));
+            $msg = "pesan berhasil dikirimkan";
+        }
+        if($insert){
+            $this->session->set_flashdata('message','data berhasil ditambahkan dan ' . $msg);
+            redirect(base_url('index.php/admin/whatsapp'));
+        }else{
+            redirect(base_url('index.php/admin/whatsapp/create'));
         }
     }
 
     public function update(){
-        $update = $this->kategori->update();
+        $update = $this->wa->update();
         if($update){
             $this->session->set_flashdata('message','data berhasil diupdate');
-            redirect(base_url('index.php/admin/kategori'));
+            redirect(base_url('index.php/admin/whatsapp'));
         }else{
-            redirect(base_url('index.php/admin/kategori/edit/' . $id));
+            redirect(base_url('index.php/admin/whatsapp/edit/' . $id));
+        }
+    }
+    public function resend($id){
+        $wa = $this->wa->get_by_id($id);
+        $data = array(
+            'no_wa' => $wa->no_wa,
+            'pesan' => $wa->pesan,
+        );
+        $send = $this->wa->send_wa($data);
+        $decode = json_decode($send);
+        $msg = "";
+        if($decode->status != 200){
+            $this->session->set_flashdata('error','pesan gagal dikirimkan ' . $send);
+            redirect(base_url('index.php/admin/whatsapp'));
+        }else{
+            $this->session->set_flashdata('message','Pesan berhasil dikirimkan');
+            redirect(base_url('index.php/admin/whatsapp'));
         }
     }
 
     public function delete($id){
-        $delete = $this->kategori->delete($id);
+        $delete = $this->wa->delete($id);
         if($delete){
             $this->session->set_flashdata('message','data berhasil dihapus');
-            redirect(base_url('index.php/admin/kategori'));
+            redirect(base_url('index.php/admin/whatsapp'));
         }else{
-            redirect(base_url('index.php/admin/kategori/'));
+            redirect(base_url('index.php/admin/whatsapp/'));
         }
     }
 

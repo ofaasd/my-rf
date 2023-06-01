@@ -203,13 +203,15 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
                     if($update){
                        /*  echo "berhasil";
                         echo $this->db->last_query(); */
-						$curl = curl_init();
+						
 						
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
 						$dataSending["number_key"] = "2Z17zDLogBMOaxnc";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
+						
+						$curl = curl_init();
 						
 						curl_setopt_array($curl, array(
 						  CURLOPT_URL => 'https://api.watzap.id/v1/send_message',

@@ -9,7 +9,14 @@
                 <?php
                     }
                 ?>
-                <a href="<?php echo base_url('index.php/admin/kategori/create/') ?>" class="btn btn-primary">Tambah</a><br /><br />
+                <?php
+                    if(!empty($this->session->flashdata('error'))){
+                ?>
+                    <p class="alert alert-danger {{ Session::get('alert-class', 'alert-danger') }}"><?= $this->session->flashdata('error') ?></p>
+                <?php
+                    }
+                ?>
+                <a href="<?php echo base_url('index.php/admin/whatsapp/create/') ?>" class="btn btn-primary">Tambah</a><br /><br />
                 <table class="table table-hover table-stripped" id="my-table">
                     <thead>
                         <tr>
@@ -38,7 +45,8 @@
                             <td><?= ($row->status == 0)?"Tidak Terkirim":"Terkirim" ?></td>
                             <td>
 								<div class="btn-group btn-group-xs">
-                                    <a href='<?php echo base_url('index.php/admin/whatsapp/edit/' . $row->id) ?>' class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
+                                    <a href='<?php echo base_url('index.php/admin/whatsapp/edit/' . $row->id) ?>' class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>   
+                                    <a href='<?php echo base_url('index.php/admin/whatsapp/resend/' . $row->id) ?>' class="btn btn-success"><i class="fa fa-share"></i></a>   
                                     <a href='<?php echo base_url('index.php/admin/whatsapp/delete/' . $row->id) ?>' class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus ?');"><i class="fa fa-trash"></i></a>
 								</div>
                             </td>
