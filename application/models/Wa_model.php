@@ -35,7 +35,7 @@ Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . ' (Wali santri ' 
 Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor ini.
 
 Dan apabila ada keluhan / masuk / saran, dapat disalurkan melalui link berikut
-(https://payment.ppatq-rf.id/index.php/keluhan)
+(saran.ppatq-rf.id)
 					';
 		}elseif($status == 2){
 			//jika status pembayaran tidak valid
