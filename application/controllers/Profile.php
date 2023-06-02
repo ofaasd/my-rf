@@ -9,7 +9,7 @@ class Profile extends CI_Controller {
         $this->load->model('Siswa_model','siswa');
 		if(empty($this->session->userdata('siswa_id'))){
 			$this->session->set_flashdata('error','Harap isi form ini terlebih dahulu');
-			redirect(base_url('index.php/pembayaran'));
+			redirect(base_url('index.php/pembayaran/index_profile'));
 		}
 
     }

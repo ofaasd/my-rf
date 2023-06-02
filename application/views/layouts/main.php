@@ -67,15 +67,10 @@
                     <li class="nav-item">
                         <a class="nav-link text-white  active" aria-current="page" href="<?php echo base_url('index.php/pembayaran') ?>">Layanan Pembayaran</a>
                     </li>
-					<?php
-						if(!empty($this->session->userdata('siswa_id'))){
-					?>
+					
 					<li class="nav-item">
                         <a class="nav-link text-white  active" aria-current="page" href="<?php echo base_url('index.php/profile') ?>">Update Profile</a>
                     </li>
-					<?php
-						}
-					?>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">

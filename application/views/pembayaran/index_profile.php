@@ -13,7 +13,7 @@
 		<?php if($bukatutup->status == 0){ ?>
 			<p class="alert alert-danger">Pelaporan Pembayaran Pada Bulan ini ditutup sementara</p>
 		<?php }else{ ?>
-        <form method="POST" enctype='multipart/form-data' action="<?= base_url('index.php/pembayaran/detail_pembayaran') ?>">
+        <form method="POST" enctype='multipart/form-data' action="<?= base_url('index.php/pembayaran/check_verifikasi_profile') ?>">
             <div class="form-group">
                 <label class="form-label">Nama Santri</label><br />
                 <select id="nama_santri" name="nama_santri" class="form-control col-md-6">
@@ -46,6 +46,10 @@
 					<option value="<?=$key?>"><?=$value?></option>
 					<?php } ?>
 				</select>
+			</div>
+			<div class="form-group">
+				<label class="form-label">Password</label>
+				<input type="password" name="password" placeholder="Tgl lahir santri (hhbbtt) + gender(L/P). Cth : 180296L" class="form-control col-md-8">
 			</div>
 			
             <div class="form-group">

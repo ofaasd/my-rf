@@ -36,14 +36,30 @@ class Pembayaran extends CI_Controller {
 
 		$this->load->view('layouts/main',$var);
 	}
-	public function check_pembayaran(){
+	public function index_profile()
+	{
 		if(!empty($this->session->userdata('siswa_id'))){
 			redirect(base_url('index.php/pembayaran/detail_pembayaran'));
 		}
+        $data['bukatutup'] = $this->db->order_by('id','desc')->limit(1)->get("tb_bukatutup")->row();
+		$data['jenis_pembayaran'] = $this->jenis->get_all();
+		$data['bank_pengirim'] = $this->bank->get_all();
+        $data['siswa'] = $this->siswa->get_all();
+        $data['kode'] = $this->siswa->get_kelas_all();
+		$data['bulan'] = $this->bulan;
+		$var['title'] = 'PPATQ Roudlotul Falah';
+		$var['content'] = $this->load->view('pembayaran/index_profile',$data,true);
 
+
+		$this->load->view('layouts/main',$var);
+	}
+	public function check_verifikasi_profile(){
+		// if(!empty($this->session->userdata('siswa_id'))){
+		// 	redirect(base_url('index.php/pembayaran/detail_pembayaran'));
+		// }
 		if(empty($this->input->post('nama_santri'))){
 			$this->session->set_flashdata('error','Nama Santri atau kode belum diisi');
-			redirect(base_url('index.php/pembayaran'));
+			redirect(base_url('index.php/pembayaran/index_profile'));
 		}else{
 			$verifikasi = $this->siswa->verifikasi_siswa();
 			if($verifikasi){
@@ -60,21 +76,31 @@ class Pembayaran extends CI_Controller {
 				$this->session->set_userdata('siswa_id', $data['siswa']->id);
 				$this->session->set_userdata('kode', $kode);
 				$this->session->set_userdata('periode', $periode);
-				redirect(base_url('index.php/pembayaran/detail_pembayaran'));
+				redirect(base_url('index.php/profile'));
 			}else{
 				$this->session->set_flashdata('error','Nama Santri dengan kode tidak cocok');
-				redirect(base_url('index.php/pembayaran'));
+				redirect(base_url('index.php/pembayaran/index_profile'));
 			}
 		}
 	}
 	public function detail_pembayaran(){
-		if(!empty($this->session->userdata('siswa_id'))){
-			$siswa_id = $this->session->userdata('siswa_id');
-			$kode = $this->session->userdata('kode');
-			$periode = $this->session->userdata('periode');
+		//if(!empty($this->session->userdata('siswa_id'))){
+		if(!empty($this->input->post('nama_santri'))){
+			// $siswa_id = $this->session->userdata('siswa_id');
+			// $kode = $this->session->userdata('kode');
+			// $periode = $this->session->userdata('periode');
+			$siswa_id = $this->input->post('nama_santri');
+			$kode = $this->input->post('kode');
+			$periode = $this->input->post('periode');
 		}else{
-			$this->session->set_flashdata('error','Harap Isi form terlebih dahulu');
-			redirect(base_url('index.php/pembayaran'));
+			if(!empty($this->session->userdata('siswa_id'))){
+				$siswa_id = $this->session->userdata('siswa_id');
+				$kode = $this->session->userdata('kode');
+				$periode = $this->session->userdata('periode');
+			}else{
+				$this->session->set_flashdata('error','Harap Isi form terlebih dahulu');
+				redirect(base_url('index.php/pembayaran'));
+			}
 		}
 		
 		$data['nama_santri'] = $siswa_id;
