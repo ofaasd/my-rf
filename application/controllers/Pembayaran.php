@@ -38,7 +38,7 @@ class Pembayaran extends CI_Controller {
 	}
 	public function index_profile()
 	{
-		if(!empty($this->session->userdata('siswa_id'))){
+		if(!empty($this->session->userdata('pwd'))){
 			redirect(base_url('index.php/pembayaran/detail_pembayaran'));
 		}
         $data['bukatutup'] = $this->db->order_by('id','desc')->limit(1)->get("tb_bukatutup")->row();
@@ -76,6 +76,7 @@ class Pembayaran extends CI_Controller {
 				$this->session->set_userdata('siswa_id', $data['siswa']->id);
 				$this->session->set_userdata('kode', $kode);
 				$this->session->set_userdata('periode', $periode);
+				$this->session->set_userdata('pwd', $data['siswa']->password);
 				redirect(base_url('index.php/profile'));
 			}else{
 				$this->session->set_flashdata('error','Nama Santri dengan kode tidak cocok');
@@ -92,6 +93,10 @@ class Pembayaran extends CI_Controller {
 			$siswa_id = $this->input->post('nama_santri');
 			$kode = $this->input->post('kode');
 			$periode = $this->input->post('periode');
+
+			$this->session->set_userdata('siswa_id', $siswa_id);
+			$this->session->set_userdata('kode', $kode);
+			$this->session->set_userdata('periode', $periode);
 		}else{
 			if(!empty($this->session->userdata('siswa_id'))){
 				$siswa_id = $this->session->userdata('siswa_id');
@@ -167,6 +172,12 @@ class Pembayaran extends CI_Controller {
 
                 redirect(base_url('index.php/pembayaran'));
             }else{
+				$verifikasi_jumlah = $this->pembayaran->verifikasi_jumlah();
+				
+				if($verifikasi_jumlah == false){
+					$this->session->set_flashdata('error',"Total pembayaran dan rincian pembayaran tidak sama");
+					redirect(base_url('index.php/pembayaran/detail_pembayaran'));
+				}
                 $insert = $this->pembayaran->insert();
                 if($insert == 1){
                     $data = $this->upload->data();
@@ -270,7 +281,7 @@ Dan apabila ada keluhan / masuk / saran, dapat disalurkan melalui link berikut
 						$data = array(
 							'id_pembayaran' => $id,
 							'nama' => $atas_nama,
-							'no_wa' => $np_wa,
+							'no_wa' => $no_wa,
 							'pesan' => $message,
 							'status' => $status,
 						);
@@ -286,10 +297,10 @@ Dan apabila ada keluhan / masuk / saran, dapat disalurkan melalui link berikut
                     redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
                 }elseif($insert == 2){
 					$this->session->set_flashdata('error','Maaf data sudah pernah dimasukan');
-					redirect(base_url('index.php/pembayaran'));
+					redirect(base_url('index.php/pembayaran/detail_pembayaran'));
 				}else{	
 					$this->session->set_flashdata('error','Data gagal disimpan');
-                    redirect(base_url('index.php/pembayaran'));
+                    redirect(base_url('index.php/pembayaran/detail_pembayaran'));
                 }
             }
         }else{

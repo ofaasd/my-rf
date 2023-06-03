@@ -349,7 +349,7 @@ Class Pembayaran_model extends CI_Model{
             );
             if($this->db->insert('tb_pembayaran',$data)){
                 $id = $this->db->insert_id();
-				
+				$nominal = 0;
 				foreach($detail as $key=>$value){
 					if($value != 0){
 						$data_detail = array(
@@ -357,16 +357,34 @@ Class Pembayaran_model extends CI_Model{
 							'id_jenis_pembayaran' => $key,
 							'nominal' => $value,
 						);
+                        $nominal += $value;
 						$this->db->insert('tb_detail_pembayaran',$data_detail);
 					}
 				}
 				$hasil++;
             }
+            $data = array(
+                'jumlah' => $nominal,
+            );
+            $this->db->update('tb_pembayaran',$data,array('id',$id));
         }
         if($hasil > 0){
             return true;
         }else{
             return false;
         }
+    }
+    public function verifikasi_jumlah(){
+        $jumlah = str_replace(".", "", $this->input->post('jumlah'));
+        $jumlah = (int)$jumlah;
+        $jenis_pembayaran = $this->input->post('jenis_pembayaran');
+        $jumlah2 = 0;
+        foreach($jenis_pembayaran as $key=>$value){
+            if($value != 0 && !empty($value)){
+                $nominal = str_replace(".", "", $value);
+                $jumlah2 += (int)$nominal;
+            }
+        }
+        return ($jumlah == $jumlah2);
     }
 }
