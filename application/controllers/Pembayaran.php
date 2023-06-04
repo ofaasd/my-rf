@@ -211,10 +211,10 @@ class Pembayaran extends CI_Controller {
 					$atas_nama = $this->input->post('atas_nama');
 					$jumlah = $this->input->post('jumlah');
 					
-					
+$msg_old = 'untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar';
 					$message = '
 *Pesan ini otomatis dikirim dari sistem*
-Terima kasih Bp/Ibu ' . $atas_nama . ', telah melakukan melaporkan  pembayaran untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar Rp. ' . $jumlah . '
+Terima kasih Bp/Ibu ' . $atas_nama . ', telah melakukan melaporkan  pembayaran  sebesar Rp. ' . $jumlah . '
 
 dengan rincian sbb : 
 ';
@@ -231,14 +231,13 @@ foreach($detail as $row){
 }
 $message .= '
 Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . ' Yang telah melaporkan kepada kami.
-Tunggu beberapa waktu, karena kami akan melakukan pencatatan.
-Kami akan memberikan informasi apabila pembayaran tsb diatas sesuai.
+Tunggu beberapa waktu, kami akan melakukan pencatatan.
+Kami akan segera memberikan informasi apabila pembayaran tsb diatas telah sesuai.
 
 
-Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor ini.
+Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. 
 
-Dan apabila ada keluhan / masuk / saran, dapat disalurkan melalui link berikut
-(saran.ppatq-rf.id)
+Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor ini. Atau melalui https://saran.ppatq-rf.id
 					';
                     if($update){
                        /*  echo "berhasil";
