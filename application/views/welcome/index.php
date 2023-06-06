@@ -14,19 +14,19 @@
         <div class="row" style="margin:10px">
             <div class="col-md-3">
                 <div class="card">
-                    <a href="https://www.facebook.com/mitq.raudlatulfalah" target="_blank" class="btn btn-primary"><img src="<?= base_url('assets/images/1.png') ?>" class="card-img-top" alt="..."></a>
+                    <a href="https://payment.ppatq-rf.id/index.php/keluhan" class="btn btn-success"><img src="<?= base_url('assets/images/3.png') ?>" class="card-img-top" alt="..."></a>
                     <div class="card-body">
-                        <h5 class="card-title">Facebook</h5>
-                        <p class="card-text">Ikuti Facebook PPATQ RAUDLATUL FALAH</p>
+                        <h5 class="card-title">Sambung Rasa Sumbang Saran</h5>
+                        <p class="card-text">Link ke halaman sambung rasa sumbang saran</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <a href="https://www.youtube.com/@PPATQTV" target="_blank" class="btn btn-danger"><img src="<?= base_url('assets/images/2.png') ?>" class="card-img-top" alt="..."></a>
+                    <a href="https://payment.ppatq-rf.id/index.php/pembayaran" class="btn btn-success"><img src="<?= base_url('assets/images/3.png') ?>" class="card-img-top" alt="..."></a>
                     <div class="card-body">
-                        <h5 class="card-title">Youtube</h5>
-                        <p class="card-text">Ikuti Youtube PPATQ RAUDLATUL FALAH</p>
+                        <h5 class="card-title">Konfirmasi Pembayaran</h5>
+                        <p class="card-text">Link untuk konfirmasi pembayaran</p>
                     </div>
                 </div>
             </div>
