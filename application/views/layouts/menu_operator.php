@@ -1,7 +1,7 @@
 <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="<?php echo base_url('index.php/admin/dashboard') ?>" class="nav-link <?= ($this->uri->segment(2)=="dashboard")?"active":""?>">
+            <a href="<?php echo base_url('index.php/operator/dashboard') ?>" class="nav-link <?= ($this->uri->segment(2)=="dashboard")?"active":""?>">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard 
