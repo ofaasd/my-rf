@@ -214,7 +214,7 @@ class Pembayaran extends CI_Controller {
 $msg_old = 'untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar';
 					$message = '
 *Pesan ini otomatis dikirim dari sistem*
-Terima kasih Bp/Ibu ' . $atas_nama . ', telah melakukan melaporkan  pembayaran  sebesar Rp. ' . $jumlah . '
+Yth. Bp/Ibu ' . $atas_nama . ', telah melakukan melaporkan  pembayaran  sebesar Rp. ' . $jumlah . '
 
 dengan rincian sbb : 
 ';
@@ -237,7 +237,7 @@ Kami akan segera memberikan informasi apabila pembayaran tsb diatas telah sesuai
 
 Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. 
 
-Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor ini. Atau melalui https://saran.ppatq-rf.id
+Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62897-9194-645. Atau melalui https://saran.ppatq-rf.id
 					';
                     if($update){
                        /*  echo "berhasil";
