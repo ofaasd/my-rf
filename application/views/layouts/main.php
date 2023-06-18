@@ -59,7 +59,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white  active" aria-current="page" href="<?php echo base_url('/') ?>">Home</a>
+                        <a class="nav-link text-white  active" aria-current="page" href="https://ppatq-rf.id">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white  active" aria-current="page" href="<?php echo base_url('index.php/keluhan') ?>">Sambung Rasa</a>
