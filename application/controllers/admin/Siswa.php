@@ -128,6 +128,58 @@ class Siswa extends CI_Controller {
 		
 		$this->load->view('layouts/admin',$var);
 	}
+	public function download2(){
+		if(!empty($this->input->post())){
+			$where = array();
+			if(!empty($this->input->post('kelas')) && $this->input->post('kelas') != 0){
+				$where['kelas'] = $this->input->post('kelas');
+			}
+			if(!empty($this->input->post('kode')) && $this->input->post('kode') != 0){
+				$where['kode'] = $this->input->post('kode');
+			}
+			if(!empty($this->input->post('kota'))  && $this->input->post('kota') != 0){
+				$where['kabkota'] = $this->input->post('kota');
+			}
+			if(!empty($this->input->post('provinsi'))  && $this->input->post('provinsi') != 0){
+				$where['provinsi'] = $this->input->post('provinsi');
+			}
+			//echo $this->input->post('kelas');
+			//var_dump($where);
+			
+			if(empty($where)){
+				$siswa = $this->db->get('tb_siswa_detail')->result();
+			}else{
+				$siswa = $this->db->where($where)->get('tb_siswa_detail')->result();
+			}
+			
+			$data['siswa'] = $siswa;
+			
+		}else{
+			$siswa = $this->db->get('tb_siswa_detail')->result();
+			$data['siswa'] = $siswa;
+		}
+		$data['kelas'] = $this->db->group_by('kelas')->get('tb_siswa_detail')->result();
+		//$data['kelas'] = $this->db->group_by('kode')->get('tb_siswa_detail')->result();
+		$data['kota'] = $this->db->group_by('kabkota')->get('tb_siswa_detail')->result();
+		$data['list_kota'] = array();
+		$list_kota = $this->db->get('cities')->result();
+		$data['list_kota'][0] = "N/A";
+		foreach($list_kota as $kota){
+			$data['list_kota'][$kota->city_id] = $kota->city_name;
+		}
+		$data['list_provinsi'] = array();
+		$list_provinsi = $this->db->get('provinces')->result();
+		foreach($list_provinsi as $provinsi){
+			$data['list_provinsi'][$provinsi->prov_id] = $provinsi->prov_name;
+		}
+		$data['list_provinsi'][0] = "N/A";
+		$data['provinsi'] = $this->db->group_by('provinsi')->get('tb_siswa_detail')->result();
+		$var['title'] = 'Siswa';
+		//$data['kode'] = $this->siswa->get_kelas_all();
+		$var['content'] = $this->load->view('admin/siswa/download2',$data,true);
+		
+		$this->load->view('layouts/admin',$var);
+	}
 
     public function import(){
         $this->load->library('form_validation');
@@ -355,6 +407,59 @@ class Siswa extends CI_Controller {
 		
 		//$data['kode'] = $this->siswa->get_kelas_all();
 		$this->load->view('admin/siswa/tabel_siswa',$data);
+		
+		//$this->load->view('layouts/admin',$var);
+	}
+	public function get_table_siswa2(){
+		if(!empty($this->input->post())){
+			$where = array();
+			if(!empty($this->input->post('kelas')) && $this->input->post('kelas') != 0){
+				$where['kelas'] = $this->input->post('kelas');
+			}
+			if(!empty($this->input->post('kode')) && $this->input->post('kode') != 0){
+				$where['kode'] = $this->input->post('kode');
+			}
+			if(!empty($this->input->post('kota'))  && $this->input->post('kota') != 0){
+				$where['kabkota'] = $this->input->post('kota');
+			}
+			if(!empty($this->input->post('provinsi'))  && $this->input->post('provinsi') != 0){
+				$where['provinsi'] = $this->input->post('provinsi');
+			}
+			//echo $this->input->post('kelas');
+			//var_dump($where);
+			
+			if(empty($where)){
+				$siswa = $this->db->get('tb_siswa_detail')->result();
+			}else{
+				$siswa = $this->db->where($where)->get('tb_siswa_detail')->result();
+			}
+			
+			$data['siswa'] = $siswa;
+			
+		}else{
+			$siswa = $this->db->get('tb_siswa_detail')->result();
+			$data['siswa'] = $siswa;
+		}
+		//echo $this->db->last_query();
+		$data['kelas'] = $this->db->group_by('kelas')->get('tb_siswa_detail')->result();
+		//$data['kelas'] = $this->db->group_by('kode')->get('tb_siswa_detail')->result();
+		$data['kota'] = $this->db->group_by('kabkota')->get('tb_siswa_detail')->result();
+		$data['list_kota'] = array();
+		$list_kota = $this->db->get('cities')->result();
+		$data['list_kota'][0] = "N/A";
+		foreach($list_kota as $kota){
+			$data['list_kota'][$kota->city_id] = $kota->city_name;
+		}
+		$data['list_provinsi'] = array();
+		$list_provinsi = $this->db->get('provinces')->result();
+		foreach($list_provinsi as $provinsi){
+			$data['list_provinsi'][$provinsi->prov_id] = $provinsi->prov_name;
+		}
+		$data['list_provinsi'][0] = "N/A";
+		$data['provinsi'] = $this->db->group_by('provinsi')->get('tb_siswa_detail')->result();
+		
+		//$data['kode'] = $this->siswa->get_kelas_all();
+		$this->load->view('admin/siswa/table_siswa2',$data);
 		
 		//$this->load->view('layouts/admin',$var);
 	}

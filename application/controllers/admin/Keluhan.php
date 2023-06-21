@@ -13,6 +13,7 @@ class Keluhan extends CI_Controller {
             }
         }
         $this->load->model('Keluhan_model','keluhan');
+        $this->load->model('Siswa_model','siswa');
     }
 
     public function index(){
@@ -41,6 +42,18 @@ class Keluhan extends CI_Controller {
         }else{
 			$this->session->set_flashdata('error','data gagal dihapus');
             redirect(base_url('index.php/admin/keluhan/'));
+        }
+    }
+    public function migrasi_noinduk(){
+        $keluhan = $this->keluhan->get_all();
+        foreach($keluhan as $row){
+            
+            $santri = $this->siswa->get_by_id($row->id_santri);
+            echo $santri->no_induk;
+            echo "<br />";
+            $data = array(
+                'id_santri' => $santri->no_induk,
+            );
         }
     }
 }
