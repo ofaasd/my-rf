@@ -29,7 +29,7 @@
                             <td><?=$row->nama_pelapor?></td>
                             <td><?=$row->email?></td>
                             <td><?=$row->no_hp?></td>
-                            <td><?=$row->id_santri?></td>
+                            <td><?=$list_siswa[$row->id_santri]?></td>
                             <!--<td><?=$row->nama_wali_santri?></td>-->
                             <td><?= (strlen($row->masukan) > 100) ? substr($row->masukan,0,100) . ' [...]':$row->masukan?></td>
                             <td><?= (strlen($row->saran) > 100) ? substr($row->saran,0,100) . ' [...]':$row->saran?></td>

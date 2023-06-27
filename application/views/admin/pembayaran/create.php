@@ -29,7 +29,7 @@
                         <?php
                             foreach($siswa as $row){
                         ?>
-                            <option value="<?= $row->id ?>"><?= $row->nama ?> - <?= $row->kode ?></option>
+                            <option value="<?= $row->no_induk ?>"><?= $row->nama ?> - <?= $row->kode ?></option>
                         <?php
                             }
                         ?>

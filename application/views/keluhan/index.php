@@ -41,7 +41,7 @@
                     <?php
                         foreach($siswa as $row){
                     ?>
-                        <option value="<?= $row->id ?>"><?= $row->nama ?></option>
+                        <option value="<?= $row->no_induk ?>"><?= $row->nama ?></option>
                     <?php
                         }
                     ?>

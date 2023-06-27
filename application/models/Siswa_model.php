@@ -20,11 +20,16 @@ Class Siswa_model extends CI_Model{
             $query = $this->db->where('id',$id)->get('ref_siswa');
             return $query->row();
     }
+    public function get_by_ni($no_induk)
+    {
+            $query = $this->db->where('no_induk',$no_induk)->get('ref_siswa');
+            return $query->row();
+    }
     
     public function verifikasi_siswa(){
         $id_santri = $this->input->post('nama_santri');
         $kode = $this->input->post('kode');
-        $query = $this->db->where(['id'=>$id_santri,'kode'=>$kode])->get('ref_siswa');
+        $query = $this->db->where(['no_induk'=>$id_santri,'kode'=>$kode])->get('ref_siswa');
         if($query->num_rows() > 0){
             return true;
         }else{
@@ -161,6 +166,15 @@ Class Siswa_model extends CI_Model{
         }else{
             return false;
         }
+    }
+
+    public function list_siswa_ni(){
+        $siswa = $this->get_all();
+        $list = array();
+        foreach($siswa as $row){
+            $list[$row->no_induk] = $row->nama;
+        }
+        return $list;
     }
 	
 }

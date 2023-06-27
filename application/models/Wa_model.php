@@ -6,7 +6,7 @@ Class Wa_model extends CI_Model{
 	
     public function validasi($id, $status){
 		$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
-		$siswa = $this->db->where('id',$pembayaran->nama_santri)->get('ref_siswa')->row();
+		$siswa = $this->db->where('no_induk',$pembayaran->nama_santri)->get('ref_siswa')->row();
 		$atas_nama = $pembayaran->atas_nama;
 		$jumlah = number_format($pembayaran->jumlah,0,",",".");
 		$no_wa = $pembayaran->no_wa;

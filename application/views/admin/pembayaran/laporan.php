@@ -60,9 +60,9 @@
                                         <?php 
                                             foreach($jenis_pembayaran as $row){
                                         ?>
-                                            <td>Rp. <?= number_format($santri[$s->id][$row->id],0,',','.')?></td>
+                                            <td>Rp. <?= number_format($santri[$s->no_induk][$row->id],0,',','.')?></td>
                                         <?php
-                                            $total += $santri[$s->id][$row->id];
+                                            $total += $santri[$s->no_induk][$row->id];
                                             }
                                         ?>
                                         <td>Rp. <?= number_format($total,0,',','.') ?></td>

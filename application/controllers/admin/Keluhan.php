@@ -21,6 +21,7 @@ class Keluhan extends CI_Controller {
         $data['keluhan'] = $this->keluhan->get_all();
 
 		$var['title'] = 'Daftar Keluhan';
+        $data['list_siswa'] = $this->siswa->list_siswa_ni();
 		$var['content'] = $this->load->view('admin/keluhan/index',$data,true);
 
 		$this->load->view('layouts/admin',$var);
@@ -28,6 +29,7 @@ class Keluhan extends CI_Controller {
     public function show($id){
 		
         $data['keluhan'] = $this->keluhan->get_by_id($id);
+        $data['siswa'] = $this->siswa->get_by_ni($data['keluhan']->id_santri);
 
 		$var['title'] = 'Detail Keluhan';
 		$var['content'] = $this->load->view('admin/keluhan/show',$data,true);
@@ -47,13 +49,23 @@ class Keluhan extends CI_Controller {
     public function migrasi_noinduk(){
         $keluhan = $this->keluhan->get_all();
         foreach($keluhan as $row){
-            
             $santri = $this->siswa->get_by_id($row->id_santri);
-            echo $santri->no_induk;
-            echo "<br />";
-            $data = array(
-                'id_santri' => $santri->no_induk,
-            );
+            if(!empty($santri->no_induk)){
+                echo $santri->no_induk;
+                echo $row->id_santri;
+                echo "<br />";
+                $data = array(
+                    'id_santri' => $santri->no_induk,
+                );
+                $update = $this->db->update('tb_keluhan',$data,array('id'=>$row->id));
+                if($update){
+                    echo "berhasil";
+                }else{
+                    echo "gagal";
+                }
+
+                echo "<br />";
+            }
         }
     }
 }

@@ -55,8 +55,8 @@ class Pembayaran extends CI_Controller {
 			$data['siswa'] = array();
 			$data['kelas'] = array();
 			foreach($siswa as $row){
-				$data['siswa'][$row->id] = $row->nama;
-				$data['kelas'][$row->id] = $row->kode;
+				$data['siswa'][$row->no_induk] = $row->nama;
+				$data['kelas'][$row->no_induk] = $row->kode;
 			}
 			$data['curr_bulan'] = $bulan;
 			$data['curr_tahun'] = $tahun;
@@ -107,7 +107,7 @@ class Pembayaran extends CI_Controller {
         $siswa = $this->siswa->get_all();
         $data['siswa'] = array();
         foreach($siswa as $row){
-            $data['siswa'][$row->id] = $row->nama;
+            $data['siswa'][$row->no_induk] = $row->nama;
         }
 
         $jenis = $this->jenis->get_all();
@@ -135,7 +135,7 @@ class Pembayaran extends CI_Controller {
             //inisiasi
             foreach($data['siswa'] as $siswa){
                 foreach($data['jenis_pembayaran'] as $jenis_pembayaran){
-                    $santri[$siswa->id][$jenis_pembayaran->id] = 0;
+                    $santri[$siswa->no_induk][$jenis_pembayaran->id] = 0;
                 }
             }
             //assign nilai di dalamnya
@@ -292,7 +292,7 @@ class Pembayaran extends CI_Controller {
         $data['jenis_pembayaran'] = $this->jenis->get_all();
         $data['bank_pengirim'] = $this->bank->get_all();
         $data['siswa'] = $this->siswa->get_all();
-        $data['nama_santri'] = $this->siswa->get_by_id($data['pembayaran']->nama_santri)->nama;
+        $data['nama_santri'] = $this->siswa->get_by_ni($data['pembayaran']->nama_santri)->nama;
         
         
         $data['detail_pembayaran'] = array();
@@ -385,7 +385,7 @@ class Pembayaran extends CI_Controller {
 		$data['pembayaran'] = $this->pembayaran->get_by_id($id);
         $data['jenis_pembayaran'] = $this->jenis->get_all();
         $data['bank_pengirim'] = $this->bank->get_by_id($data['pembayaran']->bank_pengirim);
-        $data['santri'] = $this->siswa->get_by_id($data['pembayaran']->nama_santri);
+        $data['santri'] = $this->siswa->get_by_ni($data['pembayaran']->nama_santri);
         $data['bulan'] = $this->bulan;
         
         $data['detail_pembayaran'] = array();
@@ -482,6 +482,26 @@ class Pembayaran extends CI_Controller {
             'status' => $this->input->post('status')
         );
         return $this->db->update('tb_send_wa',$data,['id'=>$this->input->post('id')]);
+    }
+    public function migrasi_noinduk(){
+        $pembayaran = $this->pembayaran->get_all();
+        foreach($pembayaran as $row){
+            $siswa = $this->siswa->get_by_id($row->nama_santri);
+            echo $siswa->no_induk;
+            echo "<br />";
+
+            $data = array(
+                'nama_santri' => $siswa->no_induk,
+            );
+
+            $update = $this->db->update('tb_pembayaran',$data,array('id'=>$row->id));
+            if($update){
+                echo "berhasil";
+            }else{
+                echo "gagal";
+            }
+            echo "<br />";           
+        }
     }
 	
 }

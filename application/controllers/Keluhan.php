@@ -31,11 +31,12 @@ class Keluhan extends CI_Controller {
                 $this->session->set_flashdata('message','data berhasil disimpan');
                 redirect(base_url('/index.php/keluhan'));
             }else{
-                redirect(base_url('/'));
+                $this->session->set_flashdata('error','Ada masalah salah input data');
+                redirect(base_url('/index.php/keluhan'));
             }
         }else{
             $this->session->set_flashdata('error','Nama Santri dengan kode tidak cocok');
-            redirect(base_url('/'));
+            redirect(base_url('/index.php/keluhan'));
         }
     }
 }

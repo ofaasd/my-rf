@@ -113,7 +113,7 @@ class Pembayaran extends CI_Controller {
 		
 		$data['jenis_pembayaran'] = $this->jenis->get_all();
 		$data['bank_pengirim'] = $this->bank->get_all();
-		$data['siswa'] = $this->siswa->get_by_id($data['nama_santri']);
+		$data['siswa'] = $this->siswa->get_by_ni($data['nama_santri']);
 		$data['periode'] = $periode;
 		
 		$data['bulan'] = $this->bulan; 
@@ -151,7 +151,7 @@ class Pembayaran extends CI_Controller {
 		$periode = $this->input->post('periode');
 		$tahun = $this->input->post('tahun');
 		$cek_nomor = $this->db->where(['nama_santri'=>$id_santri,'periode'=>$periode,'tahun'=>$tahun])->get('tb_pembayaran')->num_rows();
-		$santri = $this->db->where(['id'=>$id_santri])->get("ref_siswa")->row();
+		$santri = $this->db->where(['no_induk'=>$id_santri])->get("ref_siswa")->row();
 		$nama_santri = $santri->nama;
 		$kelas = $santri->kode;
         $filename = $periode . "-" . $tahun . "-" . $nama_santri . "-" . ($cek_nomor+1);

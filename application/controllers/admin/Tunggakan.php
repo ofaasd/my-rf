@@ -80,8 +80,8 @@ class Tunggakan extends CI_Controller {
 		$tagihan = array();
 		foreach($data['siswa'] as $siswa){
 			foreach($data['jenis_pembayaran'] as $jenis_pembayaran){
-				$santri[$siswa->id][$jenis_pembayaran->id] = 0;
-				$tagihan[$siswa->id][$jenis_pembayaran->id] = $jenis_pembayaran->harga;
+				$santri[$siswa->no_induk][$jenis_pembayaran->id] = 0;
+				$tagihan[$siswa->no_induk][$jenis_pembayaran->id] = $jenis_pembayaran->harga;
 			}
 		}
 		

@@ -22,7 +22,7 @@
                     </tr>
                     <tr>
                         <td>Nama Santri</td>
-                        <td><?=$keluhan->id_santri?></td>
+                        <td><?=$siswa->nama?></td>
                     </tr>
                     <tr>
                         <td>Nama Wali Santri</td>
