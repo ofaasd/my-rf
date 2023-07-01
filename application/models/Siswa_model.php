@@ -25,6 +25,14 @@ Class Siswa_model extends CI_Model{
             $query = $this->db->where('no_induk',$no_induk)->get('ref_siswa');
             return $query->row();
     }
+    public function get_kode_1a(){
+        $query = $this->db->where('kode','1a')->get('ref_siswa');
+        return $query->num_rows();
+    }
+    public function get_kode_1b(){
+        $query = $this->db->where('kode','1b')->get('ref_siswa');
+        return $query->num_rows();
+    }
     
     public function verifikasi_siswa(){
         $id_santri = $this->input->post('nama_santri');

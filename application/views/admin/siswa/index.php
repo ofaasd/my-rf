@@ -1,7 +1,7 @@
 <section class="col-lg-12 connectedSortable">
     <div class="card">
         <div class="card-content">
-            <div class="col-md-12">
+            <div class="col-md-12" style="padding:10px;">
                 <?php
                     if(!empty($this->session->flashdata('message'))){
                 ?>
@@ -11,10 +11,38 @@
                 ?>
                 <a href="<?php echo base_url('index.php/admin/siswa/create/') ?>" class="btn btn-primary">Tambah</a>
                 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
                     Upload Data
                 </button>
-				<a href="<?php echo base_url('index.php/admin/siswa/download/') ?>" class="btn btn-primary">Download Data</a>
+				<a href="<?php echo base_url('index.php/admin/siswa/download/') ?>" class="btn btn-success">Download Data</a>
+
+                <a href='<?php echo base_url('index.php/admin/siswa/naik_kelas/') ?>' class="btn btn-warning" onclick="return confirm('Jika anda setuju maka data siswa akan naik satu tingkat dan siswa di kelas 6 akan masuk ke data alumni.');">Naik Kelas</a>
+                <br />
+                <br />
+                <?php 
+                    //kasih alert kalo gaada data kelas 1 yang diupload harus segera di upload datanya
+                    if($kode_1a < 1){
+                ?>
+                        <p class="alert alert-danger">Data Kelas 1A belum di masukan
+                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </p>
+                <?php
+                    }
+                ?>
+                <?php 
+                    //kasih alert kalo gaada data kelas 1 yang diupload harus segera di upload datanya
+                    if($kode_1b < 1){
+                ?>
+                        <p class="alert alert-danger">Data Kelas 1B belum di masukan 
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </p>
+                <?php
+                    }
+                ?>
                 <table class="table table-hover table-stripped" id="my-table">
                     <thead>
                         <tr>
