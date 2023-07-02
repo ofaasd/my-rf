@@ -515,7 +515,7 @@ class Siswa extends CI_Controller {
 			$kode = substr($row->kode,1,1);
 			if($new_kelas > 6){
 				//insert ke tb_alumni
-				echo $row->no_induk;
+				//echo $row->no_induk;
 				//insert ke tb_alumni
 				$data = array(
 					//'kode' => $new_kelas . $kode,
@@ -528,7 +528,7 @@ class Siswa extends CI_Controller {
 				$insert_alumni = $this->db->insert('tb_alumni',$data);
 				//hapus dari ref_siswa 
 				$delete_siswa = $this->db->delete('ref_siswa',array('id',$row->id));
-				echo "<br />";
+				//update siswa detail kelas yang kelas 6 jadi tahun alumni
 			}else{
 				//update ke db siswa dan detail siswa
 				$data = array(
@@ -538,7 +538,40 @@ class Siswa extends CI_Controller {
 					'id' => $row->id,
 				);
 				$update = $this->db->update('ref_siswa',$data,$where);
+				$data2 = array(
+					'kelas' => $new_kelas . $kode,
+				);
+				$where2 = array(
+					'no_induk' => $row->no_induk,
+				);
+				$update = $this->db->update('tb_siswa_detail',$data2,$where2);
 			}
+		}
+		$this->session->set_flashdata('message','data Naik kelas berhasil diupdate');
+		redirect(base_url('index.php/admin/siswa/index'));
+	}
+	public function adjust_kelas(){
+		$siswa = $this->db->get('tb_siswa_detail')->result();
+		foreach($siswa as $row){
+			$kelas = substr($row->kelas,0,1);
+			$new_kelas = (int)$kelas+1;
+			//simpan kode
+			$kode = substr($row->kelas,1,1);
+			$data2 = array();
+			if($new_kelas > 6){
+				$data2 = array(
+					'kelas' => date('Y') . $kode,
+				);
+			}else{
+				$data2 = array(
+					'kelas' => $new_kelas . $kode,
+				);
+			}
+			
+			$where2 = array(
+				'no_induk' => $row->no_induk,
+			);
+			$update = $this->db->update('tb_siswa_detail',$data2,$where2);
 		}
 		$this->session->set_flashdata('message','data Naik kelas berhasil diupdate');
 		redirect(base_url('index.php/admin/siswa/index'));

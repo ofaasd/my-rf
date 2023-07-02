@@ -109,6 +109,15 @@ Class Siswa_model extends CI_Model{
             if($this->db->insert('tb_siswa_detail',$data)){
                 $hasil ++;
             }
+
+            $data = array(
+                'nama' => $row->nama,
+                'kode' => $this->input->post('kelas'),
+				//'kode_murroby' => $row->murroby,
+            );
+            if($this->db->insert('ref_siswa',$data)){
+                $hasil++;
+            }
         }
         if($hasil > 0){
             return true;
