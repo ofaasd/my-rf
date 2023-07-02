@@ -15,6 +15,7 @@
                     Upload Data
                 </button>
 				<a href="<?php echo base_url('index.php/admin/siswa/download/') ?>" class="btn btn-success">Download Data</a>
+				<a href="<?php echo base_url('index.php/admin/siswa/download2/') ?>" class="btn btn-success">Detail Siswa</a>
 
                 <a href='<?php echo base_url('index.php/admin/siswa/naik_kelas/') ?>' class="btn btn-warning" onclick="return confirm('Jika anda setuju maka data siswa akan naik satu tingkat dan siswa di kelas 6 akan masuk ke data alumni.');">Naik Kelas</a>
                 <br />
@@ -99,7 +100,7 @@
                             }
                         ?>
                         <p>Download Format Upload File dengan mengklik tombol di bawah ini</p> 
-                        <a href="<?=base_url('assets/files/data_siswa.xlsx')?>" class="btn btn-primary">Format</a>
+                        <a href="<?=base_url('assets/files/sample_data_import_siswa.xlsx')?>" class="btn btn-primary">Format</a>
                         <hr />
                         <label for="siswa"><h3>Upload File Excel</h3></label>
                         <input type="file" required name="siswa" class="form-control" id="siswa"><br />

@@ -78,6 +78,8 @@ Class Siswa_model extends CI_Model{
         }
     }
 	public function insert_json_detail($json){
+        $kelas = $this->input->post('kelas');
+        $delete = $this->db->delete('tb_siswa_detail',array('kelas'=>$kelas));
 		$hasil = 0;
         foreach($json as $row){
             $data = array(
