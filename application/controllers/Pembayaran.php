@@ -93,10 +93,16 @@ class Pembayaran extends CI_Controller {
 			$siswa_id = $this->input->post('nama_santri');
 			$kode = $this->input->post('kode');
 			$periode = $this->input->post('periode');
-
-			$this->session->set_userdata('siswa_id', $siswa_id);
-			$this->session->set_userdata('kode', $kode);
-			$this->session->set_userdata('periode', $periode);
+			$verifikasi = $this->siswa->verifikasi_siswa();
+		
+			if($verifikasi){
+				$this->session->set_userdata('siswa_id', $siswa_id);
+				$this->session->set_userdata('kode', $kode);
+				$this->session->set_userdata('periode', $periode);
+			}else{
+				$this->session->set_flashdata('error','Santri dan Kelas tidak sesuai');
+				redirect(base_url('index.php/pembayaran'));
+			}
 		}else{
 			if(!empty($this->session->userdata('siswa_id'))){
 				$siswa_id = $this->session->userdata('siswa_id');

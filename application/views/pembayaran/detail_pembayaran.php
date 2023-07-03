@@ -111,11 +111,12 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Periode Bayar</label>
-						<select name="periode" class="form-control col-md-12" id="bulan">
+						<select name="periode_view" class="form-control col-md-12" id="bulan" disabled>
 							<?php foreach($bulan as $key=>$value){ ?>
 							<option value="<?=$key?>" <?=($periode == $key)?"selected":""?>><?=$value?></option>
 							<?php } ?>
 						</select>
+						<input type="hidden" name="periode" value='<?php echo $periode?>'>
 					</div>
 					<input type="hidden" name="tahun" value="<?= date('Y')?>">
 					<div class="form-group">

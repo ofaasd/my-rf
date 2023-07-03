@@ -41,11 +41,12 @@
             </div>
 			<div class="form-group">
 				<label class="form-label">Periode Bayar</label>
-				<select name="periode" class="form-control col-md-6">
+				<select name="periodes" class="form-control col-md-6" disabled>
 					<?php foreach($bulan as $key=>$value){ ?>
-					<option value="<?=$key?>"><?=$value?></option>
+					<option value="<?=$key?>" <?= (date('m') == $key)?"selected":""?>><?=$value?></option>
 					<?php } ?>
 				</select>
+                <input type="hidden" name="periode" value='<?=date('m')?>'>
 			</div>
 			
             <div class="form-group">
