@@ -26,6 +26,7 @@
                             <th>Pesan</th>
                             <th>Tanggal</th>
                             <th>Tanggal Kirim</th>
+                            <th>Periode Pembayaran</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
@@ -42,6 +43,7 @@
                             <td><?= $row->pesan ?></td>
                             <td><?= date('Y-m-d H:i:s', strtotime($row->created_at)) ?></td>
                             <td><?= $row->tanggal_kirim ?></td>
+                            <td><?= $bulan[$row->periode] ?></td>
                             <td><?= ($row->status == 0)?"Tidak Terkirim":"Terkirim" ?></td>
                             <td>
 								<div class="btn-group btn-group-xs">

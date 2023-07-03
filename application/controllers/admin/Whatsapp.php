@@ -14,10 +14,12 @@ class Whatsapp extends CI_Controller {
         }
         $this->load->model('Wa_model','wa');
     }
+    public $bulan = array(1=>'Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
 
     public function index(){
 		
         $data['wa'] = $this->wa->get_all();
+        $data['bulan'] = $this->bulan;
 
 		$var['title'] = 'Log Whatsapp';
 		$var['content'] = $this->load->view('admin/wa/index',$data,true);

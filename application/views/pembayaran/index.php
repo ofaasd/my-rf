@@ -8,7 +8,7 @@
         <?php if(!empty($this->session->flashdata('error'))){ ?>
             <p class="alert alert-danger"><?= $this->session->flashdata('error') ?></p>
         <?php } ?>
-
+        <p class="alert alert-warning">Harap pastikan data kelas yang dimasukan adalah data kelas yang baru (setelah kenaikan kelas) </p>
         <br />
 		<?php if($bukatutup->status == 0){ ?>
 			<p class="alert alert-danger">Pelaporan Pembayaran Pada Bulan ini ditutup sementara</p>
