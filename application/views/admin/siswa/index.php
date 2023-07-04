@@ -108,8 +108,8 @@
 						<div class="form-group">
 							<label for="kelas">Kelas</label>
 							<select name="kelas" class="form-control">
-								<?php foreach($kode as $row){ ?>
-								<option value="<?= $row->kode ?>"><?= $row->kode ?></option>
+								<?php foreach($list_kelas as $row){ ?>
+								<option value="<?= $row ?>"><?= $row ?></option>
 								<?php } ?>
 							</select>
 						</div>

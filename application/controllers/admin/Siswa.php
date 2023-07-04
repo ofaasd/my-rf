@@ -20,6 +20,7 @@ class Siswa extends CI_Controller {
         $data['siswa'] = $this->siswa->get_all();
 
 		$var['title'] = 'Siswa';
+		$data['list_kelas'] = array('1a','1b','2a','2b','3a','3b','4a','4b','5a','5b','6a','6b');
 		$data['kode'] = $this->siswa->get_kelas_all();
 		$data['kode_1a'] = $this->siswa->get_kode_1a();
 		$data['kode_1b'] = $this->siswa->get_kode_1b();
