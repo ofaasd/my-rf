@@ -87,7 +87,7 @@ Class Siswa_model extends CI_Model{
                 'nama' => $row->nama,
                 'nisn' => $row->nisn,
                 'nik' => $row->nik,
-                'anak_ke' => $row->anak_ke,
+                'anak_ke' => $row->anak_ke, 
                 'tempat_lahir' => $row->tempat_lahir,
                 'tanggal_lahir' => $row->tanggal_lahir,
                 'usia' => $row->usia,
@@ -115,6 +115,7 @@ Class Siswa_model extends CI_Model{
             $data = array(
                 'nama' => $row->nama,
                 'kode' => $this->input->post('kelas'),
+                'no_induk' => $row->no_induk,
 				//'kode_murroby' => $row->murroby,
             );
             if($this->db->insert('ref_siswa',$data)){

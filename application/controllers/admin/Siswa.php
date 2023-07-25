@@ -577,5 +577,23 @@ class Siswa extends CI_Controller {
 		$this->session->set_flashdata('message','data Naik kelas berhasil diupdate');
 		redirect(base_url('index.php/admin/siswa/index'));
 	}
+	public function migrasi_no_induk(){
+		$siswa = $this->db->where('no_induk',0)->get('ref_siswa')->result();
+		foreach($siswa as $row){
+			$detail = $this->db->where('nama',$row->nama)->get('tb_siswa_detail')->row();
+			echo $row->nama;
+			echo " ";
+			$num_row = $this->db->where('nama',$row->nama)->get('tb_siswa_detail')->num_rows();
+			echo $detail->no_induk;
+			
+			$data = array(
+				'no_induk' => $detail->no_induk,
+			);
+			var_dump($data);
+			echo "<br />";
+			$update = $this->db->update('ref_siswa',$data,array('id'=>$row->id));
+		}
+	}
+
 
 }
