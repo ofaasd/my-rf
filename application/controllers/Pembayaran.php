@@ -220,7 +220,7 @@ class Pembayaran extends CI_Controller {
 $msg_old = 'untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar';
 					$message = '
 *Pesan ini otomatis dikirim dari sistem*
-Yth. Bp/Ibu ' . $atas_nama . ', telah melakukan melaporkan  pembayaran bulan ' . $this->bulan[$this->input->post('periode')] . ' sebesar Rp. ' . $jumlah . '
+Yth. Bp/Ibu ' . $atas_nama . ', telah melakukan melaporkan  pembayaran bulan ' . $this->bulan[(int)$this->input->post('periode')] . ' sebesar Rp. ' . $jumlah . '
 
 dengan rincian sbb : 
 ';
