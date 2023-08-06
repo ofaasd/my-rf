@@ -52,6 +52,7 @@ Class Pembayaran_model extends CI_Model{
             'catatan' => $this->input->post('catatan'),
             'no_wa' => $this->input->post('no_wa'),
             'created_at' => date('Y-m-d H:i:s'),
+			'input_by' => 1,
         );
 		$data2 = array(
 			'nama_santri' => $this->input->post('nama_santri'),
@@ -114,6 +115,7 @@ Class Pembayaran_model extends CI_Model{
             'note_validasi' => $this->input->post('note_validasi'),
             'created_at' => date('Y-m-d H:i:s'),
             'tipe' => $tipe,
+			'input_by' => 2,
         );
         $query = $this->db->insert('tb_pembayaran',$data);
         if($query){
