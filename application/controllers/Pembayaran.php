@@ -317,7 +317,7 @@ Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang 
 		$data['pembayaran'] = $this->pembayaran->get_by_id($id);
         $data['jenis_pembayaran'] = $this->jenis->get_all();
         $data['bank_pengirim'] = $this->bank->get_by_id($data['pembayaran']->bank_pengirim);
-        $data['santri'] = $this->siswa->get_by_id($data['pembayaran']->nama_santri);
+        $data['santri'] = $this->siswa->get_by_ni($data['pembayaran']->nama_santri);
         $data['bulan'] = $this->bulan;
         
         $data['detail_pembayaran'] = array();
