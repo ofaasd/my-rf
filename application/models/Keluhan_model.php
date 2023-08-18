@@ -6,6 +6,11 @@ Class Keluhan_model extends CI_Model{
             $query = $this->db->order_by('id','desc')->where('is_hapus',0)->get('tb_keluhan');
             return $query->result();
     }
+    public function get_by_date($start,$end)
+    {
+            $query = $this->db->order_by('id','desc')->where('is_hapus',0)->where('created_at >=', $start)->where('created_at <=', $end)->get('tb_keluhan');
+            return $query->result();
+    }
 
     public function get_by_id($id)
     {

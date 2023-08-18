@@ -68,4 +68,25 @@ class Keluhan extends CI_Controller {
             }
         }
     }
+	public function laporan(){
+		if(!empty($this->input->post('date_start'))){
+            $start = $this->input->post('date_start');
+            $end = $this->input->post('date_end');
+			$data['keluhan'] = $this->keluhan->get_by_date($start,$end);
+
+			$data['list_siswa'] = $this->siswa->list_siswa_ni();
+            $data['date_start'] = $start;
+            $data['date_end'] = $end;
+            $var['title'] = 'Keluhan ' . date('d-m-Y', strtotime($start)) . ' - ' . date('d-m-Y', strtotime($end));
+            $var['content'] = $this->load->view('admin/keluhan/laporan',$data,true);
+
+            $this->load->view('layouts/admin',$var);
+        }else{
+            $data = '';
+            $var['title'] = 'Laporan Keluhan';
+            $var['content'] = $this->load->view('admin/keluhan/laporan',$data,true);
+
+            $this->load->view('layouts/admin',$var);
+        }
+	}
 }

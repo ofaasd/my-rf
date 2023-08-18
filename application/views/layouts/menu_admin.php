@@ -50,7 +50,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('index.php/admin/keluhan') ?>" class="nav-link <?= ($this->uri->segment(2)=="keluhan")?"active":""?>">
+            <a href="<?php echo base_url('index.php/admin/keluhan') ?>" class="nav-link <?= ($this->uri->segment(2)=="keluhan" && $this->uri->segment(3)!="laporan")?"active":""?>">
               <i class="nav-icon fas fa-life-ring"></i>
               <p>
                 Daftar Keluhan / Aduan
@@ -86,6 +86,14 @@
               <i class="nav-icon fas fa-chart-bar"></i>
               <p>
                 Laporan Pembayaran
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('index.php/admin/keluhan/laporan') ?>" class="nav-link  <?= ($this->uri->segment(2)=="keluhan" && $this->uri->segment(3)=="laporan")?"active":""?>">
+              <i class="nav-icon fas fa-chart-bar"></i>
+              <p>
+                Laporan Keluhan
               </p>
             </a>
           </li>
