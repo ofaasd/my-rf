@@ -25,13 +25,10 @@
                             <thead>
                                 <tr>
                                     <td>No.</td>
-                                    <td>Tanggal</td>
-                                    <td>Nama Pelapor</td>
-                                    <td>Email</td>
-                                    <td>No. Hp</td>
-                                    <td>Nama Santri</td>
                                     <td>Masukan</td>
                                     <td>Saran</td>
+									<td>Tanggal</td>
+									<td>Nama Santri</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,14 +38,11 @@
                                     $total = 0;
                                 ?>
                                     <tr>
-                                        <td><?=$i?></td>
-                                        <td><?=date('d-m-Y', strtotime($row->created_at))?></td>
-										<td><?=$row->nama_pelapor?></td>
-										<td><?=$row->email?></td>
-										<td><?=$row->no_hp?></td>
-										<td><?=$list_siswa[$row->id_santri]?></td>
-										<td><?=$row->masukan?></td>
-										<td><?=$row->saran?></td>
+                                        <td valign="top"><?=$i?></td>
+										<td valign="top"><?=$row->masukan?></td>
+										<td valign="top"><?=$row->saran?></td>
+										<td valign="top"><?=date('d-m-Y', strtotime($row->created_at))?></td>
+										<td valign="top"><?=$row->id_santri . " - " . $list_siswa[$row->id_santri]?></td>
                                     </tr>
                                 <?php $i++; } ?>
                             </tbody>
