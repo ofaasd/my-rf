@@ -73,6 +73,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('index.php/admin/pembayaran/belum_lapor') ?>" class="nav-link <?= ($this->uri->segment(2)=="pembayaran" && $this->uri->segment(3) == "belum_lapor") ?"active":""?>">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Daftar Belum Lapor Pembayaran
+              </p>
+            </a>
+          </li>
 		  <li class="nav-item">
             <a href="<?php echo base_url('index.php/admin/tunggakan') ?>" class="nav-link <?= ($this->uri->segment(2)=="tunggakan" && empty($this->uri->segment(3)))?"active":""?>">
               <i class="nav-icon fas fa-dollar-sign"></i>

@@ -477,6 +477,16 @@ class Pembayaran extends CI_Controller {
 		$hasil = $this->db->insert('tb_send_wa',$data);
         return $this->db->last_insert_id;
 	}
+	private function send_wa_to_tbl($nama,$no_wa,$pesan){
+		$data = array(
+			'id_pembayaran' => 0,
+			'nama' => $nama,
+			'no_wa' => $no_wa,
+			'pesan' => $pesan,
+		);
+		$hasil = $this->db->insert('tb_send_wa',$data);
+        return $hasil;
+	}
     public function update_status_wa(){
         $data = array(
             'status' => $this->input->post('status')
@@ -503,5 +513,150 @@ class Pembayaran extends CI_Controller {
             echo "<br />";           
         }
     }
+	public function migrasi_no_hp(){
+		$all_pembayaran = $this->db->group_by('no_wa')->get('tb_pembayaran')->result();
+		foreach($all_pembayaran as $pembayaran){
+			$no_hp = $this->db->where('no_hp',$pembayaran->no_wa)->where('no_induk',$pembayaran->nama_santri)->get('ref_no_hp')->num_rows();
+			if($no_hp < 1){
+				$data = array(
+					'no_induk' => $pembayaran->nama_santri,
+					'atas_nama' => $pembayaran->atas_nama,
+					'no_hp' => $pembayaran->no_wa,
+				);
+				$insert = $this->db->insert('ref_no_hp',$data);
+				if($insert){
+					echo $pembayaran->atas_nama . "-" . $pembayaran->nama_santri .  " : " . $pembayaran->no_wa . "berhasil";
+					echo "<br />";
+				}
+			}
+		}
+		redirect(base_url('index.php/admin/pembayaran/belum_lapor'));
+	}
+	public function testing_jumlah(){
+		$no_hp = $this->db->group_by('no_induk')->get('ref_no_hp')->num_rows();
+		
+		//cek yang sudah membayar bulan 
+		//$bulan = (int)date('m');
+		$bulan = 6;
+		$tahun = date('Y');
+		
+		$pembayaran = $this->db->where('periode',$bulan)->where('is_hapus',0)->where('tahun',$tahun)->group_by('nama_santri')->get('tb_pembayaran')->result();
+		//simpan ke dalam variabel no_induk yang sudah bayar 
+		$no_induk = array();
+		foreach($pembayaran as $pem){
+			echo $pem->nama_santri . " - " . $pem->no_wa;
+			echo "<br />";
+			$no_induk[] = $pem->nama_santri;
+		}
+
+		//query untuk datpat no_induk yang belum membayar
+		echo "yang belum lapor";
+		$no_hp = $this->db->where_not_in('no_induk',$no_induk)->get('ref_no_hp')->result();
+		foreach($no_hp as $row){
+			echo $row->no_induk . " - " . $row->no_hp . "<br />";
+		}
+	}
+	public function belum_lapor(){
+		if(empty($this->input->post('periode'))){
+			$bulan = date('m');
+			$tahun = date('Y');
+		}else{
+			$bulan = $this->input->post('periode');
+			$tahun = $this->input->post('tahun');
+		}
+		$data['curr_bulan'] = (int)$bulan;
+		$data['curr_tahun'] = $tahun;
+		
+		$pembayaran = $this->db->where('periode',$bulan)->where('is_hapus',0)->where('tahun',$tahun)->group_by('nama_santri')->get('tb_pembayaran')->result();
+		//simpan ke dalam variabel no_induk yang sudah bayar 
+		$no_induk = array();
+		foreach($pembayaran as $pem){
+			$no_induk[] = $pem->nama_santri;
+		}
+
+		//query untuk datpat no_induk yang belum membayar
+		//echo "yang belum lapor";
+		$no_hp = $this->db->select('ref_no_hp.*,tb_siswa_detail.nama')->join('tb_siswa_detail','tb_siswa_detail.no_induk = ref_no_hp.no_induk')->group_by('ref_no_hp.no_induk')->where_not_in('ref_no_hp.no_induk',$no_induk)->get('ref_no_hp')->result();
+		
+		$data['bulan'] = $this->bulan;
+		$data['list_hp'] = $no_hp;
+		
+		$var['title'] = 'Daftar Belum Lapor Pembayaran';
+		$var['content'] = $this->load->view('admin/pembayaran/belum_lapor',$data,true);
+
+		$this->load->view('layouts/admin',$var);
+	}
+	public function kirim_reminder($id){
+		$no_hp = $this->db->where('no_induk',$id)->get('ref_no_hp')->result();
+		foreach($no_hp as $row){
+			echo $row->no_hp;
+			echo "<br />";
+			$pesan = '
+*Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
+
+Assalamualaikum,
+
+Mohon maaf, 
+Pada sistem report payment kami, belum ada catatan untuk pembayaran bulan ' . $this->bulan[(int)date('m')] . ', mohon maaf, bila ada kekeliruan/kesalahan report. 
+Jika belum melakukan pembayaran, harap segera melakukan pembayaran, selanjutnya dapat melakukan report melalui payment.ppatqrf.id
+Jika telah melakukan pembayaran dan belum melakukan report, silakan segera melakukan report melalui payment.ppatqrf.id
+
+karena reporting sangat penting buat lembaga ppatqrf untuk pencatatan serta distribusi sesuai keperuntukannya.
+
+terimakasih atas perhatian dan mohon maaf jika ada hal yang kurang berkenan.
+
+Wassalamualaikum
+'; 
+			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
+			if($hasil){
+				//kirim dengan menggunakn wa api; 085726553442 no asli
+				$data['no_wa'] = $row->no_hp;
+				$data['pesan'] = $pesan;
+				$send_wa = $this->wa->send_wa($data);
+			}
+		}
+		redirect(base_url('index.php/admin/pembayaran/belum_lapor'));
+	}
+	public function kirim_ke_semua(){
+		$bulan = $this->input->post('periode');
+		$tahun = $this->input->post('tahun');
+
+		$pembayaran = $this->db->where('periode',$bulan)->where('is_hapus',0)->where('tahun',$tahun)->group_by('nama_santri')->get('tb_pembayaran')->result();
+		//simpan ke dalam variabel no_induk yang sudah bayar 
+		$no_induk = array();
+		foreach($pembayaran as $pem){
+			$no_induk[] = $pem->nama_santri;
+		}
+
+		$no_hp = $this->db->select('ref_no_hp.*,tb_siswa_detail.nama')->join('tb_siswa_detail','tb_siswa_detail.no_induk = ref_no_hp.no_induk')->group_by('ref_no_hp.no_induk')->where_not_in('ref_no_hp.no_induk',$no_induk)->get('ref_no_hp')->result();
+		foreach($no_hp as $row){
+			echo $row->no_hp;
+			echo "<br />";
+			$pesan = '
+*Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
+
+Assalamualaikum,
+
+Mohon maaf, 
+Pada sistem report payment kami, belum ada catatan untuk pembayaran bulan ' . $this->bulan[(int)$bulan] . ', mohon maaf, bila ada kekeliruan/kesalahan report. 
+Jika belum melakukan pembayaran, harap segera melakukan pembayaran, selanjutnya dapat melakukan report melalui payment.ppatqrf.id
+Jika telah melakukan pembayaran dan belum melakukan report, silakan segera melakukan report melalui payment.ppatqrf.id
+
+karena reporting sangat penting buat lembaga ppatqrf untuk pencatatan serta distribusi sesuai keperuntukannya.
+
+terimakasih atas perhatian dan mohon maaf jika ada hal yang kurang berkenan.
+
+Wassalamualaikum
+'; 
+			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
+			if($hasil){
+				//kirim dengan menggunakn wa api; 085726553442 no asli
+				$data['no_wa'] = $row->no_hp;
+				$data['pesan'] = $pesan;
+				$send_wa = $this->wa->send_wa($data);
+			}
+		}
+		redirect(base_url('index.php/admin/pembayaran/belum_lapor'));
+	}
 	
 }

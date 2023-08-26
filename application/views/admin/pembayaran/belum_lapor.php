@@ -2,7 +2,12 @@
     <div class="card">
         <div class="card-content">
             <div class="col-md-12" style="overflow-y:scroll;">
-			<a href="<?=base_url('index.php/admin/pembayaran/create')?>" class="btn btn-primary" style="margin:10px;">Tambah Pembayaran</a> <br /><br />
+			<a href="<?=base_url('index.php/admin/pembayaran/migrasi_no_hp')?>" class="btn btn-primary" style="margin:10px;">Update No. Telp</a> <br /><br />
+			<form  method='POST' action='<?=base_url('index.php/admin/pembayaran/kirim_ke_semua')?>'>
+				<input type="hidden" name='bulan' class='form-control col-md-2' value='<?= (!empty($curr_bulan))?$curr_bulan:date('m')?>'>
+				<input type="hidden" name='tahun' class='form-control col-md-2' value='<?= (!empty($curr_tahun))?$curr_tahun:date('Y')?>'>
+				<input type='button' class="btn btn-success" style="margin:10px;" value='Blast Wa ke Semua' />
+			</form>
 				<form method="POST" action=''>
                     <div class="form-group">
                         <label for="periode">Bulan</label>
@@ -25,7 +30,7 @@
 				<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     Upload Data
                 </button>-->
-				<?php if(!empty($pembayaran)){ ?>
+				
 				<div class="alert">
 				
 				</div>
@@ -40,51 +45,34 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                            <th>No Induk</th>
                             <th>Nama Santri</th>
-                            <th>Kode Kelas</th>
-                            <th>Jumlah (Rp.)</th>
-                            <th>Tanggal Bayar</th>
-                            <th>Bulan</th>
-                            <th>Bank Pengirim</th>
+                            <th>No. Hp</th>
                             <th>Atas Nama</th>
-                            <th>Note</th>
-                            <th>Validasi</th>
-                            <th width="40%"></th>
+                            <th width="10%"></th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
                         $i = 1;
-                        foreach($pembayaran as $row){
+                        foreach($list_hp as $row){
                        ?>
                         <tr>
                             <td><?=$i?></td>
-                            <td><?=$siswa[$row->nama_santri] ." - ". $row->nama_santri?></td>
-                            <td><?=$kelas[$row->nama_santri]?></td>
-                            <td><?=number_format($row->jumlah,0,',','.')?></td>
-                            <td><?=$row->tanggal_bayar?></td>
-                            <td><?=$bulan[$row->periode]?></td>
-                            <td><?=$bank[$row->bank_pengirim]?></td>
-                            <td><?=$row->atas_nama?></td>
-                            <td><?=$row->catatan?></td>
+                            <td><?=$row->no_induk?></td>
+                            <td><?=$row->nama?></td>
                             <td>
-                                <?php
-                                    if($row->validasi == 0){
-                                        echo "<p class='text text-warning'>Belum Valid</p>";
-                                    }elseif($row->validasi == 2){
-                                        echo "<p class='text text-danger'>Ditolak</p>";
-                                    }else{
-                                        echo "<p class='text text-success'>Valid</p>";
-                                    }
-                                ?>
-                            </td>
+								<?php 
+									$detail_hp = $this->db->where('no_induk',$row->no_induk)->get('ref_no_hp')->result(); 
+									foreach($detail_hp as $hp){
+										echo $hp->no_hp . "<br />";
+									}
+								?>
+							</td>
+							<td><?= $row->atas_nama ?></td>
                             <th>
 								<div class="btn-group btn-group-xs">
-									<a href='<?=base_url('index.php/admin/pembayaran/edit/' . $row->id )?>' class="btn btn-primary btn-sm"><i class="fa fa-pencil-alt"></i></a>
-									<a target="_blank" href='<?=base_url('index.php/admin/pembayaran/print_bukti/' . $row->id )?>' class="btn btn-success btn-sm"><i class="fa fa-print"></i></a>
-									<a href='<?=base_url('index.php/admin/pembayaran/show/' . $row->id )?>' class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-									<!--<a href='javascript:void(0)' data-toggle="modal" onclick="get_wa_form(<?= $row->id ?>)" data-target="#modal_wa" class="btn btn-success btn-sm"><i class="fab fa-whatsapp"></i></a>-->
-									<a href='<?=base_url('index.php/admin/pembayaran/delete/' . $row->id )?>' class="btn btn-danger  btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus ?');"><i class="fa fa-trash"></i></a>
+									<a href='<?=base_url('index.php/admin/pembayaran/kirim_reminder/' . $row->no_induk )?>' class="btn btn-primary btn-sm"><i class="fab fa-whatsapp"></i></a>
 								  </div>
                             </th> 
                         </tr>
@@ -95,9 +83,7 @@
                         ?>
                     </tbody>
                 </table>
-				<?php
-				}
-				?>
+				
             </div>
         </div>
     </div>
@@ -127,6 +113,7 @@
 </div>
 
 <script>
+
 	function get_wa_form(id){
 		$.ajax({
 			url : "<?=base_url('index.php/admin/pembayaran/get_wa_form' )?>",
@@ -199,8 +186,6 @@
 		
 	}
 	$(document).ready(function(){
-		$('#my-table2').DataTable({
-			order: [[9, 'asc']],
-		});
+		$('#my-table2').DataTable();
 	})
 </script>
