@@ -643,7 +643,11 @@ terimakasih atas perhatian dan mohon maaf jika ada hal yang kurang berkenan.
 
 Wassalamualaikum
 '; 
-			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
+$pesan2 = 'ralat URL (kesalahan ketik)
+yang benar adalah:  payment.ppatq-rf.id
+
+mohon maaf';
+			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan2);
 			if($hasil){
 				//kirim dengan menggunakn wa api; 085726553442 no asli
 				$data['no_wa'] = $row->no_hp;
