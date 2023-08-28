@@ -6,7 +6,7 @@
 			<form  method='POST' action='<?=base_url('index.php/admin/pembayaran/kirim_ke_semua')?>'>
 				<input type="hidden" name='bulan' class='form-control col-md-2' value='<?= (!empty($curr_bulan))?$curr_bulan:date('m')?>'>
 				<input type="hidden" name='tahun' class='form-control col-md-2' value='<?= (!empty($curr_tahun))?$curr_tahun:date('Y')?>'>
-				<input type='button' class="btn btn-success" style="margin:10px;" value='Blast Wa ke Semua' />
+				<input type='submit' class="btn btn-success" style="margin:10px;" value='Blast Wa ke Semua' />
 			</form>
 				<form method="POST" action=''>
                     <div class="form-group">

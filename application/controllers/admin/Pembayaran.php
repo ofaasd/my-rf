@@ -652,7 +652,7 @@ Wassalamualaikum
 				$send_wa = $this->wa->send_wa($data);
 			}
 		}
-		//redirect(base_url('index.php/admin/pembayaran/belum_lapor'));
+		redirect(base_url('index.php/admin/pembayaran/belum_lapor'));
 	}
 	
 }
