@@ -625,7 +625,8 @@ Wassalamualaikum
 		foreach($pembayaran as $pem){
 			$no_induk[] = $pem->nama_santri;
 		}
-
+		var_dump($no_induk);
+		exit;
 		$no_hp = $this->db->select('ref_no_hp.*,tb_siswa_detail.nama')->join('tb_siswa_detail','tb_siswa_detail.no_induk = ref_no_hp.no_induk')->group_by('ref_no_hp.no_induk')->where_not_in('ref_no_hp.no_induk',$no_induk)->get('ref_no_hp')->result();
 		foreach($no_hp as $row){
 			$pesan = '
