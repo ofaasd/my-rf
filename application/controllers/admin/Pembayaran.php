@@ -596,8 +596,8 @@ Assalamualaikum,
 
 Mohon maaf, 
 Pada sistem report payment kami, belum ada catatan untuk pembayaran bulan ' . $this->bulan[(int)date('m')] . ', mohon maaf, bila ada kekeliruan/kesalahan report. 
-Jika belum melakukan pembayaran, harap segera melakukan pembayaran, selanjutnya dapat melakukan report melalui payment.ppatqrf.id
-Jika telah melakukan pembayaran dan belum melakukan report, silakan segera melakukan report melalui payment.ppatqrf.id
+Jika belum melakukan pembayaran, harap segera melakukan pembayaran, selanjutnya dapat melakukan report melalui payment.ppatq-rf.id
+Jika telah melakukan pembayaran dan belum melakukan report, silakan segera melakukan report melalui payment.ppatq-rf.id
 
 karena reporting sangat penting buat lembaga ppatqrf untuk pencatatan serta distribusi sesuai keperuntukannya.
 
@@ -634,8 +634,8 @@ Assalamualaikum,
 
 Mohon maaf, 
 Pada sistem report payment kami, belum ada catatan untuk pembayaran bulan ' . $this->bulan[(int)$bulan] . ', mohon maaf, bila ada kekeliruan/kesalahan report. 
-Jika belum melakukan pembayaran, harap segera melakukan pembayaran, selanjutnya dapat melakukan report melalui payment.ppatqrf.id
-Jika telah melakukan pembayaran dan belum melakukan report, silakan segera melakukan report melalui payment.ppatqrf.id
+Jika belum melakukan pembayaran, harap segera melakukan pembayaran, selanjutnya dapat melakukan report melalui payment.ppatq-rf.id
+Jika telah melakukan pembayaran dan belum melakukan report, silakan segera melakukan report melalui payment.ppatq-rf.id
 
 karena reporting sangat penting buat lembaga ppatqrf untuk pencatatan serta distribusi sesuai keperuntukannya.
 
