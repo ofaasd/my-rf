@@ -589,8 +589,6 @@ class Pembayaran extends CI_Controller {
 	public function kirim_reminder($id){
 		$no_hp = $this->db->where('no_induk',$id)->get('ref_no_hp')->result();
 		foreach($no_hp as $row){
-			echo $row->no_hp;
-			echo "<br />";
 			$pesan = '
 *Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
 
@@ -630,8 +628,6 @@ Wassalamualaikum
 
 		$no_hp = $this->db->select('ref_no_hp.*,tb_siswa_detail.nama')->join('tb_siswa_detail','tb_siswa_detail.no_induk = ref_no_hp.no_induk')->group_by('ref_no_hp.no_induk')->where_not_in('ref_no_hp.no_induk',$no_induk)->get('ref_no_hp')->result();
 		foreach($no_hp as $row){
-			echo $row->no_hp;
-			echo "<br />";
 			$pesan = '
 *Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
 
