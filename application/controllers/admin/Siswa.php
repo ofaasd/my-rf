@@ -594,6 +594,56 @@ class Siswa extends CI_Controller {
 			$update = $this->db->update('ref_siswa',$data,array('id'=>$row->id));
 		}
 	}
+	public function hapus_angkatan_lama(){
+		$alumni = $this->db->get('tb_alumni')->result();
+		foreach($alumni as $row){
+			if($this->db->where('no_induk',$row->no_induk)->get('ref_siswa')->num_rows() > 0){
+				$hapus = $this->db->delete('ref_siswa',array('no_induk'=>$row->no_induk));
+				echo "terhapus";
+			}else{
+				echo "aman";
+			}
+			//pindahkan ke tb+alumni_detail
+			$siswa_detail = $this->db->where('no_induk',$row->no_induk)->get('tb_siswa_detail');
+			if($siswa_detail->num_rows() > 0){
+				$row = $siswa_detail->row();
+				$data = array(
+					'no_induk' => $row->no_induk,
+					'nama' => $row->nama,
+					'nisn' => $row->nisn,
+					'nik' => $row->nik,
+					'anak_ke' => $row->anak_ke, 
+					'tempat_lahir' => $row->tempat_lahir,
+					'tanggal_lahir' => $row->tanggal_lahir,
+					'usia' => $row->usia,
+					'jenis_kelamin' => $row->jenis_kelamin,
+					'alamat' => $row->alamat,
+					'kelurahan' => $row->kelurahan,
+					'kecamatan' => $row->kecamatan,
+					'kabkota' => $row->kabkota,
+					'provinsi' => $row->provinsi,
+					'kode_pos' => $row->kode_pos,
+					'nik_kk' => $row->nik_kk,
+					'nama_lengkap_ayah' => $row->nama_lengkap_ayah,
+					'pendidikan_ayah' => $row->pendidikan_ayah,
+					'pekerjaan_ayah' => $row->pekerjaan_ayah,
+					'nama_lengkap_ibu' => $row->nama_lengkap_ibu,
+					'pendidikan_ibu' => $row->pendidikan_ibu,
+					'pekerjaan_ibu' => $row->pekerjaan_ibu,
+					'no_hp' => $row->no_hp,
+					'kelas' => $row->kelas,
+				);
+				if($this->db->insert('tb_alumni_detail',$data)){
+					$hapus = $this->db->delete('tb_siswa_detail',array('no_induk'=>$row->no_induk));
+				}
+				echo "-berhasil migrasi-";
+			}else{
+				echo "aman - migrasi - ";
+			}
+			echo $row->nama;
+			echo "<br />";
+		}
+	}
 
 
 }
