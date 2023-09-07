@@ -134,21 +134,20 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Pembayaran</label>
-						<table class="table col-md-12">
-							<tr>
-								<td>Tunggakan</td>
-								<td><input type="text" onkeyup="splitInDots(this)" placeholder="0" name="tunggakan" class="form-control" value="<?=($jumlah_tunggakan == 0)?"0":number_format($jumlah_tunggakan,0,",",".")?>" <?=($jumlah_tunggakan == 0)?"readonly":""?>></td>
-								<td>
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tunggakanModal">
-										Lihat
-									</button>
-								</td>
-							</tr>
+						<div class="row">
+							<div class="col-md-5">Tunggakan</div>
+							<div class="col-md-5"><input type="text" onkeyup="splitInDots(this)" placeholder="0" name="tunggakan" class="form-control" value="<?=($jumlah_tunggakan == 0)?"0":number_format($jumlah_tunggakan,0,",",".")?>" <?=($jumlah_tunggakan == 0)?"readonly":""?>></div>
+							<div class="col-md-2 text-center">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tunggakanModal">
+									Lihat
+								</button>
+							</div>
+						</div>
 							<?php foreach($jenis_pembayaran as $row) { ?>
-								<tr>
-									<td><?=$row->jenis?><input type="hidden" name="id_jenis_pembayaran[]" value='<?= $row->id ?>'></td>
-									<td><input type="text" onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></td>
-								</tr>
+								<div class="row" style="margin:10px auto">
+									<div class="col-md-4"><?=$row->jenis?><input type="hidden" name="id_jenis_pembayaran[]" value='<?= $row->id ?>'></div>
+									<div class="col-md-8"><input type="text" onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>
+								</div>
 							<?php } ?>
 						</table>    
 					</div>
