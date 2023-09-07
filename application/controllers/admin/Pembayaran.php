@@ -670,7 +670,7 @@ Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahuka
 
 2. Bagi yang melebihi pembayaran di atas tanggal 10, saku ditangguhkan (khusus yang tak mempunyai saldo) 
 
-3. Pondok PPATQ-RF menyelenggarakan acara kirim Arwahan, sekiranya ada walisantri yang berkeingian berperan serta, dapat melakuan transfer dan selanjutnya dilaporkan bukti transfernya dapat melalui paymentppatq-rf.id, Kegiatan / acara Arwahan ini hanya bulan september ini, *terakhir tanggal 22 Sept 2023*
+3. Pondok PPATQ-RF menyelenggarakan acara kirim Arwahan, sekiranya ada walisantri yang berkeingian berperan serta, dapat melakuan transfer dan selanjutnya dilaporkan bukti transfernya dapat melalui payment.ppatq-rf.id, Kegiatan / acara Arwahan ini hanya bulan september ini, *terakhir tanggal 22 Sept 2023*
 
 4. Silakan membayar dengan mode transfer pada rekening yang telah ditentukan, dan selanjutnya mohon dilaporkan bukti transfernya melalui alamat url: payment.ppatq-rf.id
 
