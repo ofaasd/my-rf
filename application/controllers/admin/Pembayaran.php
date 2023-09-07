@@ -688,15 +688,14 @@ K. Noor Shokhib M.Pd.I";
 			echo $i . ". Santri : " . $row->nama . " - " . trim($no_hp);
 			echo "<br />";
 			
-			if($i > 263){
-				if(!empty($no_hp)){
-					$hasil = $this->send_wa_to_tbl($row->nama,$no_hp,$pesan);
-					if($hasil){
-						//kirim dengan menggunakn wa api; 085726553442 no asli
-						$data['no_wa'] = $no_hp;
-						$data['pesan'] = $pesan;
-						$send_wa = $this->wa->send_wa($data);
-					}
+			
+			if(!empty($no_hp)){
+				$hasil = $this->send_wa_to_tbl($row->nama,$no_hp,$pesan);
+				if($hasil){
+					//kirim dengan menggunakn wa api; 085726553442 no asli
+					$data['no_wa'] = $no_hp;
+					$data['pesan'] = $pesan;
+					$send_wa = $this->wa->send_wa($data);
 				}
 			}
 			$i++;

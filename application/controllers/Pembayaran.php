@@ -330,20 +330,16 @@ Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang 
             $data['detail_pembayaran'][$row->id_jenis_pembayaran] = $row->nominal;
         }
 		
-		$this->load->library('pdfgenerator');
+		$this->load->library('pdf');
 		$this->data['title_pdf'] = 'Tagihan Santri';
         
-        // filename dari pdf ketika didownload
-        $file_pdf = 'bukti_pembayaran_santri';
-        // setting paper
-        $paper = 'A6';
-        //orientasi paper potrait / landscape
-        $orientation = "portrait";
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "bukti_pembayaran_santri.pdf";
         
-		$html = $this->load->view('admin/pembayaran/print',$data, true);	    
+		$this->pdf->load_view('admin/pembayaran/print',$data, true);	    
         
         // run dompdf
-        $this->pdfgenerator->generate($html, $file_pdf, $paper,$orientation);
+        // /$this->pdfgenerator->generate($html, $file_pdf, $paper,$orientation);
 	}
 	public function konfirmasi_pembayaran($id){
 		$data['id'] = $id;
