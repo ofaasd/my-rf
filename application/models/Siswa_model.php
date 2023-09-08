@@ -3,6 +3,7 @@ Class Siswa_model extends CI_Model{
     public $nama;
     public $kode;
     public $kode_murroby;
+	public $status;
 
     public function get_all()
     {
@@ -49,6 +50,7 @@ Class Siswa_model extends CI_Model{
         $this->nama = $_POST['nama'];
         $this->kode = $_POST['kode'];
         $this->kode_murroby = $_POST['kode_murroby'];
+        $this->status = $_POST['status'];
         if($this->db->insert('ref_siswa',$this)){
             return true;
         }else{
@@ -177,6 +179,7 @@ Class Siswa_model extends CI_Model{
         $this->nama = $_POST['nama'];
         $this->kode = $_POST['kode'];
 		$this->kode_murroby = $_POST['kode_murroby'];
+		$this->status = $_POST['status'];
 
         if($this->db->update('ref_siswa', $this, array('id' => $_POST['id']))){
             return true;

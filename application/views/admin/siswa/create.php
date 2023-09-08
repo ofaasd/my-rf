@@ -17,6 +17,19 @@
                         <input type="text" name="nama" id="siswa" value="<?= (empty($siswa))?"":$siswa->nama ?>" class="form-control col-md-6">
                     </div>
                     <div class="form-group">
+                        <label for="nama">Status</label>
+						<select name='status' class="form-control col-md-6">
+							<?php 
+								$a = array(0=>'aktif',1=>'lulus/alumni',2=>'boyong/keluar',3=>'meninggal');
+								foreach($a as $key=>$value){
+									echo '<option value="' . $key . '" ';
+									echo (!empty($siswa) && $siswa->status == $key)?"selected":"";
+									echo '>' . $value . '</option>';
+								}
+							?>
+						</select>
+                    </div>
+                    <div class="form-group">
                         <input type="submit" value="simpan" class="btn btn-primary"> 
                     </div>
                 </form>
