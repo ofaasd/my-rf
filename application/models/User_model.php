@@ -10,7 +10,7 @@ Class User_model extends CI_Model{
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
 
-        $query = $this->db->where(['username'=>$username,'password'=>$password])->get('users');
+        $query = $this->db->where(['username'=>$username,'password'=>$password])->get('users_ci');
         if($query->num_rows() > 0){
             $user = $query->row();
             $this->session->set_userdata(array(
@@ -33,7 +33,7 @@ Class User_model extends CI_Model{
             'password' => md5($this->input->post('password')),
             'created_at' => date('Y-m-d H:i:s'),
         );
-        $query = $this->db->insert('users',$data);
+        $query = $this->db->insert('users_ci',$data);
         if($query){
             return true;
         }else{
@@ -49,7 +49,7 @@ Class User_model extends CI_Model{
             'password' => md5($this->input->post('password')),
             'created_at' => date('Y-m-d H:i:s'),
         );
-        $query = $this->db->insert('users',$data);
+        $query = $this->db->insert('users_ci',$data);
         if($query){
             return true;
         }else{
@@ -57,7 +57,7 @@ Class User_model extends CI_Model{
         }
     }
     public function check_username($username){
-        $query = $this->db->where("username",$username)->get('users');
+        $query = $this->db->where("username",$username)->get('users_ci');
         if($query->num_rows() > 0){
             return false;
         }else{
@@ -65,7 +65,7 @@ Class User_model extends CI_Model{
         }
     }
     public function check_email($email){
-        $query = $this->db->where("email",$email)->get('users');
+        $query = $this->db->where("email",$email)->get('users_ci');
         if($query->num_rows() > 0){
             return false;
         }else{
@@ -74,13 +74,13 @@ Class User_model extends CI_Model{
     }
 	public function get_all()
     {
-            $query = $this->db->get('users');
+            $query = $this->db->get('users_ci');
             return $query->result();
     }
 	
 	public function get_by_id($id)
     {
-            $query = $this->db->where('id',$id)->get('users');
+            $query = $this->db->where('id',$id)->get('users_ci');
             return $query->row();
     }
     public function insert(){
@@ -92,7 +92,7 @@ Class User_model extends CI_Model{
             'password' => md5($this->input->post('password')),
             'created_at' => date('Y-m-d H:i:s'),
         );
-        $query = $this->db->insert('users',$data);
+        $query = $this->db->insert('users_ci',$data);
         if($query){
             return true;
         }else{
@@ -109,7 +109,7 @@ Class User_model extends CI_Model{
             'updated_at' => date('Y-m-d H:i:s'),
         );
 
-        if($this->db->update('users', $data, array('id' => $_POST['id']))){
+        if($this->db->update('users_ci', $data, array('id' => $_POST['id']))){
             return true;
         }else{
             return false;
@@ -120,7 +120,7 @@ Class User_model extends CI_Model{
             'password' => md5($this->input->post('password')),
             'updated_at' => date('Y-m-d H:i:s'),
         );
-		if($this->db->update('users', $data, array('id' => $_POST['id']))){
+		if($this->db->update('users_ci', $data, array('id' => $_POST['id']))){
             return true;
         }else{
             return false;
@@ -129,7 +129,7 @@ Class User_model extends CI_Model{
 
     public function delete($id)
     {
-        if($this->db->delete('users', array('id' => $id))){
+        if($this->db->delete('users_ci', array('id' => $id))){
             return true;
         }else{
             return false;
