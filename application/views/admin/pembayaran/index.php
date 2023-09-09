@@ -83,7 +83,7 @@
 									<a href='<?=base_url('index.php/admin/pembayaran/edit/' . $row->id )?>' class="btn btn-primary btn-sm"><i class="fa fa-pencil-alt"></i></a>
 									<a target="_blank" href='<?=base_url('index.php/admin/pembayaran/print_bukti/' . $row->id )?>' class="btn btn-success btn-sm"><i class="fa fa-print"></i></a>
 									<a href='<?=base_url('index.php/admin/pembayaran/show/' . $row->id )?>' class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-									<!--<a href='javascript:void(0)' data-toggle="modal" onclick="get_wa_form(<?= $row->id ?>)" data-target="#modal_wa" class="btn btn-success btn-sm"><i class="fab fa-whatsapp"></i></a>-->
+									<a href='javascript:void(0)' data-toggle="modal" onclick="get_wa_form(<?= $row->id ?>)" data-target="#modal_wa" class="btn btn-success btn-sm"><i class="fab fa-whatsapp"></i></a>
 									<a href='<?=base_url('index.php/admin/pembayaran/delete/' . $row->id )?>' class="btn btn-danger  btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus ?');"><i class="fa fa-trash"></i></a>
 								  </div>
                             </th> 
