@@ -56,7 +56,7 @@ mohon diulang kembali
 <input type="hidden" name="id" id="id_pembayaran" value="<?= $pembayaran->id ?>">
 <div class="form-group">
 	<label for="nama">Nama</label>
-	<input type="text" name="nama" id="nama" class="form-control" value="<?= $nama_santri->nama?>">
+	<input type="text" name="nama" id="nama" class="form-control" value="<?= $nama_santri?>">
 	
 	<label for="number">No Wa</label>
 	<input type="text" name="no_wa" id="no_wa" class="form-control" value="<?= $pembayaran->no_wa?>">
