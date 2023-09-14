@@ -17,7 +17,7 @@ class Siswa extends CI_Controller {
 
     public function index(){
 		
-        $data['siswa'] = $this->siswa->get_all();
+        $data['siswa'] = $this->siswa->get_all_order_kelas();
 
 		$var['title'] = 'Siswa';
 		$data['list_kelas'] = array('1a','1b','2a','2b','3a','3b','4a','4b','5a','5b','6a','6b');
