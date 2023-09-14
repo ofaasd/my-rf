@@ -12,7 +12,7 @@ Class Siswa_model extends CI_Model{
     }
     public function get_all_order_kelas()
     {
-            $query = $this->db->order_by('kelas','asc')->get('ref_siswa');
+            $query = $this->db->order_by('kode','asc')->get('ref_siswa');
             return $query->result();
     }
     public function get_kelas_all()
