@@ -623,24 +623,22 @@ Wassalamualaikum
 			$pesan = '
 *Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
 
-Assalamualaikum,
+Kepada segenap wali santri PPATQ-RF
 
-Mohon maaf, 
-Pada sistem report payment kami, belum ada catatan untuk pembayaran bulan ' . $this->bulan[(int)$bulan] . ', mohon maaf, bila ada kekeliruan/kesalahan report. 
-Jika belum melakukan pembayaran, harap segera melakukan pembayaran, selanjutnya dapat melakukan report melalui payment.ppatq-rf.id
-Jika telah melakukan pembayaran dan belum melakukan report, silakan segera melakukan report melalui payment.ppatq-rf.id
+*Assalâmu`alaikum warohamatullohiwabarokatuh*
 
-karena reporting sangat penting buat lembaga ppatqrf untuk pencatatan serta distribusi sesuai keperuntukannya.
+Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahukan kembali untuk melakukan pembayaran / pelaporan pembayaran rutin melalui payment.ppatq-rf.id. Mengingat pentingnya pembayaran tsb untuk keberlangsungan kegiatan di lingkungan PPATQ-RF.
 
-terimakasih atas perhatian dan mohon maaf jika ada hal yang kurang berkenan.
+Jikalau telah melakukan pelaporan, mohon abaikan pesan ini.
 
-Wassalamualaikum
+Pondok PPATQ-RF menyelenggarakan acara kirim Arwahan, sekiranya ada walisantri yang berkeingian berperan serta, dapat melakuan transfer dan selanjutnya dilaporkan bukti transfernya dapat melalui payment.ppatq-rf.id, 
+Kegiatan / acara Arwahan ini hanya bulan september ini, *terakhir tanggal 22 Sept 2023*
+
+Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
+
+Wassalâmu`alaikum warohmatullahiwabarokatuh
 '; 
-$pesan2 = 'ralat URL (kesalahan ketik)
-yang benar adalah:  payment.ppatq-rf.id
-
-mohon maaf';
-			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan2);
+			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
 			if($hasil){
 				//kirim dengan menggunakn wa api; 085726553442 no asli
 				$data['no_wa'] = $row->no_hp;
