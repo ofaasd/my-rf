@@ -36,6 +36,8 @@
                                 <tr>
                                     <td>No.</td>
                                     <td>Kode Kelas</td>
+									<td>Kode Murroby</td>
+									<td>No. no_induk</td>
                                     <td>Nama Santri</td>
                                     <?php 
                                         foreach($jenis_pembayaran as $row){
@@ -56,6 +58,8 @@
                                     <tr>
                                         <td><?=$i?></td>
                                         <td><?=$s->kode?></td>
+                                        <td><?=$s->kode_murroby?></td>
+                                        <td><?=$s->no_induk?></td>
                                         <td><?=$s->nama?></td>
                                         <?php 
                                             foreach($jenis_pembayaran as $row){
