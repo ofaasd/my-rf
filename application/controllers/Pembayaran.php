@@ -336,8 +336,8 @@ Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang 
         $this->pdf->setPaper('A6', 'potrait');
         $this->pdf->filename = "bukti_pembayaran_santri.pdf";
         
-		//$this->pdf->load_view('admin/pembayaran/print',$data, true);	    
-		$this->load->view('admin/pembayaran/print',$data);	    
+		$this->pdf->load_view('admin/pembayaran/print',$data, true);	    
+		//$this->load->view('admin/pembayaran/print',$data);	    
         
         // run dompdf
         // /$this->pdfgenerator->generate($html, $file_pdf, $paper,$orientation);
