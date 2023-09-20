@@ -334,7 +334,6 @@ Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang 
 		$this->data['title_pdf'] = 'Tagihan Santri';
         
         $this->pdf->setPaper('A6', 'potrait');
-		$this->pdf->Options(['isRemoteEnabled' => true]);
         $this->pdf->filename = "bukti_pembayaran_santri.pdf";
         
 		$this->pdf->load_view('admin/pembayaran/print',$data, true);	    
