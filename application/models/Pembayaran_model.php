@@ -270,9 +270,18 @@ Class Pembayaran_model extends CI_Model{
         $validasi = $this->get_by_id($id)->validasi;
         $data = array();
 
-        $data = array(
-			'validasi' => $status,
-		);
+        
+		if($status == 1){
+			$data = array(
+				'validasi' => $status,
+				'tanggal_validasi' => date('Y-m-d'),
+			);
+		}else{
+			$data = array(
+				'validasi' => $status,
+				
+			);
+		}
 
         if($this->db->update('tb_pembayaran', $data, array('id' => $id))){
             return true;

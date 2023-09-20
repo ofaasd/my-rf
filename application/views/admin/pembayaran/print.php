@@ -62,7 +62,7 @@
 			<?php if($pembayaran->tipe == "Bank"){ 
 			echo "<tr><td>Nama Bank</td><td>: " . $bank_pengirim->nama . "</td></tr>";
 			echo "<tr><td>Atas Nama</td><td>: " . $pembayaran->atas_nama . "</td></tr>";
-			$tanggal_validasi = ($pembayaran->tanggal_validasi == "0000-00-00")?date('d-m-Y',strtotime($pembayaran->updated_at)):date('d-m-Y',strtotime($pembayaran->tanggal_validasi));
+			$tanggal_validasi = ($pembayaran->tanggal_validasi == "0000-00-00" || empty($pembayaran->tanggal_validasi))?date('d-m-Y',strtotime($pembayaran->updated_at)):date('d-m-Y',strtotime($pembayaran->tanggal_validasi));
 			} ?>
 		<tr>
 			<td>&nbsp;</td>
