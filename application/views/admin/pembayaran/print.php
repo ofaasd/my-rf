@@ -10,7 +10,7 @@
 <body>
 	<table width="100%">
 		<tr>
-			<td><img src="https://ik.imagekit.io/ofaasd/logo_kchkfzlKE.png?updatedAt=1695225773052" width="60"/></td>
+			<td><img src="<?php echo base_url('assets/images/logo.png') ?>" width="60"/></td>
 			<td>
 				<p><b>PPATQ RAUDLATUL FALAH - PATI </b></p>
 			</td>
