@@ -615,6 +615,7 @@ K. Noor Shokhib M.Pd.I
 				$send_wa = $this->wa->send_wa($data);
 			}
 		}
+		echo $send_wa;
 		//redirect(base_url('index.php/admin/pembayaran/belum_lapor'));
 	}
 	public function kirim_ke_semua(){
