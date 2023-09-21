@@ -228,19 +228,19 @@
         $('#nama_santri').select2({
             minimumInputLength: 3,
         });
-		$("#bulan").change(function(){
-			$.ajax({
-				method:"POST",
-				url:"<?= base_url('index.php/pembayaran/get_riwayat') ?>",
-				data:{
-						bulan:$(this).val(),
-						nama_santri:$("#nama_santri2").val(),
-					},
-				success:function (data){
-					$("#tbl_riwayat_pem").html(data);
-				}
-			});
-		});
+		// $("#bulan").change(function(){
+		// 	$.ajax({
+		// 		method:"POST",
+		// 		url:"<?= base_url('index.php/pembayaran/get_riwayat') ?>",
+		// 		data:{
+		// 				bulan:$(this).val(),
+		// 				nama_santri:$("#nama_santri2").val(),
+		// 			},
+		// 		success:function (data){
+		// 			$("#tbl_riwayat_pem").html(data);
+		// 		}
+		// 	});
+		// });
         
     });
     function reverseNumber(input) {
