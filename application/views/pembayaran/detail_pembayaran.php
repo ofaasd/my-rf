@@ -228,7 +228,7 @@
         $('#nama_santri').select2({
             minimumInputLength: 3,
         });
-		$(".dataTable").DataTables();
+		$(".dataTable").DataTable();
 		// $("#bulan").change(function(){
 		// 	$.ajax({
 		// 		method:"POST",
