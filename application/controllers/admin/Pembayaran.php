@@ -584,14 +584,12 @@ class Pembayaran extends CI_Controller {
 		$no_hp = $this->db->where('no_induk',$id)->get('ref_no_hp')->result();
 		foreach($no_hp as $row){
 			$pesan = '
-*Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
-
 Kepada segenap wali santri PPATQ-RF
 
 *Assalâmu`alaikum warohamatullohiwabarokatuh*
 
 Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF mengingatkan kembali, 
-PERATURAN terkait kewajiban Syahriyah, Daftar Ulang dan Uang Saku bulanan santri  bahwa : 
+PERATURAN terkait kewajiban Syahriyah, Daftar Ulang dan Uang Saku bulanan santri  bahwa :  
 
 1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu SEBELUM TANGGAL 10 SETIAP BULANnya
 2. Bagi yang melebihi pembayaran di atas tanggal 10 , saku ditangguhkan (khusus yang tak mempunyai saldo) 
@@ -606,6 +604,10 @@ Wassalâmu`alaikum warohmatullahiwabarokatuh
 Mengetahui
 Khodimul Ma`had
 K. Noor Shokhib M.Pd.I
+
+
+
+*Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
 ';  
 			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
 			if($hasil){
@@ -631,14 +633,12 @@ K. Noor Shokhib M.Pd.I
 		$no_hp = $this->db->select('ref_no_hp.*,tb_siswa_detail.nama')->join('tb_siswa_detail','tb_siswa_detail.no_induk = ref_no_hp.no_induk')->group_by('ref_no_hp.no_induk')->where_not_in('ref_no_hp.no_induk',$no_induk)->get('ref_no_hp')->result();
 		foreach($no_hp as $row){
 			$pesan = '
-*Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
-
 Kepada segenap wali santri PPATQ-RF
 
 *Assalâmu`alaikum warohamatullohiwabarokatuh*
 
 Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF mengingatkan kembali, 
-PERATURAN terkait kewajiban Syahriyah, Daftar Ulang dan Uang Saku bulanan santri  bahwa : 
+PERATURAN terkait kewajiban Syahriyah, Daftar Ulang dan Uang Saku bulanan santri  bahwa :  
 
 1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu SEBELUM TANGGAL 10 SETIAP BULANnya
 2. Bagi yang melebihi pembayaran di atas tanggal 10 , saku ditangguhkan (khusus yang tak mempunyai saldo) 
@@ -653,6 +653,10 @@ Wassalâmu`alaikum warohmatullahiwabarokatuh
 Mengetahui
 Khodimul Ma`had
 K. Noor Shokhib M.Pd.I
+
+
+
+*Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
 '; 
 			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
 			if($hasil){
