@@ -34,16 +34,17 @@
 							</button>
 						  </div>
 						  <div class="modal-body" id="tbl_riwayat_pem">
-							<table class="table table-stripped table-responsive">
+							<table class="table table-stripped table-responsive dataTable">
 								<thead>
 									<tr>
+										<th></th>
 										<th>Tanggal</th>
 										<th>Periode</th>
 										<?php foreach($jenis_pembayaran as $row){ ?>
 										<th><?= $row->jenis ?></th>
 										<?php } ?>
 										<th>Status</th>
-										<th>Action</th>
+										
 									</tr>
 								</thead>
 								<tbody>
@@ -51,6 +52,7 @@
 									foreach($pembayaran as $pem){
 									?>
 									<tr>
+										<td><a href='<?=base_url('index.php/pembayaran/print_bukti/' . $pem->id )?>' class="btn btn-success btn-sm"><i class="fa fa-print"></i></a></td>
 										<td><?= $pem->tanggal_bayar ?></td>
 										<td><?= $bulan[$pem->periode] ?></td>
 										<?php foreach($jenis_pembayaran as $jenis){ ?>
@@ -73,7 +75,7 @@
 												}
 											?>
 										</td>
-										<td><a href='<?=base_url('index.php/pembayaran/print_bukti/' . $pem->id )?>' class="btn btn-success btn-sm"><i class="fa fa-print"></i></a></td>
+										
 									</tr>
 									<?php
 									}
