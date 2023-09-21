@@ -3,7 +3,7 @@
 	<title>Bukti Pembayaran</title>
 	<style>
 		body{
-			font-size:9pt;
+			font-size:7pt;
 		}
 	</style>
 </head>
