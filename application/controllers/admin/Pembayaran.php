@@ -628,16 +628,22 @@ Kepada segenap wali santri PPATQ-RF
 
 *Assalâmu`alaikum warohamatullohiwabarokatuh*
 
-Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahukan kembali untuk melakukan pembayaran / pelaporan pembayaran rutin melalui payment.ppatq-rf.id. Mengingat pentingnya pembayaran tsb untuk keberlangsungan kegiatan di lingkungan PPATQ-RF.
+Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF mengingatkan kembali, 
+PERATURAN terkait kewajiban Syahriyah, Daftar Ulang dan Uang Saku bulanan santri  bahwa : 
 
-Jikalau telah melakukan pelaporan, mohon abaikan pesan ini.
+1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu SEBELUM TANGGAL 10 SETIAP BULANnya
+2. Bagi yang melebihi pembayaran di atas tanggal 10 , saku ditangguhkan (khusus yang tak mempunyai saldo) 
+3. Silakan membayar dengan mode transfer, dan selanjutnya mohon dilaporkan bukti transfernya melalui url payment.ppatq-rf.id
 
-Pondok PPATQ-RF menyelenggarakan acara kirim Arwahan, sekiranya ada walisantri yang berkeingian berperan serta, dapat melakuan transfer dan selanjutnya dilaporkan bukti transfernya dapat melalui payment.ppatq-rf.id, 
-Kegiatan / acara Arwahan ini hanya bulan september ini, *terakhir tanggal 22 Sept 2023*
-
+Pemberitahuan ini bagian dari upaya menyampaikan bahwa ketepatan membayar menjadi penting untuk kegiatan rutin dilingkungan PPATQ-RF.
 Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
+Tak lupa, kami mengucapkan banyak terima kasih yang sebesar-besarnya.
 
 Wassalâmu`alaikum warohmatullahiwabarokatuh
+
+Mengetahui
+Khodimul Ma`had
+K. Noor Shokhib M.Pd.I
 '; 
 			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
 			if($hasil){
