@@ -31,7 +31,7 @@ Class Pembayaran_model extends CI_Model{
         return $query->result();
     }
 	public function get_by_santri($nama_santri){
-		$query = $this->db->where(['nama_santri'=>$nama_santri,'is_hapus'=>0])->get('tb_pembayaran');
+		$query = $this->db->where(['nama_santri'=>$nama_santri,'is_hapus'=>0])->order_by('id','desc')->get('tb_pembayaran');
         return $query->result();
 	}
 	public function get_by_santri_periode($nama_santri, $periode){

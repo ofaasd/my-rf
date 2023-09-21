@@ -407,7 +407,7 @@ Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang 
 		$bulan = $this->input->post('bulan');
 		$nama_santri = $this->input->post('nama_santri');
 		$data['jenis_pembayaran'] = $this->jenis->get_all();
-		$data['pembayaran'] = $this->pembayaran->get_by_santri_periode($nama_santri,$bulan);
+		$data['pembayaran'] = $this->pembayaran->get_by_santri($nama_santri);
 		$data['bulan'] = $this->bulan; 
 		$data['detail_pembayaran'] = array();
 		foreach($data['pembayaran'] as $pembayaran){
