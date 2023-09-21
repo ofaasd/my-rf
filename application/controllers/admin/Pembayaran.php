@@ -586,19 +586,27 @@ class Pembayaran extends CI_Controller {
 			$pesan = '
 *Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
 
-Assalamualaikum,
+Kepada segenap wali santri PPATQ-RF
 
-Mohon maaf, 
-Pada sistem report payment kami, belum ada catatan untuk pembayaran bulan ' . $this->bulan[(int)date('m')] . ', mohon maaf, bila ada kekeliruan/kesalahan report. 
-Jika belum melakukan pembayaran, harap segera melakukan pembayaran, selanjutnya dapat melakukan report melalui payment.ppatq-rf.id
-Jika telah melakukan pembayaran dan belum melakukan report, silakan segera melakukan report melalui payment.ppatq-rf.id
+*Assalâmu`alaikum warohamatullohiwabarokatuh*
 
-karena reporting sangat penting buat lembaga ppatqrf untuk pencatatan serta distribusi sesuai keperuntukannya.
+Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF mengingatkan kembali, 
+PERATURAN terkait kewajiban Syahriyah, Daftar Ulang dan Uang Saku bulanan santri  bahwa : 
 
-terimakasih atas perhatian dan mohon maaf jika ada hal yang kurang berkenan.
+1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu SEBELUM TANGGAL 10 SETIAP BULANnya
+2. Bagi yang melebihi pembayaran di atas tanggal 10 , saku ditangguhkan (khusus yang tak mempunyai saldo) 
+3. Silakan membayar dengan mode transfer, dan selanjutnya mohon dilaporkan bukti transfernya melalui url payment.ppatq-rf.id
 
-Wassalamualaikum
-'; 
+Pemberitahuan ini bagian dari upaya menyampaikan bahwa ketepatan membayar menjadi penting untuk kegiatan rutin dilingkungan PPATQ-RF.
+Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
+Tak lupa, kami mengucapkan banyak terima kasih yang sebesar-besarnya.
+
+Wassalâmu`alaikum warohmatullahiwabarokatuh
+
+Mengetahui
+Khodimul Ma`had
+K. Noor Shokhib M.Pd.I
+';  
 			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
 			if($hasil){
 				//kirim dengan menggunakn wa api; 085726553442 no asli
