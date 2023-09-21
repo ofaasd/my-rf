@@ -33,7 +33,7 @@
 							  <span aria-hidden="true">&times;</span>
 							</button>
 						  </div>
-						  <div class="modal-body" id="tbl_riwayat_pem">
+						  <div class="modal-body">
 							<table class="table table-stripped table-responsive dataTable">
 								<thead>
 									<tr>
@@ -228,6 +228,7 @@
         $('#nama_santri').select2({
             minimumInputLength: 3,
         });
+		$(".dataTable").DataTables();
 		// $("#bulan").change(function(){
 		// 	$.ajax({
 		// 		method:"POST",
