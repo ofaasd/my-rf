@@ -402,6 +402,7 @@ class Pembayaran extends CI_Controller {
 		$this->data['title_pdf'] = 'Tagihan Santri';
         
         $this->pdf->setPaper('A6', 'potrait');
+		$this->pdf->set_option('isRemoteEnabled',true);
         $this->pdf->filename = "bukti_pembayaran_santri.pdf";
         
 		$this->pdf->load_view('admin/pembayaran/print',$data, true);
