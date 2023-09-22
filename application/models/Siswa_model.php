@@ -176,7 +176,7 @@ Class Siswa_model extends CI_Model{
 			'pendidikan_ibu' => $this->input->post('pendidikan_ibu'),
 			'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu'),
 			'no_hp' => $this->input->post('no_hp'),
-			'kelas' => $this->input->post('kelas'),
+			//'kelas' => $this->input->post('kelas'),
 		);
 		$update = $this->db->update('santri_detail',$data,array('no_induk' => $this->input->post('no_induk')));
 		if($update){
