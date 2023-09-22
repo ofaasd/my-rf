@@ -21,7 +21,7 @@
                     <?php
                         foreach($siswa as $row){
                     ?>
-                        <option value="<?= $row->id ?>"><?= $row->nama ?></option>
+                        <option value="<?= $row->no_induk ?>"><?= $row->nama ?></option>
                     <?php
                         }
                     ?>
@@ -39,14 +39,6 @@
                     ?>
                 </select>
             </div>
-			<div class="form-group">
-				<label class="form-label">Periode Bayar</label>
-				<select name="periode" class="form-control col-md-6">
-					<?php foreach($bulan as $key=>$value){ ?>
-					<option value="<?=$key?>"><?=$value?></option>
-					<?php } ?>
-				</select>
-			</div>
 			<div class="form-group">
 				<label class="form-label">Password</label>
 				<input type="password" name="password" placeholder="Tgl lahir santri (hhbbtt) + gender(L/P). Cth : 180296L" class="form-control col-md-8">

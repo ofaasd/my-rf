@@ -12,7 +12,7 @@ Class Siswa_model extends CI_Model{
     }
     public function get_all_detail()
     {
-            $query = $this->db->get('tb_siswa_detail');
+            $query = $this->db->get('santri_detail');
             return $query->result();
     }
     public function get_all_order_kelas()
@@ -173,7 +173,7 @@ Class Siswa_model extends CI_Model{
 			'no_hp' => $this->input->post('no_hp'),
 			'kelas' => $this->input->post('kelas'),
 		);
-		$update = $this->db->update('tb_siswa_detail',$data,array('no_induk' => $this->input->post('no_induk')));
+		$update = $this->db->update('santri_detail',$data,array('no_induk' => $this->input->post('no_induk')));
 		if($update){
 			$data2 = array(
 				'nama' => $this->input->post('nama'),

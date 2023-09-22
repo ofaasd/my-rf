@@ -50,7 +50,7 @@
 			</div>
 			
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Konfirmasis">
+                <input type="submit" class="btn btn-primary" value="Konfirmasi">
 				<a href="<?= base_url('index.php/infografis') ?>" class="btn btn-secondary">Infografis</a>
             </div>
         </form>

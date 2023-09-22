@@ -11,6 +11,18 @@
         <br />
         <form method="POST" enctype='multipart/form-data' action="<?= base_url('index.php/profile/simpan') ?>">
 			<input type="hidden" name="no_induk" value="<?= $siswa->no_induk ?>">
+			
+				<div class="row">
+					<div class="col-md-6 text-center">
+						<img src="<?php if(!empty($siswa->photo) && $siswa->photo_source == 1)echo base_url('assets/upload/user/' . $siswa->photo); else echo base_url('assets/images/user.png'); ?>" class="rounded" alt="Foto Santri" width="150">
+					</div>
+				</div>
+				<div class="form-group row">
+				<div class="col-md-12">
+					<label class="form-label">Foto Santri</label><br />
+					<input type="file" name="photo" class="form-control col-md-6">
+				</div>
+			</div>
             <div class="form-group">
                 <label class="form-label">Nama Santri</label><br />
                 <input type="text" name="nama" value="<?= $siswa->nama; ?>" class="form-control">

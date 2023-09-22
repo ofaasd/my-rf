@@ -65,17 +65,16 @@ class Pembayaran extends CI_Controller {
 			if($verifikasi){
 				$siswa_id = $this->input->post("nama_santri");
 				$kode = $this->input->post("kode");
-				$periode = $this->input->post("periode");
-				$data['siswa'] = $this->siswa->get_by_id($siswa_id);
+				//$periode = $this->input->post("periode");
+				$data['siswa'] = $this->siswa->get_by_ni($siswa_id);
 				
 				if($data['siswa']->password != md5($this->input->post('password'))){
 					$this->session->set_flashdata('error','Password yang di masukan salah');
-					redirect(base_url('index.php/pembayaran'));
+					redirect(base_url('index.php/pembayaran/index_profile'));
 				}
 				
 				$this->session->set_userdata('siswa_id', $data['siswa']->id);
 				$this->session->set_userdata('kode', $kode);
-				$this->session->set_userdata('periode', $periode);
 				$this->session->set_userdata('pwd', $data['siswa']->password);
 				redirect(base_url('index.php/profile'));
 			}else{
