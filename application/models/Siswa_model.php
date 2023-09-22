@@ -36,6 +36,11 @@ Class Siswa_model extends CI_Model{
             $query = $this->db->where('no_induk',$no_induk)->get('ref_siswa');
             return $query->row();
     }
+    public function get_by_ni2($no_induk)
+    {
+            $query = $this->db->where('no_induk',$no_induk)->get('santri_detail');
+            return $query->row();
+    }
     public function get_kode_1a(){
         $query = $this->db->where('kode','1a')->get('ref_siswa');
         return $query->num_rows();

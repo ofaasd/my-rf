@@ -17,7 +17,7 @@ class Profile extends CI_Controller {
 
 	public function index()
 	{
-		$siswa = $this->siswa->get_by_id($this->session->userdata('siswa_id'));
+		$siswa = $this->siswa->get_by_ni($this->session->userdata('siswa_id'));
         $data['siswa'] = $this->db->where('no_induk',$siswa->no_induk)->get('santri_detail')->row();
 		$data['provinsi'] = $this->db->get('provinces')->result();
 		$data['prov_curr']  = $this->db->where('prov_id',$data['siswa']->provinsi)->get('provinces')->row();

@@ -8,7 +8,20 @@
         <?php if(!empty($this->session->flashdata('error'))){ ?>
             <p class="alert alert-danger"><?= $this->session->flashdata('error') ?></p>
         <?php } ?>
-
+		<table class="table table-stripped">
+			<tr>
+				<td>Nama</td>
+				<td><?= $siswa->nama ?></td>
+			</tr>
+			<tr>
+				<td>Kode Kelas</td>
+				<td><?= $kode ?></td>
+			</tr>
+			<tr>
+				<td>Wali Kelas</td>
+				<td><?= $wali_kelas->nama ?></td>
+			</tr>
+		</table>
         <br />
 		<p class="alert alert-primary">Silahkan Lihat Riwayat untuk melihat status terbaru validasi yang dilakukan oleh admin</p>
         <p>Silahkan klik tombol dibawah untuk mengunduh bukti bayar</p>

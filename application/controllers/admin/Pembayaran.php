@@ -258,11 +258,11 @@ class Pembayaran extends CI_Controller {
 	public function new_validasi($id,$status){
 		$validasi = $this->pembayaran->get_by_id($id)->validasi;
         $new_validasi = $status;
-		$get_pembayaran_tunggakan = $this->db->where('id_pembayaran',$id)->get('tb_pembayaran_tunggakan')->num_rows();
+		$pembayaran = $this->db->where('id_pembayaran',$id)->get('tb_pembayaran_tunggakan');
 		
-        $wa = $this->wa->validasi($id,$new_validasi);
+        //$wa = $this->wa->validasi($id,$new_validasi);
         
-		if($get_pembayaran_tunggakan > 0){
+		if($pembayaran->num_rows() > 0){
 			if($validasi == 0 && $new_validasi == 1){
 				//memasukan data ke tunggakan dari sebelumnya blm validasi jadi valid
 				$tambah = $this->b_tunggakan->status_valid($id);
@@ -277,14 +277,36 @@ class Pembayaran extends CI_Controller {
 			}
 		}
 		$update = $this->pembayaran->new_validasi($id,$status);
+		//cek uang saku id=3  dan validasi = =valid
+		if($validasi == 0 && $new_validasi == 1){
+			$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
+			$detail = $this->db->where('id_pembayaran',$id)->get('tb_detail_pembayaran')->result();
+			$uang_saku = $this->db->where('no_induk',$pembayaran->nama_santri)->get('tb_uang_saku')->row();
+			foreach($detail as $row){
+				if($row->id_jenis_pembayaran == 3){
+					$data = array(
+						'dari' => 1,
+						'jumlah' => $row->nominal,
+						'tanggal' => date('Y-m-d'),
+						'no_induk' => $pembayaran->nama_santri,
+					);
+					$this->db->insert('tb_saku_masuk',$data);
+					$data2 = array(
+						'jumlah' => $uang_saku->jumlah + $row->nominal
+					);
+					$this->db->update('tb_uang_saku',$data2,array('no_induk'=>$pembayaran->nama_santri));
+				}
+			}
+		}
+
 		//echo $validasi . " " . $new_validasi;
-		$convert_wa = json_decode($wa);
+		//$convert_wa = json_decode($wa);
         if($update){
-            $this->session->set_flashdata('message','data berhasil diupdate ' . $wa);
-            redirect(base_url('index.php/admin/pembayaran/show/' . $id));
+            //$this->session->set_flashdata('message','data berhasil diupdate ' . $wa);
+            //redirect(base_url('index.php/admin/pembayaran/show/' . $id));
         }else{
             $this->session->set_flashdata('error','data berhasil ditambahkan');
-            redirect(base_url('index.php/admin/pembayaran/show/' . $id));
+            //redirect(base_url('index.php/admin/pembayaran/show/' . $id));
         }
 	}
     public function edit($id){

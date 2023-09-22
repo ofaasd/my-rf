@@ -73,7 +73,7 @@ class Pembayaran extends CI_Controller {
 					redirect(base_url('index.php/pembayaran/index_profile'));
 				}
 				
-				$this->session->set_userdata('siswa_id', $data['siswa']->id);
+				$this->session->set_userdata('siswa_id', $data['siswa']->no_induk);
 				$this->session->set_userdata('kode', $kode);
 				$this->session->set_userdata('pwd', $data['siswa']->password);
 				redirect(base_url('index.php/profile'));
@@ -119,6 +119,7 @@ class Pembayaran extends CI_Controller {
 		$data['jenis_pembayaran'] = $this->jenis->get_all();
 		$data['bank_pengirim'] = $this->bank->get_all();
 		$data['siswa'] = $this->siswa->get_by_ni($data['nama_santri']);
+		$data['wali_kelas'] = $this->db->where('code',strtolower($kode))->join('employee_new','employee_new.id=ref_kelas.employee_id')->get('ref_kelas')->row();
 		$data['periode'] = $periode;
 		
 		$data['bulan'] = $this->bulan; 
@@ -344,6 +345,12 @@ Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang 
 	}
 	public function konfirmasi_pembayaran($id){
 		$data['id'] = $id;
+		$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
+		$siswa = $this->db->where('no_induk',$pembayaran->nama_santri)->get('ref_siswa')->row();
+		$kode = $siswa->kode;
+		$data['siswa'] = $siswa;
+		$data['kode'] = $kode;
+		$data['wali_kelas'] = $this->db->where('code',strtolower($kode))->join('employee_new','employee_new.id=ref_kelas.employee_id')->get('ref_kelas')->row();
 		
 		$var['title'] = 'PPATQ Roudlotul Falah';
 				

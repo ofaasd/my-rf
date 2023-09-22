@@ -102,6 +102,10 @@
 							<td>Kode Kelas</td>
 							<td><?= $kode ?></td>
 						</tr>
+						<tr>
+							<td>Wali Kelas</td>
+							<td><?= $wali_kelas->nama ?></td>
+						</tr>
 					</table>
 					<div class="form-group">
 						<label class="form-label">Pembayaran Sebesar (Rp)</label>
@@ -115,7 +119,7 @@
 						<label class="form-label">Periode Bayar</label>
 						<select name="periode_view" class="form-control col-md-12" id="bulan" disabled>
 							<?php foreach($bulan as $key=>$value){ ?>
-							<option value="<?=$key?>" <?=($periode == $key)?"selected":""?>><?=$value?></option>
+							<option value="<?=$key?>" <?=($key == (int)date('m'))?"selected":""?>><?=$value?></option>
 							<?php } ?>
 						</select>
 						<input type="hidden" name="periode" value='<?php echo $periode?>'>
