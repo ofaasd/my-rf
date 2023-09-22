@@ -260,7 +260,7 @@ class Pembayaran extends CI_Controller {
         $new_validasi = $status;
 		$pembayaran = $this->db->where('id_pembayaran',$id)->get('tb_pembayaran_tunggakan');
 		
-        //$wa = $this->wa->validasi($id,$new_validasi);
+        $wa = $this->wa->validasi($id,$new_validasi);
         
 		if($pembayaran->num_rows() > 0){
 			if($validasi == 0 && $new_validasi == 1){
@@ -300,13 +300,13 @@ class Pembayaran extends CI_Controller {
 		}
 
 		//echo $validasi . " " . $new_validasi;
-		//$convert_wa = json_decode($wa);
+		$convert_wa = json_decode($wa);
         if($update){
             //$this->session->set_flashdata('message','data berhasil diupdate ' . $wa);
-            //redirect(base_url('index.php/admin/pembayaran/show/' . $id));
+            redirect(base_url('index.php/admin/pembayaran/show/' . $id));
         }else{
             $this->session->set_flashdata('error','data berhasil ditambahkan');
-            //redirect(base_url('index.php/admin/pembayaran/show/' . $id));
+            redirect(base_url('index.php/admin/pembayaran/show/' . $id));
         }
 	}
     public function edit($id){
