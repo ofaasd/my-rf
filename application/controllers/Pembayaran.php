@@ -275,7 +275,31 @@ Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang 
 
 						$response = curl_exec($curl);
 
-						curl_close($curl);
+						//kirim ulang ke ust muhadi
+						$no_wa = "08979194645";
+						$dataSending = Array();
+						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
+						$dataSending["number_key"] = "2Z17zDLogBMOaxnc";
+						$dataSending["phone_no"] = $no_wa;
+						$dataSending["message"] = $message;
+						
+						curl_setopt_array($curl, array(
+						  CURLOPT_URL => 'https://api.watzap.id/v1/send_message',
+						  CURLOPT_RETURNTRANSFER => true,
+						  CURLOPT_ENCODING => '',
+						  CURLOPT_MAXREDIRS => 10,
+						  CURLOPT_TIMEOUT => 0,
+						  CURLOPT_FOLLOWLOCATION => true,
+						  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+						  CURLOPT_CUSTOMREQUEST => 'POST',
+						  CURLOPT_POSTFIELDS => json_encode($dataSending),
+						  CURLOPT_HTTPHEADER => array(
+							'Content-Type: application/json'
+						  ),
+						));
+
+						$response = curl_exec($curl);
+
 						$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
 						$siswa = $this->db->where('id',$pembayaran->nama_santri)->get('ref_siswa')->row();
 						$convert_res = json_decode($response);
