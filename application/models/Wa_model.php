@@ -243,7 +243,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 		$dataSending["url"] = $data['url'];
 		
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://api.watzap.id/v1/send_message',
+			CURLOPT_URL => 'https://api.watzap.id/v1/send_image_url',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
