@@ -610,24 +610,22 @@ Kepada segenap wali santri PPATQ-RF
 
 *Assalâmu`alaikum warohamatullohiwabarokatuh*
 
-Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF mengingatkan kembali, 
-PERATURAN terkait kewajiban Syahriyah, Daftar Ulang dan Uang Saku bulanan santri  bahwa :  
+Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahukan kembali, PERATURAN terkait kewajiban Syahriyah dan Saku bulanan santri  bahwa : 
 
-1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu SEBELUM TANGGAL 10 SETIAP BULANnya
+1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu *Sebelum tanggal  10 SETIAP BULAN nya*
+
 2. Bagi yang melebihi pembayaran di atas tanggal 10 , saku ditangguhkan (khusus yang tak mempunyai saldo) 
-3. Silakan membayar dengan mode transfer, dan selanjutnya mohon dilaporkan bukti transfernya melalui url payment.ppatq-rf.id
 
-Pemberitahuan ini bagian dari upaya menyampaikan bahwa ketepatan membayar menjadi penting untuk kegiatan rutin dilingkungan PPATQ-RF.
+3. Silakan membayar dengan mode transfer pada rekening yang telah ditentukan, dan selanjutnya mohon dilaporkan bukti transfernya melalui alamat url: payment.ppatq-rf.id
+
 Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
-Tak lupa, kami mengucapkan banyak terima kasih yang sebesar-besarnya.
 
-Wassalâmu`alaikum warohmatullahiwabarokatuh
+Wassalâmu`alaikum warohmatulloh 
+
 
 Mengetahui
 Khodimul Ma`had
 K. Noor Shokhib M.Pd.I
-
-
 
 *Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
 ';  
@@ -636,7 +634,8 @@ K. Noor Shokhib M.Pd.I
 				//kirim dengan menggunakn wa api; 085726553442 no asli
 				$data['no_wa'] = $row->no_hp;
 				$data['pesan'] = $pesan;
-				$send_wa = $this->wa->send_wa($data);
+				$data['url'] = "https://payment.ppatq-rf.id/assets/images/pengumuman.jpeg";
+				$send_wa = $this->wa->send_wa_img($data);
 			}
 		}
 		echo $send_wa;
