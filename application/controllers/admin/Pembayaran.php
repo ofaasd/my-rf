@@ -287,7 +287,7 @@ class Pembayaran extends CI_Controller {
 					$data = array(
 						'dari' => 1,
 						'jumlah' => $row->nominal,
-						'tanggal' => date('Y-m-d'),
+						'tanggal' => $pembayaran->tanggal_bayar,
 						'no_induk' => $pembayaran->nama_santri,
 					);
 					$this->db->insert('tb_saku_masuk',$data);
