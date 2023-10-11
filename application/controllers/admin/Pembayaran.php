@@ -616,7 +616,7 @@ Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahuka
 
 2. Bagi yang melebihi pembayaran di atas tanggal 10 , saku ditangguhkan (khusus yang tak mempunyai saldo) 
 
-3. Silakan membayar dengan mode transfer pada rekening yang telah ditentukan, dan selanjutnya mohon dilaporkan bukti transfernya melalui alamat url: payment.ppatq-rf.id
+3. Silakan membayar dengan mode transfer pada rekening yang telah ditentukan yaitu rekening atas nama Pondok Anak Tahfidhul Qur`an, No. Rekening 5936-01-005247-53-0, Bank BRI (kode bank 002), dan selanjutnya mohon dilaporkan bukti transfernya melalui alamat url: payment.ppatq-rf.id
 
 Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
 
