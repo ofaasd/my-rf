@@ -185,14 +185,14 @@
 						<input class="form-control col-md-12" type="text" onkeyup="splitInDots(this)" name="jumlah" >
 					</div>
 					<div class="form-group">
-						<label class="form-label">Tanggal Bayar</label>
+						<label class="form-label">Tanggal Bayar</label><br />
 						<div class="date-picker" tabindex="0">
 							<input class="form-control col-md-12" type="date" name="tanggal_bayar">
 							<div class="placeholder"></div> 
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="form-label">Periode Bayar</label><br />>
+						<label class="form-label">Periode Bayar</label>
 						<select name="periode_view" class="form-control col-md-12" id="bulan" disabled>
 							<?php foreach($bulan as $key=>$value){ ?>
 							<option value="<?=$key?>" <?=($key == (int)date('m'))?"selected":""?>><?=$value?></option>
