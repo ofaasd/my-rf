@@ -1,3 +1,76 @@
+<style>
+	.date-picker {
+  display: inline-block;
+  background: rgba(40, 40, 250, .1);
+  min-width: 10rem;
+  min-height: 2rem;
+  padding: .5rem;
+  border-radius: .35rem;
+  position: relative;
+  isolation: isolate;
+}
+
+.date-picker,
+.date-picker>* {
+  cursor: text;
+  font-size: 1.2rem;
+}
+
+.date-picker:hover {
+  background: rgba(40, 40, 250, .28);
+}
+
+.date-picker:active {
+  background: rgba(40, 40, 250, .2);
+}
+
+.date-picker:focus>input[type="date"],
+.date-picker:focus-within>input[type="date"] {
+  color: #00f;
+}
+
+.date-picker:focus,
+.date-picker:focus-within {
+  box-shadow: 0 0 0 .1rem #00f;
+}
+
+.date-picker>.placeholder::after {
+  content: "Click for calender";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  color: #222;
+}
+
+.date-picker:focus>.placeholder,
+.date-picker:focus-within>.placeholder,
+.date-picker>input[type="date"]:valid+.placeholder {
+  display: none;
+}
+
+.date-picker>input[type="date"] {
+  background: none;
+  border: none;
+  outline: none;
+  color: transparent;
+  font-family: serif;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.date-picker>input[type="date"]:valid {
+  color: #00f !important;
+}
+</style>
 <div class="card-header">
         Form Laporan Pembayaran
     </div>
@@ -113,7 +186,10 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Tanggal Bayar</label>
-						<input class="form-control col-md-12" type="date" name="tanggal_bayar">
+						<div class="date-picker" tabindex="0">
+							<input class="form-control col-md-12" type="date" name="tanggal_bayar">
+							<div class="placeholder"></div> 
+						</div>
 					</div>
 					<div class="form-group">
 						<label class="form-label">Periode Bayar</label>
