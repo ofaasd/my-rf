@@ -192,7 +192,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="form-label">Periode Bayar</label>
+						<label class="form-label">Periode Bayar</label><br />>
 						<select name="periode_view" class="form-control col-md-12" id="bulan" disabled>
 							<?php foreach($bulan as $key=>$value){ ?>
 							<option value="<?=$key?>" <?=($key == (int)date('m'))?"selected":""?>><?=$value?></option>
