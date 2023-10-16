@@ -86,6 +86,18 @@ Class Pembayaran_model extends CI_Model{
 						);
 						$query = $this->db->insert('tb_detail_pembayaran',$data_detail);
 					}
+
+					if($this->input->post('id_jenis_pembayaran')[$key] == 3){
+						$data = array(
+							'dari' => 1,
+							'jumlah' => $nominal,
+							'tanggal' => $this->input->post('tanggal_bayar'),
+							'no_induk' => $this->input->post('nama_santri'),
+                            'id_pembayaran' => $id,
+							'status_pembayaran' => 0
+						);
+						$this->db->insert('tb_saku_masuk',$data);
+					}
 				}
 				return 1; //data berhasil dimasukan
 			}else{
@@ -140,6 +152,7 @@ Class Pembayaran_model extends CI_Model{
 							'jumlah' => $nominal,
 							'tanggal' => $this->input->post('tanggal_bayar'),
 							'no_induk' => $this->input->post('nama_santri'),
+                            'id_pembayaran' => $id
 						);
 						$this->db->insert('tb_saku_masuk',$data);
 						$data2 = array(

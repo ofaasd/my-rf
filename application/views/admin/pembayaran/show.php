@@ -9,6 +9,10 @@
                         <td><?=$siswa[$pembayaran->nama_santri]?></td}}>
                     </tr>
                     <tr>
+                        <td>Murroby</td>
+                        <td><?=$kode_murroby?> (Ust. <?=$nama_murroby?>)</td}}>
+                    </tr>
+                    <tr>
                         <td>Jumlah</td>
                         <td>Rp. <?=number_format($pembayaran->jumlah,0,",",".")?></td>
                     </tr>

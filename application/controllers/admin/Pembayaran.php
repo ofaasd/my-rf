@@ -106,9 +106,23 @@ class Pembayaran extends CI_Controller {
         
         $siswa = $this->siswa->get_all();
         $data['siswa'] = array();
+		$data['kode_kamar'] = 0;
         foreach($siswa as $row){
             $data['siswa'][$row->no_induk] = $row->nama;
+			
         }
+		$santri_detail = $this->db->where('no_induk',$data['pembayaran']->nama_santri)->get('santri_detail')->row();
+		if(!empty($santri_detail->kamar_id)){
+			$data['kode_kamar'] = $santri_detail->kamar_id;
+		}
+		
+		$data['kode_murroby'] = "";
+		$data['nama_murroby'] = "";
+		if($data['kode_kamar'] != 0){
+			$kamar = $this->db->where('id',$data['kode_kamar'])->get('ref_kamar')->row();
+			$data['kode_murroby'] = $kamar->code;
+			$data['nama_murroby'] = $this->db->where('id',$kamar->employee_id)->get('employee_new')->row()->nama;
+		}
 
         $jenis = $this->jenis->get_all();
         $data['jenis'] = array();
@@ -278,23 +292,74 @@ class Pembayaran extends CI_Controller {
 		}
 		$update = $this->pembayaran->new_validasi($id,$status);
 		//cek uang saku id=3  dan validasi = =valid
+		$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
+		$detail = $this->db->where('id_pembayaran',$id)->get('tb_detail_pembayaran')->result();
+		$uang_saku = $this->db->where('no_induk',$pembayaran->nama_santri)->get('tb_uang_saku')->row();
 		if($validasi == 0 && $new_validasi == 1){
-			$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
-			$detail = $this->db->where('id_pembayaran',$id)->get('tb_detail_pembayaran')->result();
-			$uang_saku = $this->db->where('no_induk',$pembayaran->nama_santri)->get('tb_uang_saku')->row();
+			//jika status diubah menjadi valid
 			foreach($detail as $row){
 				if($row->id_jenis_pembayaran == 3){
-					$data = array(
-						'dari' => 1,
-						'jumlah' => $row->nominal,
-						'tanggal' => $pembayaran->tanggal_bayar,
-						'no_induk' => $pembayaran->nama_santri,
-					);
-					$this->db->insert('tb_saku_masuk',$data);
-					$data2 = array(
-						'jumlah' => $uang_saku->jumlah + $row->nominal
-					);
-					$this->db->update('tb_uang_saku',$data2,array('no_induk'=>$pembayaran->nama_santri));
+					$cek_saku_masuk = $this->db->where('id_pembayaran',$id)->get('tb_saku_masuk');
+					if($cek_saku_masuk->num_rows() > 0){
+						$data = [
+							'status_pembayaran'=>1,
+						];
+						$where = [
+							'id_pembayaran'=>$id,
+						];
+						$this->db->update('tb_saku_masuk',$data,$where);
+
+						$data2 = array(
+							'jumlah' => $uang_saku->jumlah + $row->nominal
+						);
+						$this->db->update('tb_uang_saku',$data2,array('no_induk'=>$pembayaran->nama_santri));
+					}else{
+						$data = array(
+							'dari' => 1,
+							'jumlah' => $row->nominal,
+							'tanggal' => $pembayaran->tanggal_bayar,
+							'no_induk' => $pembayaran->nama_santri,
+							'id_pembayaran' => $id,
+							'status_pembayaran' => 1,
+						);
+						$this->db->insert('tb_saku_masuk',$data);
+						$data2 = array(
+							'jumlah' => $uang_saku->jumlah + $row->nominal
+						);
+						$this->db->update('tb_uang_saku',$data2,array('no_induk'=>$pembayaran->nama_santri));
+					}
+				}
+			}
+		}elseif(($validasi == 1 && $new_validasi == 2) || ($validasi == 1 && $new_validasi == 0)){
+			//Jikas status diubah menjadi tidak valid
+			foreach($detail as $row){
+				if($row->id_jenis_pembayaran == 3){
+					$cek_saku_masuk = $this->db->where('id_pembayaran',$id)->get('tb_saku_masuk');
+					if($cek_saku_masuk->num_rows() > 0){
+						$data = [
+							'status_pembayaran'=>0,
+						];
+						$where = [
+							'id_pembayaran'=>$id,
+						];
+						$this->db->update('tb_saku_masuk',$data,$where);
+
+						$data2 = array(
+							'jumlah' => $uang_saku->jumlah - $row->nominal
+						);
+						$this->db->update('tb_uang_saku',$data2,array('no_induk'=>$pembayaran->nama_santri));
+					}else{
+						$data = array(
+							'dari' => 1,
+							'jumlah' => $row->nominal,
+							'tanggal' => $pembayaran->tanggal_bayar,
+							'no_induk' => $pembayaran->nama_santri,
+							'id_pembayaran'=>$id,
+							'status_pembayaran' => 0,
+						);
+						$this->db->insert('tb_saku_masuk',$data);
+						
+					}
 				}
 			}
 		}
