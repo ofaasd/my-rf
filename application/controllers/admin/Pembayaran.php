@@ -670,30 +670,42 @@ class Pembayaran extends CI_Controller {
 	public function kirim_reminder($id){
 		$no_hp = $this->db->where('no_induk',$id)->get('ref_no_hp')->result();
 		foreach($no_hp as $row){
-			$pesan = '
-Kepada segenap wali santri PPATQ-RF
+// 			$pesan = '
+// Kepada segenap wali santri PPATQ-RF
 
-*Assalâmu`alaikum warohamatullohiwabarokatuh*
+// *Assalâmu`alaikum warohamatullohiwabarokatuh*
 
-Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahukan kembali, PERATURAN terkait kewajiban Syahriyah dan Saku bulanan santri  bahwa : 
+// Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahukan kembali, PERATURAN terkait kewajiban Syahriyah dan Saku bulanan santri  bahwa : 
 
-1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu *Sebelum tanggal  10 SETIAP BULAN nya*
+// 1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu *Sebelum tanggal  10 SETIAP BULAN nya*
 
-2. Bagi yang melebihi pembayaran di atas tanggal 10 , saku ditangguhkan (khusus yang tak mempunyai saldo) 
+// 2. Bagi yang melebihi pembayaran di atas tanggal 10 , saku ditangguhkan (khusus yang tak mempunyai saldo) 
 
-3. Silakan membayar dengan mode transfer pada rekening yang telah ditentukan yaitu rekening atas nama Pondok Anak Tahfidhul Qur`an, No. Rekening 5936-01-005247-53-0, Bank BRI (kode bank 002), dan selanjutnya mohon dilaporkan bukti transfernya melalui alamat url: payment.ppatq-rf.id
+// 3. Silakan membayar dengan mode transfer pada rekening yang telah ditentukan yaitu rekening atas nama Pondok Anak Tahfidhul Qur`an, No. Rekening 5936-01-005247-53-0, Bank BRI (kode bank 002), dan selanjutnya mohon dilaporkan bukti transfernya melalui alamat url: payment.ppatq-rf.id
 
-Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
+// Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
 
-Wassalâmu`alaikum warohmatulloh 
+// Wassalâmu`alaikum warohmatulloh 
 
 
-Mengetahui
-Khodimul Ma`had
-K. Noor Shokhib M.Pd.I
+// Mengetahui
+// Khodimul Ma`had
+// K. Noor Shokhib M.Pd.I
 
-*Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
-';  
+// *Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
+// ';  
+$pesan = '
+Assalamualaikum Wr Wb,
+
+Mohon maaf atas ketidaknyaman informasi ini. Kami sampaikan bahwa sampai dengan saat ini pada sistem pencatatan pembayaran syahriah, belum ada catatan/bukti pembayaran untuk bulan Oktober . Untuk itu, bagi yang belum melakukan pembayaran, kami meminta untuk segera melakukan pembayaran (transfer ke Rek.PPATQ-RF BRI : 5936-01-005247-53-0, kode bank : 002) dan selanjutnya mohon melakukan pelaporan hasil transfer melalui payment.ppatq-rf.id
+mengingat pembagian uang saku dilakukan sebelum tanggal 20 setiap bulannya.
+
+Bagi yang sudah melakukan pembayaran/transfer dan pelaporan di payment.ppatq-rf.id kami ucapkan terimakasih sebanyak-banyaknya.
+
+Terimakasih perhatian dan mohon maaf jika ada hal yang kurang berkenan
+
+Wassalamualaikum Wr Wb
+';
 			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
 			if($hasil){
 				//kirim dengan menggunakn wa api; 085726553442 no asli
@@ -718,30 +730,42 @@ K. Noor Shokhib M.Pd.I
 		}
 		$no_hp = $this->db->select('ref_no_hp.*,tb_siswa_detail.nama')->join('tb_siswa_detail','tb_siswa_detail.no_induk = ref_no_hp.no_induk')->group_by('ref_no_hp.no_induk')->where_not_in('ref_no_hp.no_induk',$no_induk)->get('ref_no_hp')->result();
 		foreach($no_hp as $row){
-			$pesan = '
-Kepada segenap wali santri PPATQ-RF
+// 			$pesan = '
+// Kepada segenap wali santri PPATQ-RF
 
-*Assalâmu`alaikum warohamatullohiwabarokatuh*
+// *Assalâmu`alaikum warohamatullohiwabarokatuh*
 
-Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahukan kembali, PERATURAN terkait kewajiban Syahriyah dan Saku bulanan santri  bahwa : 
+// Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahukan kembali, PERATURAN terkait kewajiban Syahriyah dan Saku bulanan santri  bahwa : 
 
-1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu *Sebelum tanggal  10 SETIAP BULAN nya*
+// 1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu *Sebelum tanggal  10 SETIAP BULAN nya*
 
-2. Bagi yang melebihi pembayaran di atas tanggal 10 , saku ditangguhkan (khusus yang tak mempunyai saldo) 
+// 2. Bagi yang melebihi pembayaran di atas tanggal 10 , saku ditangguhkan (khusus yang tak mempunyai saldo) 
 
-3. Silakan membayar dengan mode transfer pada rekening yang telah ditentukan yaitu rekening atas nama Pondok Anak Tahfidhul Qur`an, No. Rekening 5936-01-005247-53-0, Bank BRI (kode bank 002), dan selanjutnya mohon dilaporkan bukti transfernya melalui alamat url: payment.ppatq-rf.id
+// 3. Silakan membayar dengan mode transfer pada rekening yang telah ditentukan yaitu rekening atas nama Pondok Anak Tahfidhul Qur`an, No. Rekening 5936-01-005247-53-0, Bank BRI (kode bank 002), dan selanjutnya mohon dilaporkan bukti transfernya melalui alamat url: payment.ppatq-rf.id
 
-Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
+// Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
 
-Wassalâmu`alaikum warohmatulloh 
+// Wassalâmu`alaikum warohmatulloh 
 
 
-Mengetahui
-Khodimul Ma`had
-K. Noor Shokhib M.Pd.I
+// Mengetahui
+// Khodimul Ma`had
+// K. Noor Shokhib M.Pd.I
 
-*Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
-';  
+// *Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
+// ';  
+$pesan = '
+Assalamualaikum Wr Wb,
+
+Mohon maaf atas ketidaknyaman informasi ini. Kami sampaikan bahwa sampai dengan saat ini pada sistem pencatatan pembayaran syahriah, belum ada catatan/bukti pembayaran untuk bulan Oktober . Untuk itu, bagi yang belum melakukan pembayaran, kami meminta untuk segera melakukan pembayaran (transfer ke Rek.PPATQ-RF BRI : 5936-01-005247-53-0, kode bank : 002) dan selanjutnya mohon melakukan pelaporan hasil transfer melalui payment.ppatq-rf.id
+mengingat pembagian uang saku dilakukan sebelum tanggal 20 setiap bulannya.
+
+Bagi yang sudah melakukan pembayaran/transfer dan pelaporan di payment.ppatq-rf.id kami ucapkan terimakasih sebanyak-banyaknya.
+
+Terimakasih perhatian dan mohon maaf jika ada hal yang kurang berkenan
+
+Wassalamualaikum Wr Wb
+';
 			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
 			if($hasil){
 				//kirim dengan menggunakn wa api; 085726553442 no asli
