@@ -697,7 +697,7 @@ class Pembayaran extends CI_Controller {
 $pesan = '
 Assalamualaikum Wr Wb,
 
-Mohon maaf atas ketidaknyaman informasi ini. Kami sampaikan bahwa sampai dengan saat ini pada sistem pencatatan pembayaran syahriah, belum ada catatan/bukti pembayaran untuk bulan Oktober . Untuk itu, bagi yang belum melakukan pembayaran, kami meminta untuk segera melakukan pembayaran (transfer ke Rek.PPATQ-RF BRI : 5936-01-005247-53-0, kode bank : 002) dan selanjutnya mohon melakukan pelaporan hasil transfer melalui payment.ppatq-rf.id
+Mohon maaf atas ketidaknyaman informasi ini. Kami sampaikan bahwa sampai dengan saat ini pada payment.ppatq-rf.id (sistem pelaporan pencatatan pembayaran syahriah), belum ada catatan/bukti pembayaran untuk bulan Oktober . Untuk itu, bagi yang belum melakukan pembayaran, kami meminta untuk segera melakukan pembayaran (transfer ke Rek.PPATQ-RF BRI : 5936-01-005247-53-0, kode bank : 002) dan selanjutnya mohon melakukan pelaporan hasil transfer melalui payment.ppatq-rf.id
 mengingat pembagian uang saku dilakukan sebelum tanggal 20 setiap bulannya.
 
 Bagi yang sudah melakukan pembayaran/transfer dan pelaporan di payment.ppatq-rf.id kami ucapkan terimakasih sebanyak-banyaknya.
@@ -757,7 +757,7 @@ Wassalamualaikum Wr Wb
 $pesan = '
 Assalamualaikum Wr Wb,
 
-Mohon maaf atas ketidaknyaman informasi ini. Kami sampaikan bahwa sampai dengan saat ini pada sistem pencatatan pembayaran syahriah, belum ada catatan/bukti pembayaran untuk bulan Oktober . Untuk itu, bagi yang belum melakukan pembayaran, kami meminta untuk segera melakukan pembayaran (transfer ke Rek.PPATQ-RF BRI : 5936-01-005247-53-0, kode bank : 002) dan selanjutnya mohon melakukan pelaporan hasil transfer melalui payment.ppatq-rf.id
+Mohon maaf atas ketidaknyaman informasi ini. Kami sampaikan bahwa sampai dengan saat ini pada payment.ppatq-rf.id (sistem pelaporan pencatatan pembayaran syahriah), belum ada catatan/bukti pembayaran untuk bulan Oktober . Untuk itu, bagi yang belum melakukan pembayaran, kami meminta untuk segera melakukan pembayaran (transfer ke Rek.PPATQ-RF BRI : 5936-01-005247-53-0, kode bank : 002) dan selanjutnya mohon melakukan pelaporan hasil transfer melalui payment.ppatq-rf.id
 mengingat pembagian uang saku dilakukan sebelum tanggal 20 setiap bulannya.
 
 Bagi yang sudah melakukan pembayaran/transfer dan pelaporan di payment.ppatq-rf.id kami ucapkan terimakasih sebanyak-banyaknya.
