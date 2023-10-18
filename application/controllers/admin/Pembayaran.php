@@ -711,8 +711,8 @@ Wassalamualaikum Wr Wb
 				//kirim dengan menggunakn wa api; 085726553442 no asli
 				$data['no_wa'] = $row->no_hp;
 				$data['pesan'] = $pesan;
-				$data['url'] = "https://payment.ppatq-rf.id/assets/images/pengumuman.jpeg";
-				$send_wa = $this->wa->send_wa_img($data);
+				//$data['url'] = "https://payment.ppatq-rf.id/assets/images/pengumuman.jpeg";
+				$send_wa = $this->wa->send_wa($data);
 			}
 		}
 		echo $send_wa;
@@ -771,8 +771,8 @@ Wassalamualaikum Wr Wb
 				//kirim dengan menggunakn wa api; 085726553442 no asli
 				$data['no_wa'] = $row->no_hp;
 				$data['pesan'] = $pesan;
-				$data['url'] = "https://payment.ppatq-rf.id/assets/images/pengumuman.jpeg";
-				$send_wa = $this->wa->send_wa_img($data);
+				//$data['url'] = "https://payment.ppatq-rf.id/assets/images/pengumuman.jpeg";
+				$send_wa = $this->wa->send_wa($data);
 			}
 		}
 		redirect(base_url('index.php/admin/pembayaran/belum_lapor'));
