@@ -858,7 +858,8 @@ Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran";
 		// }
 		$data['no_wa'] = "082326248982";
 		$data['pesan'] = $pesan;
-		$send_wa = $this->wa->send_wa($data);
+		$data['url'] = "https://payment.ppatq-rf.id/assets/images/pengumuman.jpeg";
+		$send_wa = $this->wa->send_wa_img($data);
 		
 	}	
 }
