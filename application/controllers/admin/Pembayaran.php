@@ -839,27 +839,39 @@ K. Noor Shokhib M.Pd.I
 
 
 Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran";
-		// foreach($mahasiswa as $row){
-		// 	$no_hp = str_replace(" ","",$row->no_hp);
-		// 	echo $i . ". Santri : " . $row->nama . " - " . trim($no_hp);
-		// 	echo "<br />";
+		$array_tambahan_nomor = array(
+			'pak muslim PPATQ RF' => '089601087437',
+			'Ust Shokhib' => '089668309013',
+			'Ustadz Muhadi PPATQ' => '08979194645'
+		);
+		foreach($array_tambahan_nomor as $key=>$value){
+			$data['no_wa'] = $value;
+			$data['pesan'] = $pesan;
+			$data['url'] = "https://payment.ppatq-rf.id/assets/images/pengumuman.jpeg";
+			$send_wa = $this->wa->send_wa_img($data);
+		}
+		foreach($mahasiswa as $row){
+			$no_hp = str_replace(" ","",$row->no_hp);
+			echo $i . ". Santri : " . $row->nama . " - " . trim($no_hp);
+			echo "<br />";
 			
 			
-		// 	if(!empty($no_hp)){
-		// 		$hasil = $this->send_wa_to_tbl($row->nama,$no_hp,$pesan);
-		// 		if($hasil){
-		// 			//kirim dengan menggunakn wa api; 085726553442 no asli
-		// 			$data['no_wa'] = $no_hp;
-		// 			$data['pesan'] = $pesan;
-		// 			$send_wa = $this->wa->send_wa($data);
-		// 		}
-		// 	}
-		// 	$i++;
-		// }
-		$data['no_wa'] = "082326248982";
-		$data['pesan'] = $pesan;
-		$data['url'] = "https://payment.ppatq-rf.id/assets/images/pengumuman.jpeg";
-		$send_wa = $this->wa->send_wa_img($data);
+			if(!empty($no_hp)){
+				$hasil = $this->send_wa_to_tbl($row->nama,$no_hp,$pesan);
+				if($hasil){
+					//kirim dengan menggunakn wa api; 085726553442 no asli
+					$data['no_wa'] = $no_hp;
+					$data['pesan'] = $pesan;
+					$data['url'] = "https://payment.ppatq-rf.id/assets/images/pengumuman.jpeg";
+					$send_wa = $this->wa->send_wa_img($data);
+				}
+			}
+			$i++;
+		}
+
+		
+		//$data['no_wa'] = "082326248982";
+		echo "berhasil";
 		
 	}	
 }
