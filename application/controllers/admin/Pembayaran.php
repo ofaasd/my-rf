@@ -780,46 +780,85 @@ Wassalamualaikum Wr Wb
 	public function kirim_pengumuman(){
 		$mahasiswa = $this->db->get('tb_siswa_detail')->result();
 		$i = 1;
+// 		$pesan = "Kepada segenap wali santri PPATQ-RF
+
+// *Assalâmu`alaikum warohamatulloh*
+
+// Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahukan kembali, PERATURAN terkait kewajiban *Syahriyah dan Saku bulanan santri*  bahwa : 
+
+// 1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu *SEBELUM TANGGAL 10 SETIAP BULAN nya*
+
+// 2. Bagi yang melebihi pembayaran di atas tanggal 10, saku ditangguhkan (khusus yang tak mempunyai saldo) 
+
+// 3. Pondok PPATQ-RF menyelenggarakan acara kirim Arwahan, sekiranya ada walisantri yang berkeingian berperan serta, dapat melakuan transfer dan selanjutnya dilaporkan bukti transfernya dapat melalui payment.ppatq-rf.id, Kegiatan / acara Arwahan ini hanya bulan september ini, *terakhir tanggal 22 Sept 2023*
+
+// 4. Silakan membayar dengan mode transfer pada rekening yang telah ditentukan, dan selanjutnya mohon dilaporkan bukti transfernya melalui alamat url: payment.ppatq-rf.id
+
+// Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
+
+// Wassalâmu`alaikum warohmatulloh 
+
+
+
+// Mengetahui
+// _Khodimul Ma`had_
+// K. Noor Shokhib M.Pd.I";
 		$pesan = "Kepada segenap wali santri PPATQ-RF
 
-*Assalâmu`alaikum warohamatulloh*
+Assalâmu`alaikum warohamatullohiwabarokatuh
 
-Kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF memberitahukan kembali, PERATURAN terkait kewajiban *Syahriyah dan Saku bulanan santri*  bahwa : 
+Berdasarkan edaran yang telah dipublikasikan yaitu 
+Sambangan bulan November dilaksanakan pada hari Sabtu-Ahad, 11 – 12 Nopember 2023
+(mulai Sabtu malam Ahad pukul 20.15 sampai Ahad sore pukul 16:00)
 
-1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu *SEBELUM TANGGAL 10 SETIAP BULAN nya*
+Maka kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF mengingatkan kembali, 
+PERATURAN terkait *kewajiban Syahriyah, Tunggakan, Daftar Ulang & Uang Saku bulanan*  untuk bulan NOVEMBER 2023.
 
-2. Bagi yang melebihi pembayaran di atas tanggal 10, saku ditangguhkan (khusus yang tak mempunyai saldo) 
+Dan juga *PPATQ RF* sedang *membangun tempat halaqoh tahfidz Putra* di lantai dua (atas dapur dan loundry) untuk itu bagi yang berlebih dalam keuangan bisa berinfaq untuk kelanjutan pembangunan tersebut. 
+untuk itu :  
 
-3. Pondok PPATQ-RF menyelenggarakan acara kirim Arwahan, sekiranya ada walisantri yang berkeingian berperan serta, dapat melakuan transfer dan selanjutnya dilaporkan bukti transfernya dapat melalui payment.ppatq-rf.id, Kegiatan / acara Arwahan ini hanya bulan september ini, *terakhir tanggal 22 Sept 2023*
+1. Wajib membayarkan syahriah dan saku tepat waktu, yaitu *SEBELUM TANGGAL 10 SETIAP BULAN-nya*
 
-4. Silakan membayar dengan mode transfer pada rekening yang telah ditentukan, dan selanjutnya mohon dilaporkan bukti transfernya melalui alamat url: payment.ppatq-rf.id
+2. Pelayanan Administrasi bulanan pada saat sambangan *tidak menerima TUNAI* dan juga  *diTUTUP* dan dialihkan menggunakan aplikasi dengan klik / akses  http://payment.ppatq-rf.id dengan melakukan pembayaran dengan metode transfer ke Bank BRI dengan No.Rekening *5936-01-005247-53-0* 
+a/n *Pondok Anak Tahfidhul Qur’an Unit/Cabang BRI Gembong* , dan selanjutnya *WAJIB* dilaporkan bukti transfernya melalui url  http://payment.ppatq-rf.id
 
+3. Apabila berkeinginan infaq pembangunan holaqoh, silakan transfer dan mohon dilaporankan dengan memilih kolom *sumbangan pembangunan* pada sistem pelaporan  http://payment.ppatq-rf.id
+
+Catatan, 
+Pemberitahuan ini bagian dari upaya menyampaikan bahwa ketepatan membayar menjadi penting untuk kegiatan rutin dilingkungan PPATQ-RF.
 Demikian beberapa yang perlu kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
 
-Wassalâmu`alaikum warohmatulloh 
+Tak lupa, kami mengucapkan banyak terima kasih yang sebesar-besarnya.
 
-
+Wassalâmu`alaikum warohmatullahiwabarokatuh
 
 Mengetahui
-_Khodimul Ma`had_
-K. Noor Shokhib M.Pd.I";
-		foreach($mahasiswa as $row){
-			$no_hp = str_replace(" ","",$row->no_hp);
-			echo $i . ". Santri : " . $row->nama . " - " . trim($no_hp);
-			echo "<br />";
+Khodimul Ma`had
+K. Noor Shokhib M.Pd.I
+
+
+
+Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran";
+		// foreach($mahasiswa as $row){
+		// 	$no_hp = str_replace(" ","",$row->no_hp);
+		// 	echo $i . ". Santri : " . $row->nama . " - " . trim($no_hp);
+		// 	echo "<br />";
 			
 			
-			if(!empty($no_hp)){
-				$hasil = $this->send_wa_to_tbl($row->nama,$no_hp,$pesan);
-				if($hasil){
-					//kirim dengan menggunakn wa api; 085726553442 no asli
-					$data['no_wa'] = $no_hp;
-					$data['pesan'] = $pesan;
-					$send_wa = $this->wa->send_wa($data);
-				}
-			}
-			$i++;
-		}
+		// 	if(!empty($no_hp)){
+		// 		$hasil = $this->send_wa_to_tbl($row->nama,$no_hp,$pesan);
+		// 		if($hasil){
+		// 			//kirim dengan menggunakn wa api; 085726553442 no asli
+		// 			$data['no_wa'] = $no_hp;
+		// 			$data['pesan'] = $pesan;
+		// 			$send_wa = $this->wa->send_wa($data);
+		// 		}
+		// 	}
+		// 	$i++;
+		// }
+		$data['no_wa'] = "082326248982";
+		$data['pesan'] = $pesan;
+		$send_wa = $this->wa->send_wa($data);
 		
 	}	
 }
