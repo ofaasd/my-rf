@@ -25,9 +25,9 @@ class Profile extends CI_Controller {
 		$data['kota_curr']  = $this->db->where('city_id',$data['siswa']->kabkota)->get('cities')->row();
 
 		$data['photo'] = base_url('assets/images/user.png');
-		if(!empty($data['siswa']->photo) && $siswa->photo_location == 1 ){
+		if(!empty($data['siswa']->photo) && $data['siswa']->photo_location == 1 ){
 			$data['photo'] = base_url('assets/upload/user/' . $siswa->photo);
-		}elseif(!empty($data['siswa']->photo) && $siswa->photo_location == 2 ){
+		}elseif(!empty($data['siswa']->photo) && $data['siswa']->photo_location == 2 ){
 			$data['photo'] = "https://manajemen.ppatq-rf.sch.id/assets/img/upload/photo/" . $siswa->photo;
 		}
         
