@@ -83,7 +83,7 @@ class Profile extends CI_Controller {
 			}
 			$data = array(
 				'photo' => $filename,
-				'photo_source' => 1,
+				'photo_location' => 1,
 			);
 			$update = $this->db->update('santri_detail',$data,array('no_induk' => $this->input->post('no_induk')));
 		}
