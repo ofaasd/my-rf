@@ -25,12 +25,13 @@ class Profile extends CI_Controller {
 		$data['kota_curr']  = $this->db->where('city_id',$data['siswa']->kabkota)->get('cities')->row();
 
 		$data['photo'] = base_url('assets/images/user.png');
-		if(!empty($data['siswa']->photo) && $data['siswa']->photo_location == 1 ){
+		if(!empty($data['siswa']->photo) && $data['siswa']->photo_location == "1" ){
 			$data['photo'] = base_url('assets/upload/user/' . $data['siswa']->photo);
-		}elseif(!empty($data['siswa']->photo) && $data['siswa']->photo_location == 2 ){
+		}elseif(!empty($data['siswa']->photo) && $data['siswa']->photo_location == "2" ){
+			echo "masuk sini";
 			$data['photo'] = "https://manajemen.ppatq-rf.sch.id/assets/img/upload/photo/" . $data['siswa']->photo;
 		}
-        echo $data['siswa']->photo;
+        echo "<br />>";$data['siswa']->photo;
 		echo $data['siswa']->photo_location;
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('profile/index',$data,true);
