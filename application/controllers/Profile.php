@@ -23,6 +23,13 @@ class Profile extends CI_Controller {
 		$data['prov_curr']  = $this->db->where('prov_id',$data['siswa']->provinsi)->get('provinces')->row();
 		$data['kota'] = $this->db->where('prov_id',$data['siswa']->provinsi)->get('cities')->result();
 		$data['kota_curr']  = $this->db->where('city_id',$data['siswa']->kabkota)->get('cities')->row();
+
+		$data['photo'] = base_url('assets/images/user.png');
+		if(!empty($data['siswa']->photo) && $siswa->photo_location == 1 ){
+			$data['photo'] = base_url('assets/upload/user/' . $siswa->photo);
+		}elseif(!empty($data['siswa']->photo) && $siswa->photo_location == 2 ){
+			$data['photo'] = "https://manajemen.ppatq-rf.sch.id/assets/img/upload/photo/" . $siswa->photo;
+		}
         
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('profile/index',$data,true);

@@ -14,7 +14,7 @@
 			
 				<div class="row">
 					<div class="col-md-6 text-center">
-						<img src="<?php if(!empty($siswa->photo) && $siswa->photo_source == 1)echo base_url('assets/upload/user/' . $siswa->photo); else echo base_url('assets/images/user.png'); ?>" class="rounded" alt="Foto Santri" width="150">
+						<img src="<?php if(!empty($siswa->photo) && $siswa->photo_location == 1)echo base_url('assets/upload/user/' . $siswa->photo); else echo base_url('assets/images/user.png'); ?>" class="rounded" alt="Foto Santri" width="150">
 					</div>
 				</div>
 				<div class="form-group row">
