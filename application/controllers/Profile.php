@@ -30,7 +30,8 @@ class Profile extends CI_Controller {
 		}elseif(!empty($data['siswa']->photo) && $data['siswa']->photo_location == 2 ){
 			$data['photo'] = "https://manajemen.ppatq-rf.sch.id/assets/img/upload/photo/" . $data['siswa']->photo;
 		}
-        
+        echo $data['siswa']->photo;
+		echo $data['siswa']->photo_location;
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('profile/index',$data,true);
 
