@@ -26,9 +26,9 @@ class Profile extends CI_Controller {
 
 		$data['photo'] = base_url('assets/images/user.png');
 		if(!empty($data['siswa']->photo) && $data['siswa']->photo_location == 1 ){
-			$data['photo'] = base_url('assets/upload/user/' . $siswa->photo);
+			$data['photo'] = base_url('assets/upload/user/' . $data['siswa']->photo);
 		}elseif(!empty($data['siswa']->photo) && $data['siswa']->photo_location == 2 ){
-			$data['photo'] = "https://manajemen.ppatq-rf.sch.id/assets/img/upload/photo/" . $siswa->photo;
+			$data['photo'] = "https://manajemen.ppatq-rf.sch.id/assets/img/upload/photo/" . $data['siswa']->photo;
 		}
         
 		$var['title'] = 'PPATQ Roudlotul Falah';
