@@ -252,7 +252,7 @@ Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang 
 						
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
-						$dataSending["number_key"] = "2Z17zDLogBMOaxnc";
+						$dataSending["number_key"] = "9qrE9KWANsXXHCA9";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
 
@@ -279,7 +279,7 @@ Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang 
 						$no_wa = "08979194645";
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
-						$dataSending["number_key"] = "2Z17zDLogBMOaxnc";
+						$dataSending["number_key"] = "9qrE9KWANsXXHCA9";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
 						
