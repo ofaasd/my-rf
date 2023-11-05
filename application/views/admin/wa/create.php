@@ -17,11 +17,6 @@
                         <textarea name="pesan" class="form-control"><?= (empty($wa))?"":$wa->pesan ?></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="file">URL Gambar</label>
-                        <input type="text" name="file" id="file">
-                    </div>
-
-                    <div class="form-group">
                         <input type="submit" value="simpan" class="btn btn-primary"> 
                     </div>
                 </form>
