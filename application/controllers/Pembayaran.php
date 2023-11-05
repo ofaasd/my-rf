@@ -237,7 +237,7 @@ foreach($detail as $row){
 
 }
 $message .= '
-Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . ' wali santri ' . $santri_detail->nama . ' kelas ' . $santri_detail->kelas . '  Yang telah melaporkan kepada kami.
+Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . ' wali santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '*  Yang telah melaporkan kepada kami.
 Tunggu beberapa waktu, kami akan melakukan pencatatan.
 Kami akan segera memberikan informasi apabila pembayaran tsb diatas telah sesuai.
 
