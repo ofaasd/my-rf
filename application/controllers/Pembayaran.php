@@ -158,6 +158,7 @@ class Pembayaran extends CI_Controller {
 		$tahun = $this->input->post('tahun');
 		$cek_nomor = $this->db->where(['nama_santri'=>$id_santri,'periode'=>$periode,'tahun'=>$tahun])->get('tb_pembayaran')->num_rows();
 		$santri = $this->db->where(['no_induk'=>$id_santri])->get("ref_siswa")->row();
+		$santri_detail = $this->db->where(['no_induk'=>$id_santri])->get("santri_detail")->row();
 		$nama_santri = $santri->nama;
 		$kelas = $santri->kode;
         $filename = $periode . "-" . $tahun . "-" . $nama_santri . "-" . ($cek_nomor+1);
@@ -236,7 +237,7 @@ foreach($detail as $row){
 
 }
 $message .= '
-Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . ' Yang telah melaporkan kepada kami.
+Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . ' wali santri ' . $santri_detail->nama . ' kelas ' . $santri_detail->kelas . '  Yang telah melaporkan kepada kami.
 Tunggu beberapa waktu, kami akan melakukan pencatatan.
 Kami akan segera memberikan informasi apabila pembayaran tsb diatas telah sesuai.
 

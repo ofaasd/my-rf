@@ -16,7 +16,7 @@ Yth. (Bp/Ibu) <?=$pembayaran->atas_nama?>, Alhamdulillah melalui petugas kami Bp
 	• <?=$jenis_pembayaran[$detail->id_jenis_pembayaran]?> sebesar Rp. <?=number_format($detail->nominal,0,",",".");?>&#13;
 <?php } ?>
 
-Kami mengucapkan banyak terima kasih (Bp/Ibu) <?=$pembayaran->atas_nama?> Yang tetap istiqomah menyisihkan sebagian hartanya untuk kewajiban pembayaran bulanan di PPATQ RF.
+Kami mengucapkan banyak terima kasih (Bp/Ibu) <?=$pembayaran->atas_nama?> wali santri <?=$santri->nama?> kelas <?=$santri->kelas?> Yang tetap istiqomah menyisihkan sebagian hartanya untuk kewajiban pembayaran bulanan di PPATQ RF.
 
 Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. 
 Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62897-9194-645. Atau melalui https://saran.ppatq-rf.id
@@ -73,7 +73,7 @@ dengan rincian sbb :
 	• <?=$jenis_pembayaran[$detail->id_jenis_pembayaran]?> sebesar Rp. <?=number_format($detail->nominal,0,",",".");?>&#13;
 <?php } ?>
 
-Kami mengucapkan banyak terima kasih (Bp/Ibu) <?=$pembayaran->atas_nama?> Yang telah melaporkan kepada kami.
+Kami mengucapkan banyak terima kasih (Bp/Ibu) <?=$pembayaran->atas_nama?> wali santri <?=$santri->nama?> kelas <?=$santri->kelas?> Yang telah melaporkan kepada kami.
 Tunggu beberapa waktu, kami akan melakukan pencatatan.
 Kami akan segera memberikan informasi apabila pembayaran tsb diatas telah sesuai.
 

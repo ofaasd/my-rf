@@ -539,7 +539,7 @@ class Pembayaran extends CI_Controller {
 		$id = $this->input->post('id');
 		$data['pembayaran'] = $this->pembayaran->get_by_id($id);
 		$data['detail_pembayaran'] = $this->detail_pembayaran->get_by_id_pembayaran($id);
-		$data['nama_santri'] = $this->siswa->get_by_ni($data['pembayaran']->nama_santri);
+		$data['nama_santri'] = $this->siswa->get_by_ni2($data['pembayaran']);
 		$data['bulan'] = $this->bulan;
 		$jenis = $this->jenis->get_all();
 		$data['jenis_pembayaran'] = array();
