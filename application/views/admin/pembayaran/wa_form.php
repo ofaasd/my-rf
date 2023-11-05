@@ -18,7 +18,8 @@ Yth. (Bp/Ibu) <?=$pembayaran->atas_nama?>, Alhamdulillah melalui petugas kami Bp
 
 Kami mengucapkan banyak terima kasih (Bp/Ibu) <?=$pembayaran->atas_nama?> Yang tetap istiqomah menyisihkan sebagian hartanya untuk kewajiban pembayaran bulanan di PPATQ RF.
 
-Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor ini.
+Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. 
+Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62897-9194-645. Atau melalui https://saran.ppatq-rf.id
 	</textarea>
 </div>
 
@@ -64,7 +65,7 @@ mohon diulang kembali
 	<label for="pesan">Pesan</label>
 	<textarea name="message" class="form-control" rows="15" id="message">
 *Pesan ini otomatis dikirim dari sistem*
-Yth. (Bp/Ibu) <?=$pembayaran->atas_nama?>, telah melakukan melaporkan  pembayaran bulan september sebesar <?=number_format($pembayaran->jumlah,0,",",".")?> 
+Yth. (Bp/Ibu) <?=$pembayaran->atas_nama?>, telah melakukan melaporkan pembayaran bulan November sebesar <?=number_format($pembayaran->jumlah,0,",",".")?> 
 
 dengan rincian sbb :
 
