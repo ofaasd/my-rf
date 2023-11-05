@@ -14,11 +14,11 @@
                     </div>
                     <div class="form-group">
                         <label for="nama">Pesan</label>
-                        <textarea name="pesan" class="form-control"><?= (empty($wa))?"":$wa->pesan ?></textarea>
+                        <textarea name="pesan" class="form-control" rows='20'><?= $template_pesan->teks; ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="file">URL Gambar</label>
-                        <input type="text" name="file" id="file">
+                        <input type="text" name="file_gambar" id="file_gambar" class="form-control" value='<?= $template_pesan->file_gambar; ?>'>
                     </div>
 
                     <div class="form-group">

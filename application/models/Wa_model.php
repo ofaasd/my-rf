@@ -167,6 +167,15 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
         }
         
     }
+    public function insert_kelas($data){
+        
+        if($this->db->insert('tb_send_wa',$data)){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
 
     public function update(){
         $data = array(

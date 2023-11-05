@@ -16,7 +16,7 @@
                 <?php
                     }
                 ?>
-                <a href="<?php echo base_url('index.php/admin/whatsapp/create/') ?>" class="btn btn-primary">Tambah</a><br /><br />
+                <a href="<?php echo base_url('index.php/admin/whatsapp/create/') ?>" class="btn btn-primary">Tambah</a><a href="<?php echo base_url('index.php/admin/whatsapp/create/') ?>" class="btn btn-primary">Tambah Kelas</a><br /><br />
                 <table class="table table-hover table-stripped" id="my-table">
                     <thead>
                         <tr>
