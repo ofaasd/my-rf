@@ -1,6 +1,17 @@
 <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('assets') ?>/css/materialDateTimePicker.css">
+<style>
+	.photo_santri{
+		width:25%;
+	}
+	@media only screen and (max-width: 768px) {
+		.photo_santri{
+			width:50%;
+		}
+	}
 
+	
+</style>
 <div class="card-header">
         Form Laporan Pembayaran
     </div>
@@ -98,6 +109,11 @@
 				<div class="col-md-6">
 					<table class="table table-stripped">
 						<tr>
+							<td colspan=2 class="text-center">
+								<img src="<?=$photo ?>" alt="" srcset="" class="photo_santri">
+							</td>
+						</tr>
+						<tr>
 							<td>Nama</td>
 							<td><?= $siswa->nama ?></td>
 						</tr>
@@ -110,6 +126,20 @@
 							<td><?= $wali_kelas->nama ?></td>
 						</tr>
 					</table>
+				</div>
+				<div class="col-md-3">
+					<div class="text-center">
+						<img src="<?=$photo_wakel?>" class="rounded" alt=".Photo Wali Kelas" width="50%">
+						<p style="margin-top:20px"><?= $wakel->nama ?? '' ?> <br />(Wali Kelas <?= $kelas->code ?? '' ?>)</p>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="text-center">
+						<img src="<?=$photo_murroby?>" class="rounded" alt=".Photo Murroby" width="50%">
+						<p style="margin-top:20px"><?= $murroby->nama ?? '' ?> <br />(Murroby <?= $kamar->code ?? '' ?>)</p>
+					</div>
+				</div>
+				<div class="col-md-6">
 					<div class="form-group">
 						<label class="form-label">Pembayaran Sebesar (Rp)</label>
 						<input class="form-control col-md-12" type="text" onkeyup="splitInDots(this)" name="jumlah" >

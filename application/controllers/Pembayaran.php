@@ -138,15 +138,44 @@ class Pembayaran extends CI_Controller {
 				$data['detail_pembayaran'][$pembayaran->id][$row->id_jenis_pembayaran] = $row->nominal;
 			}
 		}
-		
-		
+		$data['siswa2'] = $this->siswa->get_by_ni2($data['nama_santri']);	
+		$data['photo'] = base_url('assets/images/user.png');
+		if(!empty($data['siswa2']->photo) && $data['siswa2']->photo_location == "1" ){
+			$data['photo'] = base_url('assets/upload/user/' . $data['siswa2']->photo);
+		}elseif(!empty($data['siswa2']->photo) && $data['siswa2']->photo_location == "2" ){
+			$data['photo'] = "https://manajemen.ppatq-rf.id/assets/img/upload/photo/" . $data['siswa2']->photo;
+		}
+		$data['photo_wakel'] = base_url('assets/images/user.png');
+		$data['photo_murroby'] = base_url('assets/images/user.png');
+		$data['wakel'] = array();
+		$data['murroby'] = array();
+		$data['kelas'] = array();
+		$data['kamar'] = array();
+		if(!empty($data['siswa2']->kelas)){
+			$kelas = $this->db->get_where('ref_kelas',array('code'=>$data['siswa2']->kelas))->row();
+			$pegawai = $this->db->get_where('employee_new',array('id'=>$kelas->employee_id))->row();
+			if(!empty($pegawai->photo)){
+				$data['photo_wakel'] = base_url('assets/images/' . $pegawai->photo);
+				
+			}
+			$data['wakel'] = $pegawai;
+			$data['kelas'] = $kelas;
+		}
+
+		if(!empty($data['siswa2']->kamar_id)){
+			$kamar = $this->db->get_where('ref_kamar',array('id'=>$data['siswa2']->kamar_id))->row();
+			$pegawai = $this->db->get_where('employee_new',array('id'=>$kamar->employee_id))->row();
+			if(!empty($pegawai->photo)){
+				$data['photo_murroby'] = base_url('assets/images/' . $pegawai->photo);
+			}
+			$data['murroby'] = $pegawai;
+			$data['kamar'] = $kamar;
+		}
+
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		
 		$var['content'] = $this->load->view('pembayaran/detail_pembayaran',$data,true);
-
-
 		$this->load->view('layouts/main',$var);
-	
 	}
     public function simpan(){
 
