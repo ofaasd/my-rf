@@ -57,8 +57,8 @@
                                 ?>
                                     <tr>
                                         <td><?=$i?></td>
-                                        <td><?=$s->kode?></td>
-                                        <td><?=$s->kode_murroby?></td>
+                                        <td><?=$s->kelas?></td>
+                                        <td><?=$s->kamar_id?></td>
                                         <td><?=$s->no_induk?></td>
                                         <td><?=$s->nama?></td>
                                         <?php 

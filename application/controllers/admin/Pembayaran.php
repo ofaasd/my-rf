@@ -143,7 +143,7 @@ class Pembayaran extends CI_Controller {
             $periode = $this->input->post('periode');
             $tahun = $this->input->post('tahun');
             $data['jenis_pembayaran'] = $this->jenis->get_all();
-            $data['siswa'] = $this->siswa->get_all();
+            $data['siswa'] = $this->siswa->get_all_detail();
             $pembayaran = $this->pembayaran->get_by_periode($periode,$tahun);
             $santri = array();
             //inisiasi
