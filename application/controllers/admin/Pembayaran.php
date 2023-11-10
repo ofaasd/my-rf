@@ -165,9 +165,9 @@ class Pembayaran extends CI_Controller {
             // exit;
 
 			$kamar = $this->db->get('ref_kamar')->result();
-			$santri['nama_murroby'] = array();
+			$data['nama_murroby'] = array();
 			foreach($kamar as $row){
-				$santri['nama_murroby'][$row->id] = $this->db->get_where('employee_new',array('id'=>$row->employee_id))->row()->nama;
+				$data['nama_murroby'][$row->id] = $this->db->get_where('employee_new',array('id'=>$row->employee_id))->row()->nama;
 			}
 
 
