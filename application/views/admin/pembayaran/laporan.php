@@ -58,7 +58,7 @@
                                     <tr>
                                         <td><?=$i?></td>
                                         <td><?=$s->kelas?></td>
-                                        <td><?=$s->kamar_id?></td>
+                                        <td><?=$s->kamar_id?> (<?= $nama_murroby[$s->kamar_id] ?>)</td>
                                         <td><?=$s->no_induk?></td>
                                         <td><?=$s->nama?></td>
                                         <?php 

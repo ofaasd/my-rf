@@ -164,6 +164,13 @@ class Pembayaran extends CI_Controller {
             // var_dump($santri[5]);
             // exit;
 
+			$kamar = $this->db->get('ref_kamar')->result();
+			$santri['nama_murroby'] = array();
+			foreach($kamar as $row){
+				$santri['nama_murroby'][$row->id] = $this->db->get_where('employee_new',array('id'=>$row->employee_id))->row()->nama;
+			}
+
+
             $bulan = array(1=>'Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
             $data['bulan'] = $bulan;
             $data['santri'] = $santri;
