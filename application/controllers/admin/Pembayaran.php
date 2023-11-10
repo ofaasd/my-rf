@@ -21,6 +21,8 @@ class Pembayaran extends CI_Controller {
 		$this->load->model('Tunggakan_model','tunggakan');
 		$this->load->model('Pembayaran_tunggakan_model','b_tunggakan');
 		$this->load->model('Wa_model','wa');
+
+		error_reporting(0);
 		
     }
 	
