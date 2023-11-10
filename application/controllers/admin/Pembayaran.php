@@ -155,14 +155,8 @@ class Pembayaran extends CI_Controller {
             //assign nilai di dalamnya
             foreach($pembayaran as $row){
                 $detailPembayaran = $this->detail->get_by_id_pembayaran($row->id);
-                // echo $row->id;
-                // echo "<br />";
                 foreach($detailPembayaran as $detail){
-					if(empty($santri[$row->nama_santri][$detail->id_jenis_pembayaran])){
-						echo $row->nama_santri;
-					}else{
-						$santri[$row->nama_santri][$detail->id_jenis_pembayaran] += $detail->nominal;
-					}
+					$santri[$row->nama_santri][$detail->id_jenis_pembayaran] += $detail->nominal;
                 }
             }
             // var_dump($santri[5]);
