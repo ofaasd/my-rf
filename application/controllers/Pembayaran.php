@@ -155,7 +155,7 @@ class Pembayaran extends CI_Controller {
 			$kelas = $this->db->get_where('ref_kelas',array('code'=>$data['siswa2']->kelas))->row();
 			$pegawai = $this->db->get_where('employee_new',array('id'=>$kelas->employee_id))->row();
 			if(!empty($pegawai->photo)){
-				$data['photo_wakel'] = base_url('assets/images/' . $pegawai->photo);
+				$data['photo_wakel'] = 'https://manajemen.ppatq-rf.id/assets/img/upload/photo/' . $pegawai->photo;
 				
 			}
 			$data['wakel'] = $pegawai;
@@ -166,7 +166,7 @@ class Pembayaran extends CI_Controller {
 			$kamar = $this->db->get_where('ref_kamar',array('id'=>$data['siswa2']->kamar_id))->row();
 			$pegawai = $this->db->get_where('employee_new',array('id'=>$kamar->employee_id))->row();
 			if(!empty($pegawai->photo)){
-				$data['photo_murroby'] = base_url('assets/images/' . $pegawai->photo);
+				$data['photo_murroby'] = 'https://manajemen.ppatq-rf.id/assets/img/upload/photo/' . $pegawai->photo;
 			}
 			$data['murroby'] = $pegawai;
 			$data['kamar'] = $kamar;
