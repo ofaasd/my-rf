@@ -676,6 +676,7 @@ class Pembayaran extends CI_Controller {
 	}
 	public function kirim_reminder($id){
 		$no_hp = $this->db->where('no_induk',$id)->get('ref_no_hp')->result();
+		$santri = $this->db->where('no_induk',$id)->get('santri_detail')->row();
 		foreach($no_hp as $row){
 // 			$pesan = '
 // Kepada segenap wali santri PPATQ-RF
@@ -702,37 +703,17 @@ class Pembayaran extends CI_Controller {
 // *Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran*
 // ';  
 $pesan = '
-.
+Assalamualaikum Wr Wb,
+Yth Wali Santri ' . $santri->nama . '(' . $santri->kelas . ')
 
----
+Mohon maaf atas ketidaknyaman informasi ini. Kami sampaikan bahwa sampai dengan saat ini pada payment.ppatq-rf.id (sistem pelaporan pencatatan pembayaran syahriah), belum ada catatan/bukti pembayaran untuk bulan Desember 2023. Untuk itu, bagi yang belum melakukan pembayaran, kami memohon untuk segera melakukan pembayaran (transfer ke Rek.PPATQ-RF BRI : 5936-01-005247-53-0, kode bank : 002) dan selanjutnya mohon melakukan pelaporan hasil transfer melalui payment.ppatq-rf.id
+mengingat pembagian uang saku dilakukan sebelum tanggal 20 setiap bulannya.
 
-Assalâmu`alaikum warohamatullohiwabarokatuh 
+Bagi yang sudah melakukan pembayaran/transfer dan pelaporan di payment.ppatq-rf.id kami ucapkan terimakasih sebanyak-banyaknya.
 
-Berdasarkan edaran yang telah dipublikasikan yaitu *Sambangan* bulan November dilaksanakan pada hari Sabtu-Ahad, 11 – 12 Nopember 2023
-(mulai Sabtu malam Ahad pukul 20.15 sampai Ahad sore pukul 16:00)
+Terimakasih perhatian dan mohon maaf jika ada hal yang kurang berkenan
 
-Maka kami atas nama pengurus, bendahara dan diketahui Pengasuh PPATQ-RF mengingatkan kembali, 
-PERATURAN terkait *kewajiban Syahriyah, Tunggakan, Daftar Ulang & Uang Saku bulanan* sebelum *10 NOVEMBER 2023*
-
-Mengingatkan bahwa selama sambangan,  Kegiatan Administrasi Keuangan *ditutup* maka dimohon segera melakukan pembayaran 
-dengan metode transfer ke Bank BRI dengan No.Rekening *5936-01-005247-53-0* a/n *Pondok Anak Tahfidhul Qur’an Unit/Cabang BRI Gembong*
-
-Catatan, 
-Pemberitahuan ini bagian dari upaya menyampaikan bahwa ketepatan membayar menjadi penting untuk kegiatan rutin dilingkungan PPATQ-RF.
-
-Demikian yang kami sampaikan, mohon maaf, apabila walisantri telah melakukan pembayaran / pelaporan, dimohon diabaikan pesan ini.
-
-Tak lupa, kami mengucapkan banyak terima kasih yang sebesar-besarnya.
-
-Wassalâmu`alaikum warohmatullahiwabarokatuh
-
-Mengetahui
-Khodimul Ma`had
-K. Noor Shokhib M.Pd.I
-
-
-
-Pesan ini otomatis dikirim dari sistem manajemen laporan pembayaran
+Wassalamualaikum Wr Wb
 ';
 			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
 			if($hasil){
