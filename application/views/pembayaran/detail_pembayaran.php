@@ -191,8 +191,8 @@
 						</table>    
 					</div>
 					<div class="form-group">
-						<label class="form-label">Catatan</label>
-						<textarea class="form-control col-md-12" name="catatan" ></textarea>
+						<label class="form-label">Catatan *<small>Max. 160 Karakter</small></label>
+						<textarea class="form-control col-md-12" name="catatan" maxlength="50"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="bukti" class="form-label" style="margin:0">Upload Bukti Bayar</label>
