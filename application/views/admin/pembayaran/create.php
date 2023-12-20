@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label class="form-label">Nama Santri</label><br />
                     <select id="nama_santri" name="nama_santri" class="form-control col-md-6" onchange="update_riwayat()" required>
-                        <option value=0>Masukan Nama Santri</option>
+                        <option value=''>Masukan Nama Santri</option>
                         <?php
                             foreach($siswa as $row){
                         ?>
