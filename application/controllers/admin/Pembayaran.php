@@ -767,15 +767,16 @@ $pesan = '
 Assalamualaikum Wr Wb,
 Yth Wali Santri ' . $row->nama . ' (' . $row->kelas . ')
 
-Mohon maaf atas ketidaknyaman informasi ini. Kami sampaikan bahwa sampai dengan saat ini pada payment.ppatq-rf.id (sistem pelaporan pencatatan pembayaran syahriah), belum ada catatan/bukti pembayaran untuk bulan Desember 2023. Untuk itu, bagi yang belum melakukan pembayaran, kami memohon untuk segera melakukan pembayaran (transfer ke Rek.PPATQ-RF BRI : 5936-01-005247-53-0, kode bank : 002) dan selanjutnya mohon melakukan pelaporan hasil transfer melalui payment.ppatq-rf.id
+Mohon maaf atas ketidaknyaman informasi ini. Kami sampaikan bahwa sampai dengan saat ini pada payment.ppatq-rf.id (sistem pelaporan pencatatan pembayaran syahriah), belum ada catatan/bukti pembayaran untuk bulan Desember 2023 untuk santri a/n ' . $row->nama . '
+
+Untuk itu, bagi yang belum melakukan pembayaran, kami memohon untuk segera melakukan pembayaran (transfer ke Rek.PPATQ-RF BRI : 5936-01-005247-53-0, kode bank : 002) dan selanjutnya mohon melakukan pelaporan hasil transfer melalui payment.ppatq-rf.id
 mengingat pembagian uang saku dilakukan sebelum tanggal 20 setiap bulannya.
 
 Bagi yang sudah melakukan pembayaran/transfer dan pelaporan di payment.ppatq-rf.id kami ucapkan terimakasih sebanyak-banyaknya.
 
 Terimakasih perhatian dan mohon maaf jika ada hal yang kurang berkenan
 
-Wassalamualaikum Wr Wb
-';
+Wassalamualaikum Wr Wb';
 			$hasil = $this->send_wa_to_tbl($row->atas_nama,$row->no_hp,$pesan);
 			if($hasil){
 				//kirim dengan menggunakn wa api; 085726553442 no asli
