@@ -80,10 +80,15 @@ class Whatsapp extends CI_Controller {
 		}else{
 			$data = array(
 				'no_wa' => $this->input->post('no_wa'),
-				'pesan' => $this->input->post('pesan'),
 				'url' => $this->input->post('file_gambar'),
 			);
-			$send = $this->wa->send_wa_img($data);
+			$send = $this->wa->send_wa_file($data);
+			
+			$data = array(
+				'no_wa' => $this->input->post('no_wa'),
+				'pesan' => $this->input->post('pesan'),
+			);
+			$send = $this->wa->send_wa($data);
 		}
         
         $decode = json_decode($send);
