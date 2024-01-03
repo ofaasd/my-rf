@@ -93,14 +93,12 @@ class Whatsapp extends CI_Controller {
 		$send = $this->wa->send_wa($data);
         
         $decode = json_decode($send);
-		echo $decode;
-        // $msg = "";
-        // if($decode->status != 200){
-        //     $msg = $decode;
-        // }else{
-        //     $msg = "pesan berhasil dikirimkan";
-        // }
-		//exit;
+        $msg = "";
+        if($decode->status != 200){
+            $msg = $decode;
+        }else{
+            $msg = "pesan berhasil dikirimkan";
+        }
         // if($insert){
 		// 	echo $msg;
         //     $this->session->set_flashdata('message','data berhasil ditambahkan dan ' . $msg);
