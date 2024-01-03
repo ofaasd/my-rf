@@ -94,7 +94,7 @@ class Whatsapp extends CI_Controller {
             $msg = "pesan berhasil dikirimkan";
         }
 		echo $msg;
-		exit;
+		//exit;
         if($insert){
 			echo $msg;
             $this->session->set_flashdata('message','data berhasil ditambahkan dan ' . $msg);
