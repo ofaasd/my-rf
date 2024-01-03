@@ -70,7 +70,7 @@ class Whatsapp extends CI_Controller {
     }
 
     public function insert(){
-        $insert = $this->wa->insert();
+        //$insert = $this->wa->insert();
 		if(empty($this->input->post('file_gambar'))){
 			$data = array(
 				'no_wa' => $this->input->post('no_wa'),
@@ -93,6 +93,8 @@ class Whatsapp extends CI_Controller {
         }else{
             $msg = "pesan berhasil dikirimkan";
         }
+		echo $msg;
+		exit;
         if($insert){
 			echo $msg;
             $this->session->set_flashdata('message','data berhasil ditambahkan dan ' . $msg);
