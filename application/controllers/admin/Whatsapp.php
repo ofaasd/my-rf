@@ -87,6 +87,8 @@ class Whatsapp extends CI_Controller {
 				'pesan' => $pesan,
 			);
 			$send = $this->wa->send_wa($data);
+
+			
 			if($send){
 				$data = array(
 					'no_wa' => $this->input->post('no_wa'),
@@ -145,6 +147,16 @@ class Whatsapp extends CI_Controller {
 						'pesan' => $pesan,
 					);
 					$send = $this->wa->send_wa($data);
+					
+					$no_pengurus = ['08979194645','089601087437','082298576026','08993669090','085284077779','081326693827'];
+					foreach($no_pengurus as $value){
+						$data = array(
+							'no_wa' => $value,
+							'pesan' => $pesan,
+						);
+						$send2 = $this->wa->send_wa($data);
+					}
+					
 					if($send){
 						$data = array(
 							'no_wa' => $this->input->post('no_wa'),
