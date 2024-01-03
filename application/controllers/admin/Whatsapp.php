@@ -94,10 +94,11 @@ class Whatsapp extends CI_Controller {
             $msg = "pesan berhasil dikirimkan";
         }
         if($insert){
+			echo $msg;
             $this->session->set_flashdata('message','data berhasil ditambahkan dan ' . $msg);
-            redirect(base_url('index.php/admin/whatsapp'));
+            //redirect(base_url('index.php/admin/whatsapp'));
         }else{
-            redirect(base_url('index.php/admin/whatsapp/create'));
+            //redirect(base_url('index.php/admin/whatsapp/create'));
         }
     }
     public function insert_kelas(){
