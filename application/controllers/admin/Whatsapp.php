@@ -79,8 +79,9 @@ class Whatsapp extends CI_Controller {
 			$send = $this->wa->send_wa($data);
 		}else{
 			$nama = $this->input->post('nama');
-			$pesan = str_replace("{{nama}}", $nama, $this->input->post('pesan'));
-			$pesan = str_replace("{{kelas}}", '2a', $this->input->post('pesan'));
+			$pesan = $this->input->post('pesan');
+			$pesan = str_replace("{{nama}}", $nama, $pesan);
+			$pesan = str_replace("{{kelas}}", '2a', $pesan);
 			$data = array(
 				'no_wa' => $this->input->post('no_wa'),
 				'pesan' => $pesan,
