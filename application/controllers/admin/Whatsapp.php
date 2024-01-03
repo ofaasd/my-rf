@@ -111,8 +111,8 @@ class Whatsapp extends CI_Controller {
 		
 		foreach($detail as $row){
 			$pesan = $this->input->post('pesan');
-			$pesan = str_replace($pesan, "{{nama}}", $row->nama);
-			$pesan = str_replace($pesan, "{{kelas}}", $row->kelas);
+			$pesan = str_replace("{{nama}}", $row->nama, $pesan);
+			$pesan = str_replace("{{kelas}}", $row->kelas, $pesan);
 			echo $pesan;
 			exit;
 			if(!empty($row->no_hp)){
