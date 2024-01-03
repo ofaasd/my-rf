@@ -70,27 +70,25 @@ class Whatsapp extends CI_Controller {
     }
 
     public function insert(){
-        //$insert = $this->wa->insert();
-		// if(empty($this->input->post('file_gambar'))){
-		// 	$data = array(
-		// 		'no_wa' => $this->input->post('no_wa'),
-		// 		'pesan' => $this->input->post('pesan'),
-		// 	);
-		// 	$send = $this->wa->send_wa($data);
-		// }else{
-		// 	$data = array(
-		// 		'no_wa' => $this->input->post('no_wa'),
-		// 		'url' => $this->input->post('file_gambar'),
-		// 	);
-		// 	$send = $this->wa->send_wa_file($data);
-
-			
-		// }
-		$data = array(
-			'no_wa' => $this->input->post('no_wa'),
-			'pesan' => $this->input->post('pesan'),
-		);
-		$send = $this->wa->send_wa($data);
+        $insert = $this->wa->insert();
+		if(empty($this->input->post('file_gambar'))){
+			$data = array(
+				'no_wa' => $this->input->post('no_wa'),
+				'pesan' => $this->input->post('pesan'),
+			);
+			$send = $this->wa->send_wa($data);
+		}else{
+			$data = array(
+				'no_wa' => $this->input->post('no_wa'),
+				'pesan' => $this->input->post('pesan'),
+			);
+			$send = $this->wa->send_wa($data);
+			$data = array(
+				'no_wa' => $this->input->post('no_wa'),
+				'url' => $this->input->post('file_gambar'),
+			);
+			$send = $this->wa->send_wa_file($data);
+		}
         
         $decode = json_decode($send);
         $msg = "";
@@ -99,14 +97,14 @@ class Whatsapp extends CI_Controller {
         }else{
             $msg = "pesan berhasil dikirimkan";
         }
-        // if($insert){
-		// 	echo $msg;
-        //     $this->session->set_flashdata('message','data berhasil ditambahkan dan ' . $msg);
-        //     //redirect(base_url('index.php/admin/whatsapp'));
-        // }else{
-		// 	echo $msg;
-        //     //redirect(base_url('index.php/admin/whatsapp/create'));
-        // }
+        if($insert){
+			//echo $msg;
+            $this->session->set_flashdata('message','data berhasil ditambahkan dan ' . $msg);
+            redirect(base_url('index.php/admin/whatsapp'));
+        }else{
+			//echo $msg;
+            redirect(base_url('index.php/admin/whatsapp/create'));
+        }
     }
     public function insert_kelas(){
         
