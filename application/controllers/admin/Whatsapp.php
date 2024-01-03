@@ -110,6 +110,11 @@ class Whatsapp extends CI_Controller {
 		$jumlah_tanpa_nomor = 0;
 		
 		foreach($detail as $row){
+			$pesan = $this->input->post('pesan');
+			$pesan = str_replace($pesan, "{{nama}}", $row->nama);
+			$pesan = str_replace($pesan, "{{kelas}}", $row->kelas);
+			echo $pesan;
+			exit;
 			if(!empty($row->no_hp)){
 				$data = array(
 					'nama' => $row->nama,	
