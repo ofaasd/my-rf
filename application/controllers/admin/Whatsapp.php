@@ -125,13 +125,11 @@ class Whatsapp extends CI_Controller {
 			$pesan = $this->input->post('pesan');
 			$pesan = str_replace("{{nama}}", $row->nama, $pesan);
 			$pesan = str_replace("{{kelas}}", $row->kelas, $pesan);
-			echo $pesan;
-			exit;
 			if(!empty($row->no_hp)){
 				$data = array(
 					'nama' => $row->nama,	
 					'no_wa' => $row->no_hp,	
-					'pesan' => $this->input->post('pesan'),
+					'pesan' => $pesan,
 				);
 				$insert = $this->wa->insert_kelas($data);
 
@@ -143,11 +141,17 @@ class Whatsapp extends CI_Controller {
 					$send = $this->wa->send_wa($data);
 				}else{
 					$data = array(
-						'no_wa' => $row->no_hp,
-						'pesan' => $this->input->post('pesan'),
-						'url' => $this->input->post('file_gambar'),
+						'no_wa' => $this->input->post('no_wa'),
+						'pesan' => $pesan,
 					);
-					$send = $this->wa->send_wa_img($data);
+					$send = $this->wa->send_wa($data);
+					if($send){
+						$data = array(
+							'no_wa' => $this->input->post('no_wa'),
+							'url' => $this->input->post('file_gambar'),
+						);
+						$send2 = $this->wa->send_wa_file($data);
+					}
 				}
 				$decode = json_decode($send);
 				$msg = "";
