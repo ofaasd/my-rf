@@ -187,7 +187,7 @@ class Pembayaran extends CI_Controller {
 		$tahun = $this->input->post('tahun');
 		$cek_nomor = $this->db->where(['nama_santri'=>$id_santri,'periode'=>$periode,'tahun'=>$tahun])->get('tb_pembayaran')->num_rows();
 		$santri = $this->db->where(['no_induk'=>$id_santri])->get("ref_siswa")->row();
-		$santri_detail = $this->db->where(['no_induk'=>$id_santri])->get("santri_detail")->row();
+		$santri_detail = $this->db->where(['no_induk'=>$id_santri,"status"=>0])->get("santri_detail")->row();
 		$nama_santri = $santri->nama;
 		$kelas = $santri->kode;
         $filename = $periode . "-" . $tahun . "-" . $nama_santri . "-" . ($cek_nomor+1);

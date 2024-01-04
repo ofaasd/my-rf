@@ -12,17 +12,17 @@ Class Siswa_model extends CI_Model{
     }
     public function get_all_detail()
     {
-            $query = $this->db->get('santri_detail');
+            $query = $this->db->where('status',0)->get('santri_detail');
             return $query->result();
     }
     public function get_all_order_kelas()
     {
-            $query = $this->db->order_by('kode','asc')->get('ref_siswa');
+            $query = $this->db->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
     public function get_kelas_all()
     {
-            $query = $this->db->select('kode')->group_by('kode')->order_by('kode','asc')->get('ref_siswa');
+            $query = $this->db->select('kelas')->group_by('kelas')->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
 

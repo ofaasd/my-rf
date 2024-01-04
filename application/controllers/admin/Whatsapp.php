@@ -147,9 +147,6 @@ class Whatsapp extends CI_Controller {
 						'pesan' => $pesan,
 					);
 					$send = $this->wa->send_wa($data);
-					
-					
-
 					if($send){
 						$data = array(
 							'no_wa' => $row->no_hp,
