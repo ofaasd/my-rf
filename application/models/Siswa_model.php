@@ -17,12 +17,12 @@ Class Siswa_model extends CI_Model{
     }
     public function get_all_order_kelas()
     {
-            $query = $this->db->order_by('kelas','asc')->get('santri_detail');
+            $query = $this->db->where('status',0)->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
     public function get_kelas_all()
     {
-            $query = $this->db->select('kelas')->group_by('kelas')->order_by('kelas','asc')->get('santri_detail');
+            $query = $this->db->select('kelas')->where('status',0)->group_by('kelas')->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
 
@@ -38,7 +38,7 @@ Class Siswa_model extends CI_Model{
     }
     public function get_by_ni2($no_induk)
     {
-            $query = $this->db->where('no_induk',$no_induk)->get('santri_detail');
+            $query = $this->db->where('no_induk',$no_induk)->where('status',0)->get('santri_detail');
             return $query->row();
     }
     public function get_kode_1a(){
