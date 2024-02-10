@@ -49,7 +49,7 @@
 				foreach($pemeriksaan as $row){
 					echo "<tr>";
 					echo "<td>" . date('d-m-Y', $row->tanggal_pemeriksaan) . "</td>";
-					echo "<td>" . $row->tinggi_badang . "</td>";
+					echo "<td>" . $row->tinggi_badan . "</td>";
 					echo "<td>" . $row->berat_badan . "</td>";
 					echo "<td>" . $row->lingkar_pinggul . "</td>";
 					echo "<td>" . $row->lingkar_dada . "</td>";
