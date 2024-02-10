@@ -46,8 +46,6 @@ class Pembayaran extends CI_Controller {
 		$data['bank_pengirim'] = $this->bank->get_all();
         $data['siswa'] = $this->siswa->get_all();
         $data['kode'] = $this->siswa->get_kelas_all();
-		echo $this->db->last_query();
-
 		$data['bulan'] = $this->bulan;
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('pembayaran/index_profile',$data,true);
