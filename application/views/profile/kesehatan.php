@@ -14,7 +14,7 @@
 		</thead>
 		<tbody>
 			<?php 
-				foreach($data['riwayat_sakit'] as $row){
+				foreach($riwayat_sakit as $row){
 					echo "<tr>";
 					echo "<td>" . date('d-m-Y', $row->tanggal_sakit) . "</td>";
 					echo "<td>" . $row->sakit . "</td>";
