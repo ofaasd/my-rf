@@ -79,6 +79,9 @@
 					<li class="nav-item">
                         <a class="nav-link text-white  active" aria-current="page" href="<?php echo base_url('index.php/profile') ?>">Update Profile</a>
                     </li>
+					<li class="nav-item">
+                        <a class="nav-link text-white  active" aria-current="page" href="<?php echo base_url('index.php/profile/kesehatan') ?>">Kesehatan Santri</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
