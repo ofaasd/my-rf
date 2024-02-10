@@ -95,5 +95,15 @@ class Profile extends CI_Controller {
             redirect(base_url('index.php/profile/index'));
         }
 	}
+	public function kesehatan(){
+		$no_induk = $this->session->userdata('siswa_id');
+		$riwayat_sakit = $this->db->where('no_induk',$no_induk)->get('tb_kesehatan')->result();
+		$data['riwayat_sakit'] = $riwayat_sakit;
+		$var['title'] = 'PPATQ Roudlotul Falah';
+		$var['content'] = $this->load->view('profile/kesehatan',$data,true);
+
+
+		$this->load->view('layouts/main',$var);
+	}
 }
 ?>
