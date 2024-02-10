@@ -98,6 +98,7 @@ class Profile extends CI_Controller {
 	public function kesehatan(){
 		$no_induk = $this->session->userdata('siswa_id');
 		$riwayat_sakit = $this->db->where('santri_id',$no_induk)->get('tb_kesehatan')->result();
+		$data['pemeriksaan'] = $this->db->where('no_induk',$no_induk)->get('tb_pemeriksaan')->result();
 		$data['riwayat_sakit'] = $riwayat_sakit;
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('profile/kesehatan',$data,true);
