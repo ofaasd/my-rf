@@ -89,7 +89,7 @@
                 'pageLength','copy', 'csv',  
 				{
 					extend: 'excelHtml5',
-					title: 'Admin Page PPATQ Raudlatul Falah  Syahriyah Januari 2023 | <?=date('Ymd His')?>'
+					title: 'Admin Page PPATQ Raudlatul Falah  Syahriyah <?=$bulan[$periode]?> <?= $tahun ?> | <?=date('Ymd His')?>'
 				}, 'pdf', 'print'
             ],
         });
