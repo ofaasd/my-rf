@@ -12,7 +12,7 @@ Class Siswa_model extends CI_Model{
     }
     public function get_all_detail()
     {
-            $query = $this->db->where('status',0)->get('santri_detail');
+            $query = $this->db->where('status',0)->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
     public function get_all_order_kelas()

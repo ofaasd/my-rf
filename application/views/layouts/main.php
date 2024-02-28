@@ -67,20 +67,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white  active" aria-current="page" href="https://ppatq-rf.id">Home</a>
+                        <a class="nav-link text-white active" aria-current="page" href="https://ppatq-rf.id">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white  active" aria-current="page" href="<?php echo base_url('index.php/keluhan') ?>">Sambung Rasa</a>
+                        <a class="nav-link text-white active" aria-current="page" href="<?php echo base_url('index.php/keluhan') ?>">Sambung Rasa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white  active" aria-current="page" href="<?php echo base_url('index.php/pembayaran') ?>">Layanan Pembayaran</a>
+                        <a class="nav-link text-white active" aria-current="page" href="<?php echo base_url('index.php/pembayaran') ?>">Layanan Pembayaran</a>
                     </li>
 					
 					<li class="nav-item">
-                        <a class="nav-link text-white  active" aria-current="page" href="<?php echo base_url('index.php/profile') ?>">Update Profile</a>
+                        <a class="nav-link text-white active" aria-current="page" href="<?php echo base_url('index.php/profile') ?>">Update Profile</a>
                     </li>
 					<li class="nav-item">
-                        <a class="nav-link text-white  active" aria-current="page" href="<?php echo base_url('index.php/profile/kesehatan') ?>">Kesehatan Santri</a>
+                        <a class="nav-link text-white active" aria-current="page" href="<?php echo base_url('index.php/profile/kesehatan') ?>">Kesehatan Santri</a>
                     </li>
                 </ul>
 
