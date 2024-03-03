@@ -21,6 +21,6 @@
 </div>
 <script>
 	document.addEventListener("DOMContentLoaded", function(event) {
-		$(".text-justify").append($(".ql-editor").val());
+		$(".text-justify").append($(".ql-editor").html());
 	});
 </script>
