@@ -25,4 +25,13 @@ class Agenda extends CI_Controller {
 
 		$this->load->view('layouts/main',$var);
 	}
+	public function show($id){
+		$tanggal = date('Y-m-d H:i:s');
+		$data['agenda'] = $this->db->where('id',$id)->get('agenda')->first();
+		//exit;
+		$var['title'] = 'PPATQ Roudlotul Falah';
+		$var['content'] = $this->load->view('agenda/show',$data,true);
+
+		$this->load->view('layouts/main',$var);
+	}
 }
