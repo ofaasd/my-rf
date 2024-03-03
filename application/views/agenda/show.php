@@ -12,8 +12,15 @@
 			<br />
 			<div class="text-justify">
 				<small><?= date('d-m-Y H:i:s', strtotime($agenda->tanggal_mulai)) ?> - <?= date('d-m-Y H:i:s', strtotime($agenda->tanggal_selesai)) ?></small>
-				<p><?= $agenda->isi ?></p>
+				<div class="isi" style="display:none">
+					<p><?= $agenda->isi ?></p>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+	document.addEventListener("DOMContentLoaded", function(event) {
+		$(".text-justify").append($(".ql-editor").val());
+	});
+</script>
