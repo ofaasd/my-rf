@@ -9,7 +9,16 @@
 					Agenda Akan Datang
 				</div>
 				<div class="card-content">
-					
+					<table class="table table-stripped">
+						<tbody>
+							<?php foreach($agenda_akan_datang as $row) {
+								echo "<tr>
+									<td>" . $row->judul . "</td>
+									<td class='text-right'>" . date('d-m-Y H:i:s', strtotime($row->tanggal_mulai)) . " - " . date('d-m-Y H:i:s', strtotime($row->tanggal_selesai)) . "</td>
+								</tr>";
+							}?>
+						</tbody>
+					</table>
 				</div>
 			</div>	
 		</div>
