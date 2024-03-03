@@ -17,8 +17,8 @@ class Agenda extends CI_Controller {
 	{
 		$tanggal = date('Y-m-d H:i:s');
 		$data['agenda_sekarang'] = $this->db->where('tanggal_mulai <= ', $tanggal)->where('tanggal_selesai >= ', $tanggal)->where('deleted_at IS NULL', NULL, FALSE)->get('agenda')->result();
-		$data['agenda_akan_datang'] = $this->db->where('tanggal_mulai > ', $tanggal)->get('agenda')->where('deleted_at IS NULL', NULL, FALSE)->result();
-		$data['agenda_lalu'] = $this->db->where('tanggal_selesai < ', $tanggal)->get('agenda')->where('deleted_at IS NULL', NULL, FALSE)->result();
+		$data['agenda_akan_datang'] = $this->db->where('tanggal_mulai > ', $tanggal)->where('deleted_at IS NULL', NULL, FALSE)->get('agenda')->result();
+		$data['agenda_lalu'] = $this->db->where('tanggal_selesai < ', $tanggal)->where('deleted_at IS NULL', NULL, FALSE)->get('agenda')->result();
 		//exit;
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('agenda/index',$data,true);
