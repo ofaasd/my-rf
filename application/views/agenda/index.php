@@ -13,7 +13,7 @@
 						<tbody>
 							<?php foreach($agenda_akan_datang as $row) {
 								echo "<tr>
-									<td><a href='" . base_url('index.php/agenda/show/' . $row->id) . "'>" . $row->judul . "</a>  <br /> <small>date('d-m-Y H:i:s', strtotime($row->tanggal_mulai)) . " - " . date('d-m-Y H:i:s', strtotime($row->tanggal_selesai))</small></td>
+									<td><a href='" . base_url('index.php/agenda/show/' . $row->id) . "'>" . $row->judul . "</a>  <br /> <small> " . date('d-m-Y H:i:s', strtotime($row->tanggal_mulai)) . " - " . date('d-m-Y H:i:s', strtotime($row->tanggal_selesai)) . "</small></td>
 									
 								</tr>";
 							}?>
@@ -32,7 +32,7 @@
 						<tbody>
 							<?php foreach($agenda_sekarang as $row) {
 								echo "<tr>
-									<td><a href='" . base_url('index.php/agenda/show/' . $row->id) . "'>" . $row->judul . "</a> <br /> <small>date('d-m-Y H:i:s', strtotime($row->tanggal_mulai)) . " - " . date('d-m-Y H:i:s', strtotime($row->tanggal_selesai)) </small></td>
+									<td><a href='" . base_url('index.php/agenda/show/' . $row->id) . "'>" . $row->judul . "</a> <br /> <small> " . date('d-m-Y H:i:s', strtotime($row->tanggal_mulai)) . " - " . date('d-m-Y H:i:s', strtotime($row->tanggal_selesai)) . "</small></td>
 									
 								</tr>";
 							}?>
@@ -51,7 +51,7 @@
 						<tbody>
 							<?php foreach($agenda_lalu as $row) {
 								echo "<tr>
-									<td><a href='" . base_url('index.php/agenda/show/' . $row->id) . "'>" . $row->judul . "</a>  <br /> <small>date('d-m-Y H:i:s', strtotime($row->tanggal_mulai)) . " - " . date('d-m-Y H:i:s', strtotime($row->tanggal_selesai))</small></td>									
+									<td><a href='" . base_url('index.php/agenda/show/' . $row->id) . "'>" . $row->judul . "</a>  <br /> <small>" . date('d-m-Y H:i:s', strtotime($row->tanggal_mulai)) . " - " . date('d-m-Y H:i:s', strtotime($row->tanggal_selesai)) . "</small></td>									
 								</tr>";
 							}?>
 						</tbody>
