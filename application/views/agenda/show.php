@@ -11,7 +11,7 @@
 			</div>
 			<br />
 			<div class="text-justify">
-				<small><?= date('d-m-Y H:i:s', strtotime($row->tanggal_mulai)) ?> - <?= date('d-m-Y H:i:s', strtotime($row->tanggal_selesai)) ?></small>
+				<small><?= date('d-m-Y H:i:s', strtotime($agenda->tanggal_mulai)) ?> - <?= date('d-m-Y H:i:s', strtotime($agenda->tanggal_selesai)) ?></small>
 				<p><?= $agenda->isi ?></p>
 			</div>
 		</div>
