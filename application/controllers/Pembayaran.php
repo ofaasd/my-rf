@@ -304,7 +304,7 @@ Riwayat Pembayaran :
 						
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
-						$dataSending["number_key"] = "9qrE9KWANsXXHCA9";
+						$dataSending["number_key"] = "eBki5ua379TKv7Xl";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
 
@@ -331,7 +331,7 @@ Riwayat Pembayaran :
 						$no_wa = "08979194645";
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
-						$dataSending["number_key"] = "9qrE9KWANsXXHCA9";
+						$dataSending["number_key"] = "eBki5ua379TKv7Xl";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
 						

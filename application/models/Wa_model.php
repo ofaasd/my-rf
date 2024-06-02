@@ -1,7 +1,7 @@
 <?php
 Class Wa_model extends CI_Model{
 	
-	public $number_key = '9qrE9KWANsXXHCA9';
+	public $number_key = 'eBki5ua379TKv7Xl';
 	public $wa_api = "X2Y7UZOZT0WVQVTG";
 	
     public function validasi($id, $status){
@@ -96,6 +96,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 						$dataSending["number_key"] = $this->number_key;
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
+						$dataSending["wait_until_send"] = "1"; //This is an optional parameter, if you use this parameter the response will appear after sending the message is complete
 						
 						curl_setopt_array($curl, array(
 						  CURLOPT_URL => 'https://api.watzap.id/v1/send_message',
@@ -219,7 +220,8 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 		$dataSending["number_key"] = $this->number_key;
 		$dataSending["phone_no"] = $data['no_wa'];
 		$dataSending["message"] = $data['pesan'];
-		
+		$dataSending["wait_until_send"] = "1"; //This is an optional parameter, if you use this parameter the response will appear after sending the message is complete
+
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => 'https://api.watzap.id/v1/send_message',
 			CURLOPT_RETURNTRANSFER => true,
@@ -250,6 +252,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 		$dataSending["phone_no"] = $data['no_wa'];
 		$dataSending["message"] = $data['pesan'];
 		$dataSending["url"] = $data['url'];
+		$dataSending["wait_until_send"] = "1"; //This is an optional parameter, if you use this parameter the response will appear after sending the message is complete
 		
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => 'https://api.watzap.id/v1/send_image_url',
@@ -280,6 +283,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 		$dataSending["number_key"] = $this->number_key;
 		$dataSending["phone_no"] = $data['no_wa'];
 		$dataSending["url"] = $data['url'];
+		$dataSending["wait_until_send"] = "1"; //This is an optional parameter, if you use this parameter the response will appear after sending the message is complete
 		
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => 'https://api.watzap.id/v1/send_file_url',
