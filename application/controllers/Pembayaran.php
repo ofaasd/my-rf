@@ -288,12 +288,12 @@ Riwayat Pembayaran :
 						}
 						$tahun = date('Y');
 						$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
-						$message .= '* Bulan : ' . $this->bulan[$new_bulan] .' *
-						';
+						$message .= '*Bulan : ' . $this->bulan[$new_bulan] .'*
+';
 						foreach($pembayaran as $row){
 							$message .= 'Tanggal : ' . $row->tanggal_bayar .'
-								Jumlah Bayar : Rp.' . number_format($row->jumlah,0,',','.') . '
-							';
+Jumlah Bayar : Rp.' . number_format($row->jumlah,0,',','.') . '
+';
 						}
 					}
 					
