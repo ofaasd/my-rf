@@ -275,6 +275,28 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 
 Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62897-9194-645. Atau melalui https://saran.ppatq-rf.id
 					';
+$message .= '
+Riwayat Pembayaran : 
+';
+					$bulan = (int)date('m');
+					$tanggal = [];
+					$jumlah = [];
+					for($i=($bulan-1); $i>=$bulan-5; $i--){
+						$new_bulan = $i;
+						if($i <= 0 ){
+							$new_bulan = (12 + $i);
+						}
+						$tahun = date('Y');
+						$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
+						$message .= '* Bulan : ' . $this->bulan[$new_bulan] .' *
+						';
+						foreach($pembayaran as $row){
+							$message .= 'Tanggal : ' . $row->tanggal_bayar .'
+								Jumlah Bayar : Rp.' . number_format($row->jumlah,0,',','.') . '
+							';
+						}
+					}
+					
                     if($update){
                        /*  echo "berhasil";
                         echo $this->db->last_query(); */
@@ -351,6 +373,7 @@ Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang 
                     }else{
                         $this->session->set_flashdata('message', $this->db->error_message());
                     }
+					//echo nl2br($message);
                     //echo $id;
                     //exit;
                     redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
