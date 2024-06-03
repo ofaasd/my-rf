@@ -248,10 +248,10 @@ class Pembayaran extends CI_Controller {
 					$jumlah = $this->input->post('jumlah');
 					
 $msg_old = 'untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar';
-					$message = '
-*Pesan ini otomatis dikirim dari sistem*
-Yth. Bp/Ibu ' . $atas_nama . ', telah melakukan melaporkan  pembayaran bulan ' . $this->bulan[(int)$this->input->post('periode')] . ' sebesar Rp. ' . $jumlah . '
+					$message = '[ dari payment.ppatq-rf.id ]
 
+
+Yth. Bp/Ibu *' . $atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melakukan melaporkan  pembayaran bulan *' . $this->bulan[(int)$this->input->post('periode')] . '* sebesar Rp. ' . $jumlah . '
 dengan rincian sbb : 
 ';
 $jenis = $this->jenis->get_all();
@@ -266,15 +266,8 @@ foreach($detail as $row){
 
 }
 $message .= '
-Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . ' wali santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '*  Yang telah melaporkan kepada kami.
-Tunggu beberapa waktu, kami akan melakukan pencatatan.
-Kami akan segera memberikan informasi apabila pembayaran tsb diatas telah sesuai.
-
-
-Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. 
-
-Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62897-9194-645. Atau melalui https://saran.ppatq-rf.id
-					';
+Tunggu beberapa waktu, kami akan melakukan pencatatan & segera memberikan status pembayaran tersebut.
+';
 $message .= '
 Riwayat Pembayaran : 
 ';
@@ -288,20 +281,24 @@ Riwayat Pembayaran :
 						}
 						$tahun = date('Y');
 						$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
-						$message .= '*Bulan : ' . $this->bulan[$new_bulan] .'*
-';
+						
 						foreach($pembayaran as $row){
-							$message .= 'Tanggal : ' . $row->tanggal_bayar .'
-Jumlah Bayar : Rp.' . number_format($row->jumlah,0,',','.') . '
+							$message .= '*' . $this->bulan[$new_bulan] .'* ';
+							$message .= $row->tanggal_bayar .' : Rp. ' . number_format($row->jumlah,0,',','.') . '
 ';
 						}
 					}
-					
+					$message .= '
+Bila ada yang perlu diklarifikasi dapat menghubungi  WA di nomor +62897-9194-645. 
+untuk penyampaian masukan melalui https://saran.ppatq-rf.id
+
+Kami ucapkan banyak terima kasih kepada (Bp/Ibu) ' . $atas_nama . ', salam kami kepada keluarga.
+
+Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang banyak dan berkah, aamiin.
+';
                     if($update){
                        /*  echo "berhasil";
                         echo $this->db->last_query(); */
-						
-						
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
 						$dataSending["number_key"] = "eBki5ua379TKv7Xl";
