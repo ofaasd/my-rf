@@ -18,7 +18,7 @@
                 <div id="carouselExampleControls" class="carousel slide shadow-sm mb-3 rounded" data-ride="carousel">
                         <div class="carousel-inner rounded">
                             <div class="carousel-item active">
-                                <img class="d-block img-carousel" id="zoomImage" data-zoom-image="<?php echo base_url('assets/images/carousel-1-low.jpg') ?>" src="<?php echo base_url('assets/images/carousel-1-low.jpg') ?>"alt="First slide">
+                                <img class="d-block img-carousel" src="<?php echo base_url('assets/images/carousel-1-low.jpg') ?>"alt="First slide">
                                 <div class="carousel-caption d-none d-md-block mb-5">
                                     <h5>Selamat Datang di website pembayaran <a href="https://ppatq-rf.id/" class="text-decoration-none text-white font-italic">PPATQ-RF</a></h5>
                                 </div> 

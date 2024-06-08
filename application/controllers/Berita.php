@@ -1,8 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use Carbon\Carbon;
-
 class Berita extends CI_Controller {
     
     public function __construct(){
