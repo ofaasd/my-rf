@@ -1,5 +1,5 @@
-<div class="card-header">
-        Form Laporan Pembayaran
+<div class="shadow-sm p-3 mb-2">
+        <h6>Form Laporan Pembayaran</h6>
     </div>
     <div class="card-content">
 		<?php if(!empty($this->session->flashdata('message'))){ ?>

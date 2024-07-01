@@ -1,5 +1,7 @@
-<div class="card-header">
-        Form Sumbang Saran
+<div class="shadow-sm p-3 mb-2">
+        <h6>
+            Form Sumbang Saran
+        </h6>
     </div>
     <div class="card-content">
         <?php if(!empty($this->session->flashdata('message'))){ ?>

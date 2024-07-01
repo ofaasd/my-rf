@@ -1,11 +1,13 @@
-<div class="card-header">
-	Agenda
+<div class="shadow-sm p-3 mb-2">
+	<h6>
+		Agenda
+	</h6>
 </div>
 <div class="card-content">
 	<div class="row">
 		<div class="col-md-4">
-			<div class="card">
-				<div class="card-header">
+			<div class="shadow-sm">
+			<div class="border-bottom p-3">
 					Agenda Akan Datang
 				</div>
 				<div class="card-content">
@@ -23,8 +25,8 @@
 			</div>	
 		</div>
 		<div class="col-md-4">
-			<div class="card">
-				<div class="card-header">
+			<div class="shadow-sm">
+				<div class="border-bottom p-3">
 					Agenda Sekarang
 				</div>
 				<div class="card-content">
@@ -42,8 +44,8 @@
 			</div>	
 		</div>
 		<div class="col-md-4">
-			<div class="card">
-				<div class="card-header">
+			<div class="shadow-sm">
+				<div class="border-bottom p-3">
 					Agenda Lalu
 				</div>
 				<div class="card-content">
