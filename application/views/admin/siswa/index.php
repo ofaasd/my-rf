@@ -62,8 +62,8 @@
                        ?>
                         <tr>
                             <td><?= $i ?></td>
-                            <td><?= $row->kode ?></td>
-                            <td><?= $row->kode_murroby ?></td>
+                            <td><?= $row->kelas ?></td>
+                            <td><?= $row->kamar_id ?></td>
 							<td><?= $row->no_induk ?></td>
                             <td><?= $row->nama ?></td>
                             <td>
