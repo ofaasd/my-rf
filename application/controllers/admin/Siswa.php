@@ -507,7 +507,7 @@ class Siswa extends CI_Controller {
 	}
 	public function naik_kelas(){
 		$angkatan_kelulusan  = date('Y');
-		$siswa = $this->siswa->get_all();
+		$siswa = $this->siswa->get_all_detail();
 		foreach($siswa as $row){
 			//buat kelas baru
 			$kelas = substr($row->kode,0,1);
@@ -520,15 +520,43 @@ class Siswa extends CI_Controller {
 				//insert ke tb_alumni
 				$data = array(
 					//'kode' => $new_kelas . $kode,
-					'kode_murroby' => $row->kode_murroby,
-					'nama' => $row->nama,
 					'no_induk' => $row->no_induk,
-					'password' => $row->password,
-					'angkatan' => $angkatan_kelulusan,
+					'nama' => $row->nama,
+					'nisn' => $row->nisn,
+					'nik' => $row->nik,
+					'anak_ke' => $row->anak_ke,
+					'tempat_lahir' => $row->tempat_lahir,
+					'tanggal_lahir' => $row->tanggal_lahir,
+					'usia' => $row->usia,
+					'jenis_kelamin' => $row->jenis_kelamin,
+					'alamat' => $row->alamat,
+					'kelurahan' => $row->kelurahan,
+					'kecamatan' => $row->kecamatan,
+					'kabkota' => $row->kabkota,
+					'provinsi' => $row->provinsi,
+					'kode_pos' => $row->kode_pos,
+					'nik_kk' => $row->nik_kk,
+					'nama_lengkap_ayah' => $row->nama_lengkap_ayah,
+					'pendidikan_ayah' => $row->pendidikan_ayah,
+					'pekerjaan_ayah' => $row->pekerjaan_ayah,
+					'nama_lengkap_ibu' => $row->nama_lengkap_ibu,
+					'pendidikan_ibu' => $row->pendidikan_ibu,
+					'pekerjaan_ibu' => $row->pekerjaan_ibu,
+					'no_hp' => $row->no_hp,
+					'created_at' => $row->created_at,
+					'updated_at' => $row->updated_at,
+					'no_tes' => $row->no_tes,
+					'kelas' => $row->kelas,
+					'kamar_id' => $row->kamar_id,
+					'tahfidz_id' => $row->tahfidz_id,
+					'photo' => $row->photo,
+					'photo_location' => $row->photo_location,
+					'deleted_at' => $row->deleted_at,
+					'status' => $row->status,
 				);
-				$insert_alumni = $this->db->insert('tb_alumni',$data);
+				$insert_alumni = $this->db->insert('tb_alumni_santri_detail',$data);
 				//hapus dari ref_siswa 
-				$delete_siswa = $this->db->delete('ref_siswa',array('id',$row->id));
+				$delete_siswa = $this->db->delete('santri_detail',array('id',$row->id));
 				//update siswa detail kelas yang kelas 6 jadi tahun alumni
 			}else{
 				//update ke db siswa dan detail siswa
@@ -538,14 +566,14 @@ class Siswa extends CI_Controller {
 				$where = array(
 					'id' => $row->id,
 				);
-				$update = $this->db->update('ref_siswa',$data,$where);
+				$update = $this->db->update('santri_detail',$data,$where);
 				$data2 = array(
 					'kelas' => $new_kelas . $kode,
 				);
 				$where2 = array(
 					'no_induk' => $row->no_induk,
 				);
-				$update = $this->db->update('tb_siswa_detail',$data2,$where2);
+				$update = $this->db->update('ref_siswa',$data2,$where2);
 			}
 		}
 		$this->session->set_flashdata('message','data Naik kelas berhasil diupdate');
