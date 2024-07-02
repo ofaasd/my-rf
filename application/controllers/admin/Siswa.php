@@ -510,10 +510,10 @@ class Siswa extends CI_Controller {
 		$siswa = $this->siswa->get_all_detail();
 		foreach($siswa as $row){
 			//buat kelas baru
-			$kelas = substr($row->kode,0,1);
+			$kelas = substr($row->kelas,0,1);
 			$new_kelas = (int)$kelas+1;
 			//simpan kode
-			$kode = substr($row->kode,1,1);
+			$kode = substr($row->kelas,1,1);
 			if($new_kelas > 6){
 				//insert ke tb_alumni
 				//echo $row->no_induk;
