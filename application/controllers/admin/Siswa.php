@@ -561,14 +561,14 @@ class Siswa extends CI_Controller {
 			}else{
 				//update ke db siswa dan detail siswa
 				$data = array(
-					'kode' => $new_kelas . $kode,
+					'kelas' => $new_kelas . $kode,
 				);
 				$where = array(
 					'id' => $row->id,
 				);
 				$update = $this->db->update('santri_detail',$data,$where);
 				$data2 = array(
-					'kelas' => $new_kelas . $kode,
+					'kode' => $new_kelas . $kode,
 				);
 				$where2 = array(
 					'no_induk' => $row->no_induk,
