@@ -188,17 +188,21 @@ class Siswa extends CI_Controller {
         $this->load->library('form_validation');
         
         $this->form_validation->set_rules('list_siswa', 'Daftar Siswa', 'required');
+		
         if ($this->form_validation->run() == FALSE){
             $this->session->set_flashdata('error','File yang anda masukan belum sesuai format');
             redirect(base_url('/index.php/admin/siswa'));
         }else{
+			
             $list_siswa = $this->input->post('list_siswa');
             $hasil = json_decode($list_siswa);
             $insert = $this->siswa->insert_json_detail($hasil);
             if($insert){
+				
                 $this->session->set_flashdata('message','data berhasil ditambahkan');
                 redirect(base_url('index.php/admin/siswa'));
             }else{
+				
                 $this->session->set_flashdata('error','Data gagal masuk ke database');
                 redirect(base_url('index.php/admin/siswa/create'));
             }
