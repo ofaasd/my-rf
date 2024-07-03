@@ -96,55 +96,53 @@ Class Siswa_model extends CI_Model{
     }
 	public function insert_json_detail($json){
         $kelas = $this->input->post('kelas');
-        $delete = $this->db->delete('tb_siswa_detail',array('kelas'=>$kelas));
+        //$delete = $this->db->delete('santri_detail',array('kelas'=>$kelas));
 		$hasil = 0;
         foreach($json as $row){
 			if(!empty($row->no_induk) && !empty($row->nama)){
 				$data = array(
 					'no_induk' => $row->no_induk,
 					'nama' => $row->nama,
-					'nisn' => $row->nisn,
-					'nik' => $row->nik,
-					'anak_ke' => $row->anak_ke, 
-					'tempat_lahir' => $row->tempat_lahir,
-					'tanggal_lahir' => $row->tanggal_lahir,
-					'usia' => $row->usia,
-					'jenis_kelamin' => $row->jenis_kelamin,
-					'alamat' => $row->alamat,
-					'kelurahan' => $row->kelurahan,
-					'kecamatan' => $row->kecamatan,
-					'kabkota' => $row->kabkota,
-					'provinsi' => $row->provinsi,
-					'kode_pos' => $row->kode_pos,
-					'nik_kk' => $row->nik_kk,
-					'nama_lengkap_ayah' => $row->nama_lengkap_ayah,
-					'pendidikan_ayah' => $row->pendidikan_ayah,
-					'pekerjaan_ayah' => $row->pekerjaan_ayah,
-					'nama_lengkap_ibu' => $row->nama_lengkap_ibu,
-					'pendidikan_ibu' => $row->pendidikan_ibu,
-					'pekerjaan_ibu' => $row->pekerjaan_ibu,
-					'no_hp' => $row->no_hp,
+					'nisn' => $row->nisn ?? '',
+					'nik' => $row->nik ?? '',
+					'anak_ke' => $row->anak_ke ?? '', 
+					'tempat_lahir' => $row->tempat_lahir ?? '',
+					'tanggal_lahir' => $row->tanggal_lahir ?? '',
+					'usia' => $row->usia ?? '',
+					'jenis_kelamin' => $row->jenis_kelamin ?? '',
+					'alamat' => $row->alamat ?? '',
+					'kelurahan' => $row->kelurahan ?? '',
+					'kecamatan' => $row->kecamatan ?? '',
+					'kabkota' => $row->kabkota ?? '',
+					'provinsi' => $row->provinsi ?? '',
+					'kode_pos' => $row->kode_pos ?? '',
+					'nik_kk' => $row->nik_kk ?? '',
+					'nama_lengkap_ayah' => $row->nama_lengkap_ayah ?? '',
+					'pendidikan_ayah' => $row->pendidikan_ayah ?? '',
+					'pekerjaan_ayah' => $row->pekerjaan_ayah ?? '',
+					'nama_lengkap_ibu' => $row->nama_lengkap_ibu ?? '',
+					'pendidikan_ibu' => $row->pendidikan_ibu ?? '',
+					'pekerjaan_ibu' => $row->pekerjaan_ibu ?? '',
+					'no_hp' => $row->no_hp ?? '',
 					'kelas' => $this->input->post('kelas'),
 				);
-				if($this->db->insert('tb_siswa_detail',$data)){
+				if($this->db->insert('santri_detail',$data)){
 					$hasil ++;
 				}
 				$data = array(
-					'nama' => $row->nama,
+					'nama' => $row->nama ?? '',
 					'kode' => $this->input->post('kelas'),
-					'no_induk' => $row->no_induk,
+					'no_induk' => $row->no_induk ?? '',
 					//'kode_murroby' => $row->murroby,
 				);
 				if($this->db->insert('ref_siswa',$data)){
 					$hasil++;
 				}
-				echo $row->nama;
-				echo "masuk";
 			}
 
            
         }
-		exit;
+		//exit;
         if($hasil > 0){
             return true;
         }else{

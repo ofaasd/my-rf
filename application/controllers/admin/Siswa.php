@@ -199,12 +199,13 @@ class Siswa extends CI_Controller {
             $insert = $this->siswa->insert_json_detail($hasil);
             if($insert){
 				
+				
                 $this->session->set_flashdata('message','data berhasil ditambahkan');
-                redirect(base_url('index.php/admin/siswa'));
+                //redirect(base_url('index.php/admin/siswa'));
             }else{
 				
                 $this->session->set_flashdata('error','Data gagal masuk ke database');
-                redirect(base_url('index.php/admin/siswa/create'));
+                //redirect(base_url('index.php/admin/siswa/create'));
             }
         }
     }
@@ -558,43 +559,46 @@ class Siswa extends CI_Controller {
 				// 	'deleted_at' => $row->deleted_at,
 				// 	'status' => $row->status,
 				// );
-				$data = array(
-					'deleted_at' => date('Y-m-d H:i:s')
-				);
-				$where = array(
-					'id' => $row->id,
-				);
-				$update_alumni = $this->db->update('santri_detail',$data,$where);
 
-				// //hapus dari ref_siswa 
-				//$delete_siswa = $this->db->delete('santri_detail',array('id'=>$row->id));
-				// //update siswa detail kelas yang kelas 6 jadi tahun alumni
-				$data2 = array(
-					'deleted_at' => strtotime(date('Y-m-d H:i:s'))
-				);
-				$update2 = $this->db->update('ref_siswa',$data2,array('no_induk'=>$row->no_induk));
+				// $data = array(
+				// 	'deleted_at' => date('Y-m-d H:i:s')
+				// );
+				// $where = array(
+				// 	'id' => $row->id,
+				// );
+				// $update_alumni = $this->db->update('santri_detail',$data,$where);
+
+				// // //hapus dari ref_siswa 
+				// //$delete_siswa = $this->db->delete('santri_detail',array('id'=>$row->id));
+				// // //update siswa detail kelas yang kelas 6 jadi tahun alumni
+				// $data2 = array(
+				// 	'deleted_at' => strtotime(date('Y-m-d H:i:s'))
+				// );
+				// $update2 = $this->db->update('ref_siswa',$data2,array('no_induk'=>$row->no_induk));
 
 				
 			}else{
+				echo $new_kelas . $kode;
+				echo "<br /> > ";
 				//update ke db siswa dan detail siswa
-				$data = array(
-					'kelas' => $new_kelas . $kode,
-				);
-				$where = array(
-					'id' => $row->id,
-				);
-				$update = $this->db->update('santri_detail',$data,$where);
-				$data2 = array(
-					'kode' => $new_kelas . $kode,
-				);
-				$where2 = array(
-					'no_induk' => $row->no_induk,
-				);
-				$update = $this->db->update('ref_siswa',$data2,$where2);
+				// $data = array(
+				// 	'kelas' => $new_kelas . $kode,
+				// );
+				// $where = array(
+				// 	'id' => $row->id,
+				// );
+				// $update = $this->db->update('santri_detail',$data,$where);
+				// $data2 = array(
+				// 	'kode' => $new_kelas . $kode,
+				// );
+				// $where2 = array(
+				// 	'no_induk' => $row->no_induk,
+				// );
+				// $update = $this->db->update('ref_siswa',$data2,$where2);
 			}
 		}
 		$this->session->set_flashdata('message','data Naik kelas berhasil diupdate');
-		redirect(base_url('index.php/admin/siswa/index'));
+		// redirect(base_url('index.php/admin/siswa/index'));
 	}
 	public function adjust_kelas(){
 		$siswa = $this->db->get('tb_siswa_detail')->result();
