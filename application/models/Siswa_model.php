@@ -7,53 +7,53 @@ Class Siswa_model extends CI_Model{
 
     public function get_all()
     {
-            $query = $this->db->get('ref_siswa');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->get('ref_siswa');
             return $query->result();
     }
     public function get_all_detail()
     {
-            $query = $this->db->where('status',0)->order_by('kelas','asc')->get('santri_detail');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('status',0)->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
     public function get_all_order_kelas()
     {
-            $query = $this->db->where('status',0)->order_by('kelas','asc')->get('santri_detail');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('status',0)->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
     public function get_kelas_all()
     {
-            $query = $this->db->select('kelas')->group_by('kelas')->order_by('kelas','asc')->get('santri_detail');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->select('kelas')->group_by('kelas')->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
 
     public function get_by_id($id)
     {
-            $query = $this->db->where('id',$id)->get('ref_siswa');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('id',$id)->get('ref_siswa');
             return $query->row();
     }
     public function get_by_ni($no_induk)
     {
-            $query = $this->db->where('no_induk',$no_induk)->get('ref_siswa');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('no_induk',$no_induk)->get('ref_siswa');
             return $query->row();
     }
     public function get_by_ni2($no_induk)
     {
-            $query = $this->db->where('no_induk',$no_induk)->where('status',0)->get('santri_detail');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('no_induk',$no_induk)->where('status',0)->get('santri_detail');
             return $query->row();
     }
     public function get_kode_1a(){
-        $query = $this->db->where('kode','1a')->get('ref_siswa');
+        $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('kode','1a')->get('ref_siswa');
         return $query->num_rows();
     }
     public function get_kode_1b(){
-        $query = $this->db->where('kode','1b')->get('ref_siswa');
+        $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('kode','1b')->get('ref_siswa');
         return $query->num_rows();
     }
     
     public function verifikasi_siswa(){
         $id_santri = $this->input->post('nama_santri');
         $kode = $this->input->post('kode');
-        $query = $this->db->where(['no_induk'=>$id_santri,'kode'=>$kode])->get('ref_siswa');
+        $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where(['no_induk'=>$id_santri,'kode'=>$kode])->get('ref_siswa');
         if($query->num_rows() > 0){
             return true;
         }else{
