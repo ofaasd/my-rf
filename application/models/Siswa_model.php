@@ -7,53 +7,53 @@ Class Siswa_model extends CI_Model{
 
     public function get_all()
     {
-            $query = $this->db->get('ref_siswa');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->get('ref_siswa');
             return $query->result();
     }
     public function get_all_detail()
     {
-            $query = $this->db->where('status',0)->order_by('kelas','asc')->get('santri_detail');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('status',0)->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
     public function get_all_order_kelas()
     {
-            $query = $this->db->where('status',0)->order_by('kelas','asc')->get('santri_detail');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('status',0)->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
     public function get_kelas_all()
     {
-            $query = $this->db->select('kelas')->group_by('kelas')->order_by('kelas','asc')->get('santri_detail');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->select('kelas')->group_by('kelas')->order_by('kelas','asc')->get('santri_detail');
             return $query->result();
     }
 
     public function get_by_id($id)
     {
-            $query = $this->db->where('id',$id)->get('ref_siswa');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('id',$id)->get('ref_siswa');
             return $query->row();
     }
     public function get_by_ni($no_induk)
     {
-            $query = $this->db->where('no_induk',$no_induk)->get('ref_siswa');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('no_induk',$no_induk)->get('ref_siswa');
             return $query->row();
     }
     public function get_by_ni2($no_induk)
     {
-            $query = $this->db->where('no_induk',$no_induk)->where('status',0)->get('santri_detail');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('no_induk',$no_induk)->where('status',0)->get('santri_detail');
             return $query->row();
     }
     public function get_kode_1a(){
-        $query = $this->db->where('kode','1a')->get('ref_siswa');
+        $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('kode','1a')->get('ref_siswa');
         return $query->num_rows();
     }
     public function get_kode_1b(){
-        $query = $this->db->where('kode','1b')->get('ref_siswa');
+        $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('kode','1b')->get('ref_siswa');
         return $query->num_rows();
     }
     
     public function verifikasi_siswa(){
         $id_santri = $this->input->post('nama_santri');
         $kode = $this->input->post('kode');
-        $query = $this->db->where(['no_induk'=>$id_santri,'kode'=>$kode])->get('ref_siswa');
+        $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where(['no_induk'=>$id_santri,'kode'=>$kode])->get('ref_siswa');
         if($query->num_rows() > 0){
             return true;
         }else{
@@ -96,55 +96,53 @@ Class Siswa_model extends CI_Model{
     }
 	public function insert_json_detail($json){
         $kelas = $this->input->post('kelas');
-        $delete = $this->db->delete('tb_siswa_detail',array('kelas'=>$kelas));
+        //$delete = $this->db->delete('santri_detail',array('kelas'=>$kelas));
 		$hasil = 0;
         foreach($json as $row){
 			if(!empty($row->no_induk) && !empty($row->nama)){
 				$data = array(
 					'no_induk' => $row->no_induk,
 					'nama' => $row->nama,
-					'nisn' => $row->nisn,
-					'nik' => $row->nik,
-					'anak_ke' => $row->anak_ke, 
-					'tempat_lahir' => $row->tempat_lahir,
-					'tanggal_lahir' => $row->tanggal_lahir,
-					'usia' => $row->usia,
-					'jenis_kelamin' => $row->jenis_kelamin,
-					'alamat' => $row->alamat,
-					'kelurahan' => $row->kelurahan,
-					'kecamatan' => $row->kecamatan,
-					'kabkota' => $row->kabkota,
-					'provinsi' => $row->provinsi,
-					'kode_pos' => $row->kode_pos,
-					'nik_kk' => $row->nik_kk,
-					'nama_lengkap_ayah' => $row->nama_lengkap_ayah,
-					'pendidikan_ayah' => $row->pendidikan_ayah,
-					'pekerjaan_ayah' => $row->pekerjaan_ayah,
-					'nama_lengkap_ibu' => $row->nama_lengkap_ibu,
-					'pendidikan_ibu' => $row->pendidikan_ibu,
-					'pekerjaan_ibu' => $row->pekerjaan_ibu,
-					'no_hp' => $row->no_hp,
+					'nisn' => $row->nisn ?? '',
+					'nik' => $row->nik ?? '',
+					'anak_ke' => $row->anak_ke ?? '', 
+					'tempat_lahir' => $row->tempat_lahir ?? '',
+					'tanggal_lahir' => $row->tanggal_lahir ?? '',
+					'usia' => $row->usia ?? '',
+					'jenis_kelamin' => $row->jenis_kelamin ?? '',
+					'alamat' => $row->alamat ?? '',
+					'kelurahan' => $row->kelurahan ?? '',
+					'kecamatan' => $row->kecamatan ?? '',
+					'kabkota' => $row->kabkota ?? '',
+					'provinsi' => $row->provinsi ?? '',
+					'kode_pos' => $row->kode_pos ?? '',
+					'nik_kk' => $row->nik_kk ?? '',
+					'nama_lengkap_ayah' => $row->nama_lengkap_ayah ?? '',
+					'pendidikan_ayah' => $row->pendidikan_ayah ?? '',
+					'pekerjaan_ayah' => $row->pekerjaan_ayah ?? '',
+					'nama_lengkap_ibu' => $row->nama_lengkap_ibu ?? '',
+					'pendidikan_ibu' => $row->pendidikan_ibu ?? '',
+					'pekerjaan_ibu' => $row->pekerjaan_ibu ?? '',
+					'no_hp' => $row->no_hp ?? '',
 					'kelas' => $this->input->post('kelas'),
 				);
-				if($this->db->insert('tb_siswa_detail',$data)){
+				if($this->db->insert('santri_detail',$data)){
 					$hasil ++;
 				}
 				$data = array(
-					'nama' => $row->nama,
+					'nama' => $row->nama ?? '',
 					'kode' => $this->input->post('kelas'),
-					'no_induk' => $row->no_induk,
+					'no_induk' => $row->no_induk ?? '',
 					//'kode_murroby' => $row->murroby,
 				);
 				if($this->db->insert('ref_siswa',$data)){
 					$hasil++;
 				}
-				echo $row->nama;
-				echo "masuk";
 			}
 
            
         }
-		exit;
+		//exit;
         if($hasil > 0){
             return true;
         }else{

@@ -188,19 +188,24 @@ class Siswa extends CI_Controller {
         $this->load->library('form_validation');
         
         $this->form_validation->set_rules('list_siswa', 'Daftar Siswa', 'required');
+		
         if ($this->form_validation->run() == FALSE){
             $this->session->set_flashdata('error','File yang anda masukan belum sesuai format');
             redirect(base_url('/index.php/admin/siswa'));
         }else{
+			
             $list_siswa = $this->input->post('list_siswa');
             $hasil = json_decode($list_siswa);
             $insert = $this->siswa->insert_json_detail($hasil);
             if($insert){
+				
+				
                 $this->session->set_flashdata('message','data berhasil ditambahkan');
-                redirect(base_url('index.php/admin/siswa'));
+                //redirect(base_url('index.php/admin/siswa'));
             }else{
+				
                 $this->session->set_flashdata('error','Data gagal masuk ke database');
-                redirect(base_url('index.php/admin/siswa/create'));
+                //redirect(base_url('index.php/admin/siswa/create'));
             }
         }
     }
@@ -518,66 +523,82 @@ class Siswa extends CI_Controller {
 				//insert ke tb_alumni
 				//echo $row->no_induk;
 				//insert ke tb_alumni
-				$data = array(
-					//'kode' => $new_kelas . $kode,
-					'no_induk' => $row->no_induk,
-					'nama' => $row->nama,
-					'nisn' => $row->nisn,
-					'nik' => $row->nik,
-					'anak_ke' => $row->anak_ke,
-					'tempat_lahir' => $row->tempat_lahir,
-					'tanggal_lahir' => $row->tanggal_lahir,
-					'usia' => $row->usia,
-					'jenis_kelamin' => $row->jenis_kelamin,
-					'alamat' => $row->alamat,
-					'kelurahan' => $row->kelurahan,
-					'kecamatan' => $row->kecamatan,
-					'kabkota' => $row->kabkota,
-					'provinsi' => $row->provinsi,
-					'kode_pos' => $row->kode_pos,
-					'nik_kk' => $row->nik_kk,
-					'nama_lengkap_ayah' => $row->nama_lengkap_ayah,
-					'pendidikan_ayah' => $row->pendidikan_ayah,
-					'pekerjaan_ayah' => $row->pekerjaan_ayah,
-					'nama_lengkap_ibu' => $row->nama_lengkap_ibu,
-					'pendidikan_ibu' => $row->pendidikan_ibu,
-					'pekerjaan_ibu' => $row->pekerjaan_ibu,
-					'no_hp' => $row->no_hp,
-					'created_at' => $row->created_at,
-					'updated_at' => $row->updated_at,
-					'no_tes' => $row->no_tes,
-					'kelas' => $row->kelas,
-					'kamar_id' => $row->kamar_id,
-					'tahfidz_id' => $row->tahfidz_id,
-					'photo' => $row->photo,
-					'photo_location' => $row->photo_location,
-					'deleted_at' => $row->deleted_at,
-					'status' => $row->status,
-				);
-				$insert_alumni = $this->db->insert('tb_alumni_santri_detail',$data);
-				//hapus dari ref_siswa 
-				$delete_siswa = $this->db->delete('santri_detail',array('id',$row->id));
-				//update siswa detail kelas yang kelas 6 jadi tahun alumni
+				// $data = array(
+				// 	//'kode' => $new_kelas . $kode,
+				// 	'no_induk' => $row->no_induk,
+				// 	'nama' => $row->nama,
+				// 	'nisn' => $row->nisn,
+				// 	'nik' => $row->nik,
+				// 	'anak_ke' => $row->anak_ke,
+				// 	'tempat_lahir' => $row->tempat_lahir,
+				// 	'tanggal_lahir' => $row->tanggal_lahir,
+				// 	'usia' => $row->usia,
+				// 	'jenis_kelamin' => $row->jenis_kelamin,
+				// 	'alamat' => $row->alamat,
+				// 	'kelurahan' => $row->kelurahan,
+				// 	'kecamatan' => $row->kecamatan,
+				// 	'kabkota' => $row->kabkota,
+				// 	'provinsi' => $row->provinsi,
+				// 	'kode_pos' => $row->kode_pos,
+				// 	'nik_kk' => $row->nik_kk,
+				// 	'nama_lengkap_ayah' => $row->nama_lengkap_ayah,
+				// 	'pendidikan_ayah' => $row->pendidikan_ayah,
+				// 	'pekerjaan_ayah' => $row->pekerjaan_ayah,
+				// 	'nama_lengkap_ibu' => $row->nama_lengkap_ibu,
+				// 	'pendidikan_ibu' => $row->pendidikan_ibu,
+				// 	'pekerjaan_ibu' => $row->pekerjaan_ibu,
+				// 	'no_hp' => $row->no_hp,
+				// 	'created_at' => $row->created_at,
+				// 	'updated_at' => $row->updated_at,
+				// 	'no_tes' => $row->no_tes,
+				// 	'kelas' => $row->kelas,
+				// 	'kamar_id' => $row->kamar_id,
+				// 	'tahfidz_id' => $row->tahfidz_id,
+				// 	'photo' => $row->photo,
+				// 	'photo_location' => $row->photo_location,
+				// 	'deleted_at' => $row->deleted_at,
+				// 	'status' => $row->status,
+				// );
+
+				// $data = array(
+				// 	'deleted_at' => date('Y-m-d H:i:s')
+				// );
+				// $where = array(
+				// 	'id' => $row->id,
+				// );
+				// $update_alumni = $this->db->update('santri_detail',$data,$where);
+
+				// // //hapus dari ref_siswa 
+				// //$delete_siswa = $this->db->delete('santri_detail',array('id'=>$row->id));
+				// // //update siswa detail kelas yang kelas 6 jadi tahun alumni
+				// $data2 = array(
+				// 	'deleted_at' => strtotime(date('Y-m-d H:i:s'))
+				// );
+				// $update2 = $this->db->update('ref_siswa',$data2,array('no_induk'=>$row->no_induk));
+
+				
 			}else{
+				echo $new_kelas . $kode;
+				echo "<br /> > ";
 				//update ke db siswa dan detail siswa
-				$data = array(
-					'kelas' => $new_kelas . $kode,
-				);
-				$where = array(
-					'id' => $row->id,
-				);
-				$update = $this->db->update('santri_detail',$data,$where);
-				$data2 = array(
-					'kode' => $new_kelas . $kode,
-				);
-				$where2 = array(
-					'no_induk' => $row->no_induk,
-				);
-				$update = $this->db->update('ref_siswa',$data2,$where2);
+				// $data = array(
+				// 	'kelas' => $new_kelas . $kode,
+				// );
+				// $where = array(
+				// 	'id' => $row->id,
+				// );
+				// $update = $this->db->update('santri_detail',$data,$where);
+				// $data2 = array(
+				// 	'kode' => $new_kelas . $kode,
+				// );
+				// $where2 = array(
+				// 	'no_induk' => $row->no_induk,
+				// );
+				// $update = $this->db->update('ref_siswa',$data2,$where2);
 			}
 		}
 		$this->session->set_flashdata('message','data Naik kelas berhasil diupdate');
-		redirect(base_url('index.php/admin/siswa/index'));
+		// redirect(base_url('index.php/admin/siswa/index'));
 	}
 	public function adjust_kelas(){
 		$siswa = $this->db->get('tb_siswa_detail')->result();

@@ -13,6 +13,8 @@
 		<?php if($bukatutup->status == 0){ ?>
 			<p class="alert alert-danger">Pelaporan Pembayaran Pada Bulan ini ditutup sementara</p>
 		<?php }else{ ?>
+			<!-- <p class="alert alert-warning">Mohon Tunggu Beberapa saat data kelas 1 sedang dalam proses penginputan</p> -->
+        <br />
         <form method="POST" enctype='multipart/form-data' action="<?= base_url('index.php/pembayaran/detail_pembayaran') ?>">
             <div class="form-group">
                 <label class="form-label">Nama Santri</label><br />
