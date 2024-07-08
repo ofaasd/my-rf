@@ -269,7 +269,7 @@ $message .= '
 Tunggu beberapa waktu, kami akan melakukan pencatatan & segera memberikan status pembayaran tersebut.
 ';
 $message .= '
-Riwayat Pembayaran : 
+Riwayat Pelaporan : 
 ';
 					$bulan = (int)date('m');
 					$tanggal = [];
