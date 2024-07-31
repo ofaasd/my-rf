@@ -289,7 +289,7 @@ Riwayat Pelaporan :
 						}
 					}
 					$message .= '
-Bila ada yang perlu diklarifikasi dapat menghubungi  WA di nomor +62897-9194-645. 
+Bila ada yang perlu diklarifikasi dapat menghubungi  WA di nomor +62877-6757-2025. 
 untuk penyampaian masukan melalui https://saran.ppatq-rf.id
 
 Kami ucapkan banyak terima kasih kepada (Bp/Ibu) ' . $atas_nama . ', salam kami kepada keluarga.
@@ -325,7 +325,7 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 						$response = curl_exec($curl);
 
 						//kirim ulang ke ust muhadi
-						$no_wa = "08979194645";
+						$no_wa = "087767572025";
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
 						$dataSending["number_key"] = "eBki5ua379TKv7Xl";

@@ -32,7 +32,7 @@ foreach($detail as $row){
 $message .= '
 Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . ' (Wali santri ' . $siswa->nama . ' Kelas ' . $siswa->kode .'), Yang senantiasa istiqomah menyisihkan sebagian hartanya untuk kewajiban pembayaran bulanan di PPATQ RF. 
 
-Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62897-9194-645.
+Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62877-6757-2025.
 
 Dan apabila ada keluhan / masuk / saran, dapat disalurkan melalui link berikut
 (saran.ppatq-rf.id)
