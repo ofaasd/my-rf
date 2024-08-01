@@ -15,7 +15,7 @@ Class Wa_model extends CI_Model{
 		$message = '
 *Pesan ini otomatis dikirim dari sistem manajemen  laporan pembayaran*
 
-Yth. (Bp/Ibu) ' . $atas_nama . ', Alhamdulillah melalui petugas kami Bp. Muhadi, bulan  ini kami telah menerima : 
+Yth. (Bp/Ibu) ' . $atas_nama . ', Alhamdulillah melalui petugas kami Bp. Rizqi, bulan  ini kami telah menerima : 
 
 ';
 $jenis = $this->db->get('ref_jenis_pembayaran')->result();
