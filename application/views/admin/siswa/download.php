@@ -14,8 +14,10 @@
                         <tr>
                             <th>No.</th>
                             <th>NIS</th>
+                            <th>NISN</th>
                             <th>Nama</th>
                             <th>Kelas</th>
+                            <th>Anak Ke</th>
                             <th>Nama Wali Santri</th>
                             <th>HP</th>
                             <th>Alamat</th>
@@ -31,8 +33,10 @@
                         <tr>
                             <td><?= $i ?></td>
                             <td><?= $row->no_induk ?></td>
+                            <td><?= $row->nisn ?></td>
                             <td><?= strtoupper($row->nama) ?></td>
                             <td><?= strtoupper($row->kelas) ?></td>
+							<td><?= $row->anak_ke ?></td>
                             <td><?= $row->nama_lengkap_ayah ?>/<?=$row->nama_lengkap_ibu?></td>
                             <td><?= $row->no_hp ?></td>
                             <td><?= $row->alamat ?>, <?= $row->kelurahan?>, <?= $row->kecamatan?></td>

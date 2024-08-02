@@ -98,20 +98,20 @@ class Siswa extends CI_Controller {
 			//var_dump($where);
 			
 			if(empty($where)){
-				$siswa = $this->db->get('tb_siswa_detail')->result();
+				$siswa = $this->db->get('santri_detail')->result();
 			}else{
-				$siswa = $this->db->where($where)->get('tb_siswa_detail')->result();
+				$siswa = $this->db->where($where)->get('santri_detail')->result();
 			}
 			
 			$data['siswa'] = $siswa;
 			
 		}else{
-			$siswa = $this->db->get('tb_siswa_detail')->result();
+			$siswa = $this->db->get('santri_detail')->result();
 			$data['siswa'] = $siswa;
 		}
-		$data['kelas'] = $this->db->group_by('kelas')->get('tb_siswa_detail')->result();
+		$data['kelas'] = $this->db->group_by('kelas')->get('santri_detail')->result();
 		//$data['kelas'] = $this->db->group_by('kode')->get('tb_siswa_detail')->result();
-		$data['kota'] = $this->db->group_by('kabkota')->get('tb_siswa_detail')->result();
+		$data['kota'] = $this->db->group_by('kabkota')->get('santri_detail')->result();
 		$data['list_kota'] = array();
 		$list_kota = $this->db->get('cities')->result();
 		$data['list_kota'][0] = "N/A";
@@ -124,7 +124,7 @@ class Siswa extends CI_Controller {
 			$data['list_provinsi'][$provinsi->prov_id] = $provinsi->prov_name;
 		}
 		$data['list_provinsi'][0] = "N/A";
-		$data['provinsi'] = $this->db->group_by('provinsi')->get('tb_siswa_detail')->result();
+		$data['provinsi'] = $this->db->group_by('provinsi')->get('santri_detail')->result();
 		$var['title'] = 'Siswa';
 		//$data['kode'] = $this->siswa->get_kelas_all();
 		$var['content'] = $this->load->view('admin/siswa/download',$data,true);
