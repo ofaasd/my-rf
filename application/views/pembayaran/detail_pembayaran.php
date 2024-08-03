@@ -146,7 +146,7 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Tanggal Bayar / Transfer</label>
-						<input class="form-control col-md-12" id="date" value="<?= date('Y-m-d')?>" type="text" name="tanggal_bayar" >
+						<input class="form-control col-md-12" id="date" value="" type="text" name="tanggal_bayar" >
 					</div>
 					<div class="form-group">
 						<label class="form-label">Periode Bayar</label>
