@@ -140,7 +140,10 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					
+					<div class="form-group">
+						<label class="form-label">Pembayaran Sebesar (Rp)</label>
+						<input class="form-control col-md-12" type="text" onkeyup="splitInDots(this)" name="jumlah" id="total_bayar">
+					</div>
 					<div class="form-group">
 						<label class="form-label">Tanggal</label>
 						<input class="form-control col-md-12" id="date" value="<?= date('Y-m-d')?>" type="text" name="tanggal_bayar" >
@@ -234,9 +237,24 @@
 							<?php } ?>
 						</table>    
 					</div>
-					<div class="form-group">
-						<label class="form-label">Total Bayar (Rp) <small class="text-danger">* Terisi otomatis</small></label>
-						<input class="form-control col-md-12" id="jumlah_bayar" type="text" onkeyup="splitInDots(this)" name="jumlah" value="<?=number_format($total,0,',','.')?>" readonly>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="form-label">Total Rincian (Rp) </label>
+								<input class="form-control col-md-12" id="jumlah_rincian" type="text" onkeyup="splitInDots(this)" name="jumlah_rincian" value="<?=number_format($total,0,',','.')?>" readonly>
+								<small class="text-danger">* Terisi otomatis</small>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="form-label">Dari Total Bayar (Rp)</label>
+								<input class="form-control col-md-12" id="jumlah_bayar" type="text" onkeyup="splitInDots(this)" name="jumlah_bayar" value="" readonly>
+								<small class="text-danger">* Terisi otomatis</small>
+							</div>				
+						</div>
+					</div>
+					<div id="alert_jumlah">
+
 					</div>
 					<div class="form-group">
 						<label class="form-label">Catatan </label>
@@ -256,7 +274,7 @@
 					</div>
 					
 					<div class="form-group">
-						<input type="submit" class="form-control col-md-12 btn btn-primary" value="Kirim">
+						<input type="submit" id="btn_kirim" class="form-control col-md-12 btn btn-primary" value="Kirim">
 					</div>
 				</div>
 				
@@ -312,7 +330,9 @@
 
 <script>
     $(document).ready(function() {
-
+		$("#total_bayar").on('keyup',function(){
+			$("#jumlah_bayar").val($(this).val())
+		});
 		$('#date').bootstrapMaterialDatePicker({
 			time: false,
 			clearButton: true
@@ -373,7 +393,15 @@
 		reversedJumlah = reverseNumber(plainJumlah),
 		reversedWithDotsJumlah = reversedJumlah.match(/.{1,3}/g).join('.'),
 		normalJumlah = reverseNumber(reversedWithDotsJumlah);
-		$("#jumlah_bayar").val(normalJumlah);
+		$("#jumlah_rincian").val(normalJumlah);
+		
+		if($("#jumlah_rincian").val() != $("#total_bayar").val()){
+			$("#alert_jumlah").html('<div class="alert alert-danger">Jumlah Rincian dan Total Bayar tidak sama</div>')
+			$("#btn_kirim").prop("disabled",true);
+		}else{
+			$("#alert_jumlah").html('');
+			$("#btn_kirim").prop("disabled",false);
+		}
     }
     
     function oneDot(input) {
