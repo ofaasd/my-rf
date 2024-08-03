@@ -140,10 +140,7 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="form-group">
-						<label class="form-label">Pembayaran Sebesar (Rp)</label>
-						<input class="form-control col-md-12" type="text" onkeyup="splitInDots(this)" name="jumlah" >
-					</div>
+					
 					<div class="form-group">
 						<label class="form-label">Tanggal</label>
 						<input class="form-control col-md-12" id="date" value="<?= date('Y-m-d')?>" type="text" name="tanggal_bayar" >
@@ -182,13 +179,64 @@
 								</button>
 							</div>
 						</div>
-							<?php foreach($jenis_pembayaran as $row) { ?>
+							<?php $total = 0; foreach($jenis_pembayaran as $row) { ?>
 								<div class="row" style="margin:10px auto">
 									<div class="col-md-4"><?=$row->jenis?><input type="hidden" name="id_jenis_pembayaran[]" value='<?= $row->id ?>'></div>
-									<div class="col-md-8"><input type="text" onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>
+									<?php
+										if($row->id == 1||$row->id == 5 || $row->id == 16){
+											if($kode == "6a" || $kode == "6b"){
+												if($row->id == 5){
+													echo '<div class="col-md-8"><input type="text" onkeyup="splitInDots(this)" id="jenis_' . trim($row->id) . '"  placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
+												}else{
+													$cek_jumlah = 0;
+													if(!empty($pembayaran_bulan)){
+														
+														foreach($pembayaran_bulan as $pem){
+															$cek_jumlah = $detail_pembayaran[$pem->id][$row->id]; 													
+														}
+													}
+													if($cek_jumlah == 0){
+														$total += $row->harga;
+														echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control" value=" ' .number_format($row->harga,0,',','.') . '"';
+														echo ($row->id == 1||$row->id == 5 || $row->id == 16)?"readonly":"";
+														echo '></div>';
+											
+													}else{
+														echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
+											
+													}
+												}
+											}else{
+												$cek_jumlah = 0;
+												if(!empty($pembayaran_bulan)){
+													
+													foreach($pembayaran_bulan as $pem){
+														$cek_jumlah = $detail_pembayaran[$pem->id][$row->id]; 													
+													}
+												}
+												if($cek_jumlah == 0){
+													$total += $row->harga;
+													echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control" value=" ' .number_format($row->harga,0,',','.') . '"';
+													echo ($row->id == 1||$row->id == 5 || $row->id == 16)?"readonly":"";
+													echo '></div>';
+										
+												}else{
+													echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
+										
+												}
+											}
+										}else{
+											echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
+										}
+									?>
+									
 								</div>
 							<?php } ?>
 						</table>    
+					</div>
+					<div class="form-group">
+						<label class="form-label">Total Bayar (Rp) <small class="text-danger">* Terisi otomatis</small></label>
+						<input class="form-control col-md-12" id="jumlah_bayar" type="text" onkeyup="splitInDots(this)" name="jumlah" value="<?=number_format($total,0,',','.')?>" readonly>
 					</div>
 					<div class="form-group">
 						<label class="form-label">Catatan </label>
@@ -295,7 +343,11 @@
     }
     
     function plainNumber(number) {
-        return number.split('.').join('');
+		if(number){
+        	return number.split('.').join('');
+		}else{
+			return "0";
+		}
     }
     
     function splitInDots(input) {
@@ -308,6 +360,20 @@
         
         console.log(plain,reversed, reversedWithDots, normal);
         input.value = normal;
+		let jumlah = 0;
+		<?php
+		foreach($jenis_pembayaran as $row){
+		?>
+			jumlah = jumlah + parseInt(plainNumber($("#jenis_<?=$row->id?>").val())) || 0;
+		<?php
+		}
+		?>
+		//$("#jumlah_bayar").val(plainNumber(jumlah));
+		plainJumlah = plainNumber(jumlah.toString());
+		reversedJumlah = reverseNumber(plainJumlah),
+		reversedWithDotsJumlah = reversedJumlah.match(/.{1,3}/g).join('.'),
+		normalJumlah = reverseNumber(reversedWithDotsJumlah);
+		$("#jumlah_bayar").val(normalJumlah);
     }
     
     function oneDot(input) {
