@@ -137,7 +137,7 @@
                         <h3>Berkas Pendukung</h3>
                         <form id="form_berkas_pendukung" action="javascript:void(0)" enctype="MULTIPART/FORM-DATA">
 							<?php if(!empty($this->session->flashdata('message'))){?>
-								<div class="alert alert-danger">
+								<div class="alert alert-primary">
 									<?php print_r($this->session->flashdata('message'));?>
 								</div>
 							<?php } ?>

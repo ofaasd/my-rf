@@ -140,24 +140,13 @@ class Profile extends CI_Controller {
 					$data_upload['created_at'] = date('Y-m-d H:i:s');
 					$create = $this->db->insert('tb_berkas_pendukung',$data_upload);
                 }
-                $array[] = [
-                    'code' => 1,
-                    'status' => 'Success',
-                    'msg' => 'Data Berhasil Disimpan',
-                    'location' => $value,
-                    'ekstensi' => strtolower($ekstensi),
-                    'photo'=>$file_name,
-                ];
+				$this->session->set_flashdata('message','data berhasil diupdate');
 
             }else{
-				$array[] = [
-                    'code' => 0,
-                    'status' => 'Error',
-                    'msg' => 'Data Tidak Ditemukan',
-                ];
+				$this->session->set_flashdata('error','Data gagal disimpan');
 			}
         }
-		$this->session->set_flashdata('message',$array);
+		//$this->session->set_flashdata('message',$array);
         //redirect(base_url('index.php/profile/index'));
 	}
 	public function kesehatan(){
