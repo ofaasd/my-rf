@@ -16,6 +16,12 @@
         Form Laporan Pembayaran
     </div>
     <div class="card-content">
+		<?php
+			if(empty($berkas->file_kk)){
+				echo '<p class="alert alert-danger">Segera lengkapi berkas pendukung anak anda. Klik <a href="' . base_url('index.php/profile') . '">disini untuk melengkapi</a></p>';
+			}
+		?>
+
         <?php if(!empty($this->session->flashdata('message'))){ ?>
             <p class="alert alert-primary"><?= $this->session->flashdata('message') ?></p>
         <?php } ?>
@@ -111,7 +117,7 @@
 						<tr>
 							<td colspan=2 class="text-center">
 								<img src="<?=$photo ?>" alt="" srcset="" class="photo_santri">
-							</td>
+							</td> 	
 						</tr>
 						<tr>
 							<td>Nama</td>

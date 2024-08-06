@@ -173,6 +173,7 @@ class Pembayaran extends CI_Controller {
 			$data['kamar'] = $kamar;
 		}
 
+		$data['berkas'] = $this->db->where('no_induk',$siswa_id)->get('tb_berkas_pendukung')->row();
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		
 		$var['content'] = $this->load->view('pembayaran/detail_pembayaran',$data,true);
