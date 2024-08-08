@@ -140,7 +140,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 		$bulan = array(1=>'Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
 		$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
 		$siswa = $this->db->where('no_induk',$pembayaran->nama_santri)->get('santri_detail')->row();
-		$bank = $this->db->where('id',$pembayaran->bank_pengirim)->row();
+		$bank = $this->db->where('id',$pembayaran->bank_pengirim)->get('ref_bank')->row();
 		$id_santri = $pembayaran->nama_santri;
 		$atas_nama = $pembayaran->atas_nama;
 		$jumlah = number_format($pembayaran->jumlah,0,",",".");
