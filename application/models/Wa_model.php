@@ -150,7 +150,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 		$nama_ibu = $siswa->nama_lengkap_ibu ?? '';
 		if($status == 1){
 			if($tipe == "Bank"){
-				$message = '
+$message = '
 [ Admin Bendahara PPATQRF- Transfer ]
 
 Yth. Bp/Ibu ' . $nama_ayah . '/' . $nama_ibu . ', Wali Santri ' . $siswa->nama . ' kelas ' . $siswa->kelas . ', kami telah menginputkan data pembayaran melalui sistem manajemen keuangan sesuai Kwitansi yang terbayarkan secara *transfer* untuk bulan ' . $bulan[$pembayaran->periode] . ' sebesar Rp. ' . number_format($pembayaran->jumlah,0,',','.') . ' pada tanggal ' . date('d-m-Y', strtotime($pembayaran->tanggal_bayar)) . ' melalui Bank ' . $bank->nama . ' atas nama ' . $atas_nama . '	
@@ -204,7 +204,7 @@ Alamat : ' . $siswa->alamat . '
 $message .= '
 JIka tidak sesuai, silakan *#balas-reply* dengan menyertakan data yang benar di WA ini.
 Kami akan update sesuai yang disampaikan
-';
+				';
 			}else{
 $message = '
 [ Admin Bendahara PPATQRF- Tunai ]
@@ -262,32 +262,6 @@ JIka tidak sesuai, silakan *#balas-reply* dengan menyertakan data yang benar di 
 Kami akan update sesuai yang disampaikan
 ';
 			}
-		//jika status pembayaran valid
-		$message = '
-*Pesan ini otomatis dikirim dari sistem manajemen  laporan pembayaran*
-
-Yth. (Bp/Ibu) ' . $atas_nama . ', Alhamdulillah melalui petugas kami Bp. Rizqi, bulan  ini kami telah menerima : 
-
-';
-$jenis = $this->db->get('ref_jenis_pembayaran')->result();
-$list_jenis = array();
-foreach($jenis as $row){
-	$list_jenis[$row->id] = $row->jenis;
-}
-$detail = $query = $this->db->where('id_pembayaran',$id)->get('tb_detail_pembayaran')->result();
-foreach($detail as $row){
-	$message .= '• ' . $list_jenis[$row->id_jenis_pembayaran] .' sebesar Rp. ' . number_format($row->nominal,0,',','.') . ' 
-';
-
-}
-$message .= '
-Kami mengucapkan banyak terima kasih (Bp/Ibu) ' . $atas_nama . ' (Wali santri ' . $siswa->nama . ' Kelas ' . $siswa->kode .'), Yang senantiasa istiqomah menyisihkan sebagian hartanya untuk kewajiban pembayaran bulanan di PPATQ RF. 
-
-Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62877-6757-2025.
-
-Dan apabila ada keluhan / masuk / saran, dapat disalurkan melalui link berikut
-(saran.ppatq-rf.id)
-					';
 		}elseif($status == 2){
 			//jika status pembayaran tidak valid
 			$message = '
