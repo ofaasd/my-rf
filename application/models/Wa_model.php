@@ -186,9 +186,9 @@ $message .= '
 			$new_bulan = (12 + $i);
 		}
 		$tahun = date('Y');
-		$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
+		$rpembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
 		
-		foreach($pembayaran as $row){
+		foreach($rpembayaran as $row){
 			$message .= '*' . $bulan[$new_bulan] .'* ';
 			$message .= $row->tanggal_bayar .' : Rp. ' . number_format($row->jumlah,0,',','.') . '
 ';
@@ -242,9 +242,9 @@ $message .= '
 			$new_bulan = (12 + $i);
 		}
 		$tahun = date('Y');
-		$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
+		$rpembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
 		
-		foreach($pembayaran as $row){
+		foreach($rpembayaran as $row){
 			$message .= '*' . $bulan[$new_bulan] .'* ';
 			$message .= $row->tanggal_bayar .' : Rp. ' . number_format($row->jumlah,0,',','.') . '
 ';
