@@ -253,7 +253,7 @@ $message .= '
 $message .= '
 --Cek Kevalidan Bio Data Santri---
 NIK : ' . $siswa->nik . '
-Tanggal Lahir  : ' . date('d-m-Y',$siswa->tanggal_lahir). '
+Tanggal Lahir  : ' . date('d-m-Y',strtotime($siswa->tanggal_lahir)). '
 Alamat : ' . $siswa->alamat . '
 ';
 
