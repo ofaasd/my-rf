@@ -339,6 +339,30 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 						));
 
 						$response = curl_exec($curl);
+
+						$no_wa = "087767572025";
+						$dataSending = Array();
+						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
+						$dataSending["number_key"] = "eBki5ua379TKv7Xl";
+						$dataSending["phone_no"] = $no_wa;
+						$dataSending["message"] = $message;
+						
+						curl_setopt_array($curl, array(
+						  CURLOPT_URL => 'https://api.watzap.id/v1/send_message',
+						  CURLOPT_RETURNTRANSFER => true,
+						  CURLOPT_ENCODING => '',
+						  CURLOPT_MAXREDIRS => 10,
+						  CURLOPT_TIMEOUT => 0,
+						  CURLOPT_FOLLOWLOCATION => true,
+						  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+						  CURLOPT_CUSTOMREQUEST => 'POST',
+						  CURLOPT_POSTFIELDS => json_encode($dataSending),
+						  CURLOPT_HTTPHEADER => array(
+							'Content-Type: application/json'
+						  ),
+						));
+
+						$response = curl_exec($curl);
 						
 						curl_close($curl);
 						
