@@ -114,7 +114,7 @@ Riwayat Pelaporan :
 		}
 		$tahun = date('Y');
 		$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$nama_santri->no_induk)->where('is_hapus',0)->get('tb_pembayaran')->result();
-		//echo $this->db->last_query();
+		echo $this->db->last_query();
 		foreach($pembayaran as $row){
 			echo '*' . $bulan[$new_bulan] .'* ';
 			// echo $row->tanggal_bayar .' : Rp. ' . number_format($row->jumlah,0,',','.');
