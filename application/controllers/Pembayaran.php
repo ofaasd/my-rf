@@ -283,7 +283,6 @@ Riwayat Pelaporan :
 						}
 						$tahun = date('Y');
 						$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
-						echo $this->db->last_query();
 						
 						foreach($pembayaran as $row){
 							$message .= '*' . $this->bulan[$new_bulan] .'* ';
