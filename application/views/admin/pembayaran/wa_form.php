@@ -120,7 +120,7 @@ Riwayat Pelaporan :
 			// echo $row->tanggal_bayar .' : Rp. ' . number_format($row->jumlah,0,',','.');
 			print('\n');
 		}
-		// echo $new_bulan;
+		echo $new_bulan;
 	}
 ?>
 	</textarea>
