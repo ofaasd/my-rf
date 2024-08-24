@@ -282,7 +282,7 @@ Riwayat Pelaporan :
 							$new_bulan = (12 + $i);
 						}
 						$tahun = date('Y');
-						$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
+						$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->where('is_hapus',0)->get('tb_pembayaran')->result();
 						
 						foreach($pembayaran as $row){
 							$message .= '*' . $this->bulan[$new_bulan] .'* ';
