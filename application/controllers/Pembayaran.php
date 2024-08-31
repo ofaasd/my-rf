@@ -292,8 +292,22 @@ Riwayat Pelaporan :
 					}
 					$message .= '
 Bila ada yang perlu diklarifikasi dapat menghubungi  WA di nomor +62877-6757-2025. 
-untuk penyampaian masukan melalui https://saran.ppatq-rf.id
+';
 
+$message .= '
+----agenda sampai akhir tahun----
+';
+$tanggal_start_agenda = date('Y-m-d');
+$agenda = $this->db->where('tanggal_mulai >=',$tanggal_start_agenda)->get('agenda')->result();
+// echo $this->db->last_query();
+foreach($agenda as $rows){
+	$message .= $rows->judul .'
+';
+	$message .= date('d-m-Y',strtotime($rows->tanggal_mulai)) . ' - ' . date('d-m-Y',strtotime($rows->tanggal_selesai)) . '
+';
+}
+
+$message .= '
 Kami ucapkan banyak terima kasih kepada (Bp/Ibu) ' . $atas_nama . ', salam kami kepada keluarga.
 
 Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang banyak dan berkah, aamiin.
