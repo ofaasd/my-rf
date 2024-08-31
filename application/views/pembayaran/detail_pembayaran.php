@@ -201,7 +201,7 @@
 													if(!empty($pembayaran_bulan)){
 														
 														foreach($pembayaran_bulan as $pem){
-															$cek_jumlah = $detail_pembayaran[$pem->id][$row->id]; 													
+															$cek_jumlah += $detail_pembayaran[$pem->id][$row->id]; 													
 														}
 													}
 													if($cek_jumlah == 0){
