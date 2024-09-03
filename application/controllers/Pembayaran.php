@@ -130,6 +130,7 @@ class Pembayaran extends CI_Controller {
 		$data['pembayaran'] = $this->pembayaran->get_by_santri($data['nama_santri']);
 		$data['pembayaran_bulan'] = $this->pembayaran->get_by_santri_periode_tahun($data['nama_santri'],$periode,date('Y'));
 		$data['detail_pembayaran'] = array();
+		$data['max_upload'] = ini_get('upload_max_filesize ');
 		foreach($data['pembayaran'] as $pembayaran){
 			foreach($data['jenis_pembayaran'] as $jenis){
 				$data['detail_pembayaran'][$pembayaran->id][$jenis->id] = 0;
