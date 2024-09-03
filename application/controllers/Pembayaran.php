@@ -209,6 +209,7 @@ class Pembayaran extends CI_Controller {
                 $error = array('error' => $this->upload->display_errors());
                 $this->session->set_flashdata('error',$error['error']);
 				echo "error upload file";
+				print_r($error);
                 //redirect(base_url('index.php/pembayaran'));
             }else{
 				// $verifikasi_jumlah = $this->pembayaran->verifikasi_jumlah();
