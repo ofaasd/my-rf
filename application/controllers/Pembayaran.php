@@ -208,7 +208,7 @@ class Pembayaran extends CI_Controller {
             if ( ! $this->upload->do_upload('bukti')){
                 $error = array('error' => $this->upload->display_errors());
                 $this->session->set_flashdata('error',$error['error']);
-
+				echo "error upload file";
                 //redirect(base_url('index.php/pembayaran'));
             }else{
 				// $verifikasi_jumlah = $this->pembayaran->verifikasi_jumlah();
@@ -386,9 +386,10 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 						// echo $response;
 						
 						$this->session->set_flashdata('message','data berhasil disimpan');
+						echo "data berhasil disimpan";
                     }else{
                         $this->session->set_flashdata('message', $this->db->error_message());
-						// echo  $this->db->error_message();
+						echo  $this->db->error_message();
                     }
                     //redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
                 }elseif($insert == 2){
