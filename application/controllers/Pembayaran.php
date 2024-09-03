@@ -403,7 +403,7 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
             }
         }else{
             $this->session->set_flashdata('error','Nama Santri dengan kode tidak cocok');
-            redirect(base_url('index.php/pembayaran'));
+            // redirect(base_url('index.php/pembayaran'));
 			// echo "nama santri dan kode tidak cocok";
         }
     }
