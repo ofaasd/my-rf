@@ -130,7 +130,6 @@ class Pembayaran extends CI_Controller {
 		$data['pembayaran'] = $this->pembayaran->get_by_santri($data['nama_santri']);
 		$data['pembayaran_bulan'] = $this->pembayaran->get_by_santri_periode_tahun($data['nama_santri'],$periode,date('Y'));
 		$data['detail_pembayaran'] = array();
-		$data['max_upload'] = ini_get('upload_max_filesize ');
 		foreach($data['pembayaran'] as $pembayaran){
 			foreach($data['jenis_pembayaran'] as $jenis){
 				$data['detail_pembayaran'][$pembayaran->id][$jenis->id] = 0;
@@ -208,17 +207,15 @@ class Pembayaran extends CI_Controller {
             if ( ! $this->upload->do_upload('bukti')){
                 $error = array('error' => $this->upload->display_errors());
                 $this->session->set_flashdata('error',$error['error']);
-				echo "error upload file";
-				print_r($error);
-                //redirect(base_url('index.php/pembayaran'));
+
+                redirect(base_url('index.php/pembayaran'));
             }else{
-				// $verifikasi_jumlah = $this->pembayaran->verifikasi_jumlah();
+				$verifikasi_jumlah = $this->pembayaran->verifikasi_jumlah();
 				
-				// if($verifikasi_jumlah == false){
-				// 	$this->session->set_flashdata('error',"Total pembayaran dan rincian pembayaran tidak sama");
-				// 	// echo "pembayaran tidak sama";
-				// 	redirect(base_url('index.php/pembayaran/detail_pembayaran?error=3'));
-				// }
+				if($verifikasi_jumlah == false){
+					$this->session->set_flashdata('error',"Total pembayaran dan rincian pembayaran tidak sama");
+					redirect(base_url('index.php/pembayaran/detail_pembayaran'));
+				}
                 $insert = $this->pembayaran->insert();
                 if($insert == 1){
                     $data = $this->upload->data();
@@ -384,29 +381,26 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 						);
 						$hasil = $this->db->insert('tb_send_wa',$data);
 
-						// echo $response;
-						
+						//echo $response;
 						$this->session->set_flashdata('message','data berhasil disimpan');
-						echo "data berhasil disimpan";
                     }else{
                         $this->session->set_flashdata('message', $this->db->error_message());
-						echo  $this->db->error_message();
                     }
-                    //redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
+					//echo nl2br($message);
+                    //echo $id;
+                    //exit;
+                    redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
                 }elseif($insert == 2){
 					$this->session->set_flashdata('error','Maaf data sudah pernah dimasukan');
-					// echo "data sudah pernah dimasukan";
-					//redirect(base_url('index.php/pembayaran/detail_pembayaran?error=1'));
+					redirect(base_url('index.php/pembayaran/detail_pembayaran'));
 				}else{	
 					$this->session->set_flashdata('error','Data gagal disimpan');
-					// echo "data gagal disimpan";
-                    //redirect(base_url('index.php/pembayaran/detail_pembayaran?error=2'));
+                    redirect(base_url('index.php/pembayaran/detail_pembayaran'));
                 }
             }
         }else{
             $this->session->set_flashdata('error','Nama Santri dengan kode tidak cocok');
-            // redirect(base_url('index.php/pembayaran'));
-			// echo "nama santri dan kode tidak cocok";
+            redirect(base_url('index.php/pembayaran'));
         }
     }
 	public function print_bukti($id){
