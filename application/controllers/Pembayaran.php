@@ -517,6 +517,9 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 		}
 		$this->load->view('pembayaran/tbl_riwayat',$data);
 	}
+	public function ini_php(){
+		phpinfo();
+	}
 	
 }
 
