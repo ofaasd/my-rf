@@ -383,10 +383,12 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 						);
 						$hasil = $this->db->insert('tb_send_wa',$data);
 
-						//echo $response;
+						echo $response;
+						
 						$this->session->set_flashdata('message','data berhasil disimpan');
                     }else{
                         $this->session->set_flashdata('message', $this->db->error_message());
+						echo  $this->db->error_message();
                     }
 					//echo nl2br($message);
                     //echo $id;
@@ -405,6 +407,7 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
         }else{
             $this->session->set_flashdata('error','Nama Santri dengan kode tidak cocok');
             // redirect(base_url('index.php/pembayaran'));
+			echo "nama santri dan kode tidak cocok";
         }
     }
 	public function print_bukti($id){
