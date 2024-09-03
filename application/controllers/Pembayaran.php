@@ -391,7 +391,7 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 					//echo nl2br($message);
                     //echo $id;
                     //exit;
-                    redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
+                    // redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
                 }elseif($insert == 2){
 					$this->session->set_flashdata('error','Maaf data sudah pernah dimasukan');
 					echo "data sudah pernah dimasukan";
@@ -404,7 +404,7 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
             }
         }else{
             $this->session->set_flashdata('error','Nama Santri dengan kode tidak cocok');
-            redirect(base_url('index.php/pembayaran'));
+            // redirect(base_url('index.php/pembayaran'));
         }
     }
 	public function print_bukti($id){
