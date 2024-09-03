@@ -215,7 +215,8 @@ class Pembayaran extends CI_Controller {
 				
 				if($verifikasi_jumlah == false){
 					$this->session->set_flashdata('error',"Total pembayaran dan rincian pembayaran tidak sama");
-					redirect(base_url('index.php/pembayaran/detail_pembayaran'));
+					echo "pembayaran tidak sama";
+					//redirect(base_url('index.php/pembayaran/detail_pembayaran'));
 				}
                 $insert = $this->pembayaran->insert();
                 if($insert == 1){
@@ -393,10 +394,12 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
                     redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
                 }elseif($insert == 2){
 					$this->session->set_flashdata('error','Maaf data sudah pernah dimasukan');
-					redirect(base_url('index.php/pembayaran/detail_pembayaran?error=1'));
+					echo "data sudah pernah dimasukan";
+					//redirect(base_url('index.php/pembayaran/detail_pembayaran?error=1'));
 				}else{	
 					$this->session->set_flashdata('error','Data gagal disimpan');
-                    redirect(base_url('index.php/pembayaran/detail_pembayaran?error=2'));
+					echo "data gagal disimpan";
+                    //redirect(base_url('index.php/pembayaran/detail_pembayaran?error=2'));
                 }
             }
         }else{
