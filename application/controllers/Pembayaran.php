@@ -211,13 +211,13 @@ class Pembayaran extends CI_Controller {
 
                 redirect(base_url('index.php/pembayaran'));
             }else{
-				$verifikasi_jumlah = $this->pembayaran->verifikasi_jumlah();
+				// $verifikasi_jumlah = $this->pembayaran->verifikasi_jumlah();
 				
-				if($verifikasi_jumlah == false){
-					$this->session->set_flashdata('error',"Total pembayaran dan rincian pembayaran tidak sama");
-					echo "pembayaran tidak sama";
-					//redirect(base_url('index.php/pembayaran/detail_pembayaran'));
-				}
+				// if($verifikasi_jumlah == false){
+				// 	$this->session->set_flashdata('error',"Total pembayaran dan rincian pembayaran tidak sama");
+				// 	// echo "pembayaran tidak sama";
+				// 	redirect(base_url('index.php/pembayaran/detail_pembayaran?error=3'));
+				// }
                 $insert = $this->pembayaran->insert();
                 if($insert == 1){
                     $data = $this->upload->data();
@@ -393,18 +393,18 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
                     redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
                 }elseif($insert == 2){
 					$this->session->set_flashdata('error','Maaf data sudah pernah dimasukan');
-					echo "data sudah pernah dimasukan";
-					//redirect(base_url('index.php/pembayaran/detail_pembayaran?error=1'));
+					// echo "data sudah pernah dimasukan";
+					redirect(base_url('index.php/pembayaran/detail_pembayaran?error=1'));
 				}else{	
 					$this->session->set_flashdata('error','Data gagal disimpan');
-					echo "data gagal disimpan";
-                    //redirect(base_url('index.php/pembayaran/detail_pembayaran?error=2'));
+					// echo "data gagal disimpan";
+                    redirect(base_url('index.php/pembayaran/detail_pembayaran?error=2'));
                 }
             }
         }else{
             $this->session->set_flashdata('error','Nama Santri dengan kode tidak cocok');
-            // redirect(base_url('index.php/pembayaran'));
-			echo "nama santri dan kode tidak cocok";
+            redirect(base_url('index.php/pembayaran'));
+			// echo "nama santri dan kode tidak cocok";
         }
     }
 	public function print_bukti($id){
