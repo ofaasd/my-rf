@@ -270,7 +270,7 @@
 					<div class="form-group">
 						<label for="bukti" class="form-label" style="margin:0">Upload Bukti Bayar</label>
 						<small id="passwordHelp" class="form-text text-muted">* Harap sertakan bukti bayar. <br />Jika tidak ada bukti bayar kami mohon maaf bila nanti tidak terkonversi / dianggap <br /> belum bayar, karena bukti bayar tidak ditemukan</small>
-						<input type="file" id="bukti" class="form-control col-md-12" name="bukti" required >
+						<input type="file" id="bukti" accept="image/*" capture="camera" class="form-control col-md-12" name="bukti" required >
 						<small class="form-text text-warning">Silahkan klik tombol diatas dan pilih camera untuk mengupload berkas langsung dari camera (*max file <?php echo ini_get('post_max_size') ?>)</small>
 					</div>
 
