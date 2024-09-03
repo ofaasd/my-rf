@@ -390,15 +390,15 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
                         $this->session->set_flashdata('message', $this->db->error_message());
 						// echo  $this->db->error_message();
                     }
-                    redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
+                    //redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
                 }elseif($insert == 2){
 					$this->session->set_flashdata('error','Maaf data sudah pernah dimasukan');
 					// echo "data sudah pernah dimasukan";
-					redirect(base_url('index.php/pembayaran/detail_pembayaran?error=1'));
+					//redirect(base_url('index.php/pembayaran/detail_pembayaran?error=1'));
 				}else{	
 					$this->session->set_flashdata('error','Data gagal disimpan');
 					// echo "data gagal disimpan";
-                    redirect(base_url('index.php/pembayaran/detail_pembayaran?error=2'));
+                    //redirect(base_url('index.php/pembayaran/detail_pembayaran?error=2'));
                 }
             }
         }else{
