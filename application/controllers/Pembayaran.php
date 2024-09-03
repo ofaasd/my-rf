@@ -383,17 +383,14 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 						);
 						$hasil = $this->db->insert('tb_send_wa',$data);
 
-						echo $response;
+						// echo $response;
 						
 						$this->session->set_flashdata('message','data berhasil disimpan');
                     }else{
                         $this->session->set_flashdata('message', $this->db->error_message());
-						echo  $this->db->error_message();
+						// echo  $this->db->error_message();
                     }
-					//echo nl2br($message);
-                    //echo $id;
-                    //exit;
-                    // redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
+                    redirect(base_url('index.php/pembayaran/konfirmasi_pembayaran/' . $id));
                 }elseif($insert == 2){
 					$this->session->set_flashdata('error','Maaf data sudah pernah dimasukan');
 					echo "data sudah pernah dimasukan";
