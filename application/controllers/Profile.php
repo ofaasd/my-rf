@@ -16,9 +16,10 @@ class Profile extends CI_Controller {
 	public $bulan = array(1=>'Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
 
 	public function index()
-	{
+	{	
+		$no_induk = $this->session->userdata('siswa_id');
 		$siswa = $this->siswa->get_by_ni($this->session->userdata('siswa_id'));
-        $data['siswa'] = $this->db->where('no_induk',$siswa->no_induk)->get('santri_detail')->row();
+        $data['siswa'] = $this->db->where('no_induk',$no_induk)->get('santri_detail')->row();
 		$data['provinsi'] = $this->db->get('provinces')->result();
 		$data['prov_curr']  = $this->db->where('prov_id',$data['siswa']->provinsi)->get('provinces')->row();
 		$data['kota'] = $this->db->where('prov_id',$data['siswa']->provinsi)->get('cities')->result();
@@ -30,6 +31,8 @@ class Profile extends CI_Controller {
 		}elseif(!empty($data['siswa']->photo) && $data['siswa']->photo_location == "2" ){
 			$data['photo'] = "https://manajemen.ppatq-rf.id/assets/img/upload/photo/" . $data['siswa']->photo;
 		}
+
+		$data['berkas'] = $this->db->where('no_induk',$no_induk)->get('tb_berkas_pendukung')->row();
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('profile/index',$data,true);
 
@@ -61,6 +64,7 @@ class Profile extends CI_Controller {
         $config['file_name']            = $filename;
 
         $this->load->library('upload', $config);
+
 		if($this->upload->do_upload('photo')){
 			$data = $this->upload->data();
 			$filename = $data['file_name'];
@@ -94,6 +98,56 @@ class Profile extends CI_Controller {
         }else{
             redirect(base_url('index.php/profile/index'));
         }
+	}
+	public function simpan_berkas(){
+		$no_induk = $this->session->userdata('siswa_id');
+		$nama_file = array('file_kk','file_akta');
+		$array = array();
+
+		$config['upload_path']          = './assets/upload/berkas';
+        $config['allowed_types']        = '*';
+        $config['max_size']             = 10000;
+
+        $this->load->library('upload', $config);
+		
+        foreach($nama_file as $key => $value){
+			
+            if(!empty($_FILES[$value]['name'])){	
+				
+                $file_name = date('YmdHis') . $_FILES[$value]['name'];
+				$pecah = explode($file_name,".");
+                $ekstensi = end($pecah);
+                //$filename = date('YmdHis') . $file->getClientOriginalName();
+
+				$config['file_name']  = $file_name;	
+				$this->upload->initialize($config);
+
+				if ($key == 0) {
+					$this->upload->do_upload('file_kk');
+					$data = $this->upload->data();
+				}else{
+					$this->upload->do_upload('file_akta');
+					$data = $this->upload->data();
+				}
+
+				$cek = $this->db->where('no_induk',$no_induk)->get('tb_berkas_pendukung');
+                if($cek->num_rows() > 0){
+					$data_upload[$value] = $file_name;
+                    $update = $this->db->update('tb_berkas_pendukung',$data_upload,['no_induk'=>$no_induk]);
+                }else{
+                    $data_upload[$value] = $file_name;
+					$data_upload['no_induk'] = $no_induk;
+					$data_upload['created_at'] = date('Y-m-d H:i:s');
+					$create = $this->db->insert('tb_berkas_pendukung',$data_upload);
+                }
+				$this->session->set_flashdata('message','data berhasil diupdate');
+
+            }else{
+				$this->session->set_flashdata('error','Data gagal disimpan');
+			}
+        }
+		//$this->session->set_flashdata('message',$array);
+        //redirect(base_url('index.php/profile/index'));
 	}
 	public function kesehatan(){
 		$no_induk = $this->session->userdata('siswa_id');

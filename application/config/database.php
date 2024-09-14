@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
-	'username' => 'root',
-	'password' => 'amdA10-6800k',
+	'hostname' => '103.187.147.220',
+	'username' => 'stifar',
+	'password' => 'Stifar*123#',
 	'database' => 'simpeg-rf',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

@@ -128,6 +128,7 @@ class Pembayaran extends CI_Controller {
 		$data['jumlah_tunggakan'] = $this->tunggakan->get_all_tunggakan($data['nama_santri']);
 		//$data['kode'] = $this->siswa->get_kelas_all();
 		$data['pembayaran'] = $this->pembayaran->get_by_santri($data['nama_santri']);
+		$data['pembayaran_bulan'] = $this->pembayaran->get_by_santri_periode_tahun($data['nama_santri'],$periode,date('Y'));
 		$data['detail_pembayaran'] = array();
 		foreach($data['pembayaran'] as $pembayaran){
 			foreach($data['jenis_pembayaran'] as $jenis){
@@ -172,6 +173,7 @@ class Pembayaran extends CI_Controller {
 			$data['kamar'] = $kamar;
 		}
 
+		$data['berkas'] = $this->db->where('no_induk',$siswa_id)->get('tb_berkas_pendukung')->row();
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		
 		$var['content'] = $this->load->view('pembayaran/detail_pembayaran',$data,true);
@@ -280,7 +282,7 @@ Riwayat Pelaporan :
 							$new_bulan = (12 + $i);
 						}
 						$tahun = date('Y');
-						$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
+						$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->where('is_hapus',0)->get('tb_pembayaran')->result();
 						
 						foreach($pembayaran as $row){
 							$message .= '*' . $this->bulan[$new_bulan] .'* ';
@@ -292,7 +294,22 @@ Riwayat Pelaporan :
 Bila ada yang perlu diklarifikasi dapat menghubungi  WA di nomor +62877-6757-2025. 
 untuk penyampaian masukan melalui https://saran.ppatq-rf.id
 Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-rf.id
+';
 
+$message .= '
+----agenda sampai akhir tahun----
+';
+$tanggal_start_agenda = date('Y-m-d');
+$agenda = $this->db->where('tanggal_mulai >=',$tanggal_start_agenda)->get('agenda')->result();
+// echo $this->db->last_query();
+foreach($agenda as $rows){
+	$message .= $rows->judul .'
+';
+	$message .= date('d-m-Y',strtotime($rows->tanggal_mulai)) . ' - ' . date('d-m-Y',strtotime($rows->tanggal_selesai)) . '
+';
+}
+
+$message .= '
 Kami ucapkan banyak terima kasih kepada (Bp/Ibu) ' . $atas_nama . ', salam kami kepada keluarga.
 
 Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang banyak dan berkah, aamiin.
@@ -501,6 +518,9 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 			}
 		}
 		$this->load->view('pembayaran/tbl_riwayat',$data);
+	}
+	public function ini_php(){
+		phpinfo();
 	}
 	
 }

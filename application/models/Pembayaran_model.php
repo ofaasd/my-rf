@@ -38,6 +38,10 @@ Class Pembayaran_model extends CI_Model{
 		$query = $this->db->where(['nama_santri'=>$nama_santri,'is_hapus'=>0,'periode'=>$periode])->get('tb_pembayaran');
         return $query->result();
 	}
+	public function get_by_santri_periode_tahun($nama_santri, $periode, $tahun){
+		$query = $this->db->where(['nama_santri'=>$nama_santri,'is_hapus'=>0,'periode'=>$periode, 'tahun'=>$tahun])->get('tb_pembayaran');
+        return $query->result();
+	}
     
     public function insert(){
         $jumlah = str_replace(".", "", $this->input->post('jumlah'));

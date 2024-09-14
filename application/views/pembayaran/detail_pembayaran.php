@@ -16,6 +16,12 @@
         Form Laporan Pembayaran
     </div>
     <div class="card-content">
+		<?php
+			if(empty($berkas->file_kk)){
+				echo '<p class="alert alert-danger">Segera lengkapi berkas pendukung anak anda. Klik <a href="' . base_url('index.php/profile') . '">disini untuk melengkapi</a></p>';
+			}
+		?>
+
         <?php if(!empty($this->session->flashdata('message'))){ ?>
             <p class="alert alert-primary"><?= $this->session->flashdata('message') ?></p>
         <?php } ?>
@@ -111,7 +117,7 @@
 						<tr>
 							<td colspan=2 class="text-center">
 								<img src="<?=$photo ?>" alt="" srcset="" class="photo_santri">
-							</td>
+							</td> 	
 						</tr>
 						<tr>
 							<td>Nama</td>
@@ -142,11 +148,11 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="form-label">Pembayaran Sebesar (Rp)</label>
-						<input class="form-control col-md-12" type="text" onkeyup="splitInDots(this)" name="jumlah" >
+						<input class="form-control col-md-12" type="text" onkeyup="splitInDots(this)" name="jumlah" id="total_bayar">
 					</div>
 					<div class="form-group">
-						<label class="form-label">Tanggal</label>
-						<input class="form-control col-md-12" id="date" value="<?= date('Y-m-d')?>" type="text" name="tanggal_bayar" >
+						<label class="form-label">Tanggal Bayar / Transfer</label>
+						<input class="form-control col-md-12" id="date" value="" type="text" name="tanggal_bayar" >
 					</div>
 					<div class="form-group">
 						<label class="form-label">Periode Bayar</label>
@@ -182,13 +188,79 @@
 								</button>
 							</div>
 						</div>
-							<?php foreach($jenis_pembayaran as $row) { ?>
+							<?php $total = 0; foreach($jenis_pembayaran as $row) { ?>
 								<div class="row" style="margin:10px auto">
 									<div class="col-md-4"><?=$row->jenis?><input type="hidden" name="id_jenis_pembayaran[]" value='<?= $row->id ?>'></div>
-									<div class="col-md-8"><input type="text" onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>
+									<?php
+										if($row->id == 1||$row->id == 5 || $row->id == 16){
+											if($kode == "6a" || $kode == "6b"){
+												if($row->id == 5){
+													echo '<div class="col-md-8"><input type="text" onkeyup="splitInDots(this)" id="jenis_' . trim($row->id) . '"  placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
+												}else{
+													$cek_jumlah = 0;
+													if(!empty($pembayaran_bulan)){
+														
+														foreach($pembayaran_bulan as $pem){
+															$cek_jumlah += $detail_pembayaran[$pem->id][$row->id]; 													
+														}
+													}
+													if($cek_jumlah == 0){
+														$total += $row->harga;
+														echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control" value=" ' .number_format($row->harga,0,',','.') . '"';
+														echo ($row->id == 1||$row->id == 5 || $row->id == 16)?"readonly":"";
+														echo '></div>';
+											
+													}else{
+														echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
+											
+													}
+												}
+											}else{
+												$cek_jumlah = 0;
+												if(!empty($pembayaran_bulan)){
+													
+													foreach($pembayaran_bulan as $pem){
+														$cek_jumlah = $detail_pembayaran[$pem->id][$row->id]; 													
+													}
+												}
+												if($cek_jumlah == 0){
+													$total += $row->harga;
+													echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control" value=" ' .number_format($row->harga,0,',','.') . '"';
+													echo ($row->id == 1||$row->id == 5 || $row->id == 16)?"readonly":"";
+													echo '></div>';
+										
+												}else{
+													echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
+										
+												}
+											}
+										}else{
+											echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
+										}
+									?>
+									
 								</div>
 							<?php } ?>
 						</table>    
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="form-label">Total Rincian (Rp) </label>
+								<input class="form-control col-md-12" id="jumlah_rincian" type="text" onkeyup="splitInDots(this)" name="jumlah_rincian" value="<?=number_format($total,0,',','.')?>" readonly>
+								<small class="text-danger">* Terisi otomatis</small>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="form-label">Dari Total Bayar (Rp)</label>
+								<input class="form-control col-md-12" id="jumlah_bayar" type="text" onkeyup="splitInDots(this)" name="jumlah_bayar" value="" readonly>
+								<small class="text-danger">* Terisi otomatis</small>
+							</div>				
+						</div>
+					</div>
+					<div id="alert_jumlah">
+
 					</div>
 					<div class="form-group">
 						<label class="form-label">Catatan </label>
@@ -199,7 +271,7 @@
 						<label for="bukti" class="form-label" style="margin:0">Upload Bukti Bayar</label>
 						<small id="passwordHelp" class="form-text text-muted">* Harap sertakan bukti bayar. <br />Jika tidak ada bukti bayar kami mohon maaf bila nanti tidak terkonversi / dianggap <br /> belum bayar, karena bukti bayar tidak ditemukan</small>
 						<input type="file" id="bukti" class="form-control col-md-12" name="bukti" required >
-						<small class="form-text text-warning">Silahkan klik tombol diatas dan pilih camera untuk mengupload berkas langsung dari camera</small>
+						<small class="form-text text-warning">Silahkan klik tombol diatas dan pilih camera untuk mengupload berkas langsung dari camera (*max file <?php echo ini_get('post_max_size') ?>)</small>
 					</div>
 
 					<div class="form-group">
@@ -208,7 +280,7 @@
 					</div>
 					
 					<div class="form-group">
-						<input type="submit" class="form-control col-md-12 btn btn-primary" value="Kirim">
+						<input type="submit" id="btn_kirim" class="form-control col-md-12 btn btn-primary" value="Kirim">
 					</div>
 				</div>
 				
@@ -264,7 +336,9 @@
 
 <script>
     $(document).ready(function() {
-
+		$("#total_bayar").on('keyup',function(){
+			$("#jumlah_bayar").val($(this).val())
+		});
 		$('#date').bootstrapMaterialDatePicker({
 			time: false,
 			clearButton: true
@@ -295,7 +369,11 @@
     }
     
     function plainNumber(number) {
-        return number.split('.').join('');
+		if(number){
+        	return number.split('.').join('');
+		}else{
+			return "0";
+		}
     }
     
     function splitInDots(input) {
@@ -308,6 +386,28 @@
         
         console.log(plain,reversed, reversedWithDots, normal);
         input.value = normal;
+		let jumlah = 0;
+		<?php
+		foreach($jenis_pembayaran as $row){
+		?>
+			jumlah = jumlah + parseInt(plainNumber($("#jenis_<?=$row->id?>").val())) || 0;
+		<?php
+		}
+		?>
+		//$("#jumlah_bayar").val(plainNumber(jumlah));
+		plainJumlah = plainNumber(jumlah.toString());
+		reversedJumlah = reverseNumber(plainJumlah),
+		reversedWithDotsJumlah = reversedJumlah.match(/.{1,3}/g).join('.'),
+		normalJumlah = reverseNumber(reversedWithDotsJumlah);
+		$("#jumlah_rincian").val(normalJumlah);
+		
+		if($("#jumlah_rincian").val() != $("#total_bayar").val()){
+			$("#alert_jumlah").html('<div class="alert alert-danger">Jumlah Rincian dan Total Bayar tidak sama</div>')
+			$("#btn_kirim").prop("disabled",true);
+		}else{
+			$("#alert_jumlah").html('');
+			$("#btn_kirim").prop("disabled",false);
+		}
     }
     
     function oneDot(input) {

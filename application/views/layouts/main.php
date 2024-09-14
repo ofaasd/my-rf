@@ -16,6 +16,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js" integrity="sha512-KgffulL3mxrOsDicgQWA11O6q6oKeWcV00VxgfJw4TcM8XRQT8Df9EsrYxDf7tpVpfl3qcYD96BpyPvA4d1FDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="<?php echo base_url('assets') ?>/js/moment-with-locales.min.js"></script>
 	<script src="<?php echo base_url('assets') ?>/js/materialDateTimePicker.js"></script>
+	<script src="https://kit.fontawesome.com/e005f802e0.js" crossorigin="anonymous"></script>
 	  <!-- Datatable -->
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">

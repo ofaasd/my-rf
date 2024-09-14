@@ -258,7 +258,7 @@ class Pembayaran extends CI_Controller {
 				$insert_tunggakan = $this->b_tunggakan->insert($id_santri, $id);
 			}
 			
-			$wa = $this->wa->validasi($id,$validasi);
+			$wa = $this->wa->validasi_admin($id,$validasi);
 			
 			
             if($update){

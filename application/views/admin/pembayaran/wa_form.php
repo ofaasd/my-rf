@@ -20,6 +20,26 @@ Kami mengucapkan banyak terima kasih (Bp/Ibu) <?=$pembayaran->atas_nama?> wali s
 
 Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. 
 Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62897-9194-645. Atau melalui https://saran.ppatq-rf.id
+
+Riwayat Pelaporan : 
+<?php
+						$b = (int)date('m');
+						$tanggal = [];
+						$jumlah = [];
+						for($i=($b-1); $i>=$b-5; $i--){
+							$new_bulan = $i;
+							if($i <= 0 ){
+								$new_bulan = (12 + $i);
+							}
+							$tahun = date('Y');
+							$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('is_hapus',0)->where('nama_santri',$id_santri)->get('tb_pembayaran')->result();
+							
+							foreach($pembayaran as $row){
+								echo '*' . $this->bulan[$new_bulan] .'* ';
+								echo $row->tanggal_bayar .' : Rp. ' . number_format($row->jumlah,0,',','.') . '\n';
+							}
+						}
+?>
 	</textarea>
 </div>
 
@@ -81,6 +101,28 @@ Kami akan segera memberikan informasi apabila pembayaran tsb diatas telah sesuai
 Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. 
 
 Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62897-9194-645. Atau melalui https://saran.ppatq-rf.id
+
+Riwayat Pelaporan : 
+<?php
+	$b = (int)date('m');
+	$tanggal = [];
+	$jumlah = [];
+	for($i=($b-1); $i>=$b-5; $i--){
+		$new_bulan = $i;
+		if($i <= 0 ){
+			$new_bulan = (12 + $i);
+		}
+		$tahun = date('Y');
+		$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$nama_santri->no_induk)->where('is_hapus',0)->get('tb_pembayaran')->result();
+		//echo $this->db->last_query();
+		foreach($pembayaran as $row){
+			echo '*' . $bulan[$new_bulan] .'* ';
+			echo $row->tanggal_bayar .' : Rp. ' . number_format($row->jumlah,0,',','.');
+			print('\n');
+		}
+		//echo $new_bulan;
+	}
+?>
 	</textarea>
 </div>
 <?php
