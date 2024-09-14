@@ -291,6 +291,7 @@ Riwayat Pelaporan :
 					$message .= '
 Bila ada yang perlu diklarifikasi dapat menghubungi  WA di nomor +62877-6757-2025. 
 untuk penyampaian masukan melalui https://saran.ppatq-rf.id
+Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-rf.id
 
 Kami ucapkan banyak terima kasih kepada (Bp/Ibu) ' . $atas_nama . ', salam kami kepada keluarga.
 

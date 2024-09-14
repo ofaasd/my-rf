@@ -36,6 +36,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 
 Dan apabila ada keluhan / masuk / saran, dapat disalurkan melalui link berikut
 (saran.ppatq-rf.id)
+Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-rf.id
 					';
 		}elseif($status == 2){
 			//jika status pembayaran tidak valid
