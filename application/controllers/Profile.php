@@ -7,9 +7,9 @@ class Profile extends CI_Controller {
         parent::__construct();
 		
         $this->load->model('Siswa_model','siswa');
-		if(empty($this->session->userdata('pwd'))){
+		if(empty($this->session->userdata('siswa_id'))){
 			$this->session->set_flashdata('error','Harap isi form ini terlebih dahulu');
-			redirect(base_url('index.php/pembayaran/index_profile'));
+			redirect(base_url('index.php/pembayaran/index/profile/kesehatan'));
 		}
 
     }
@@ -17,6 +17,10 @@ class Profile extends CI_Controller {
 
 	public function index()
 	{	
+		if(empty($this->session->userdata('pwd'))){
+			$this->session->set_flashdata('error','Harap isi form ini terlebih dahulu');
+			redirect(base_url('index.php/pembayaran/index_profile'));
+		}
 		$no_induk = $this->session->userdata('siswa_id');
 		$siswa = $this->siswa->get_by_ni($this->session->userdata('siswa_id'));
         $data['siswa'] = $this->db->where('no_induk',$no_induk)->get('santri_detail')->row();

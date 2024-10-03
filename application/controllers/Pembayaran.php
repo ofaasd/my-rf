@@ -21,6 +21,10 @@ class Pembayaran extends CI_Controller {
 
 	public function index()
 	{
+		$redirect = "";
+		if(!empty($this->uri->segment(3))){
+			$redirect = $this->uri->segment(3) . "/" . $this->uri->segment(4);
+		}
 		if(!empty($this->session->userdata('siswa_id'))){
 			redirect(base_url('index.php/pembayaran/detail_pembayaran'));
 		}
@@ -30,6 +34,7 @@ class Pembayaran extends CI_Controller {
         $data['siswa'] = $this->siswa->get_all();
         $data['kode'] = $this->siswa->get_kelas_all();
 		$data['bulan'] = $this->bulan;
+		$data['redirect'] = $redirect;
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('pembayaran/index',$data,true);
 
@@ -111,6 +116,10 @@ class Pembayaran extends CI_Controller {
 				$this->session->set_flashdata('error','Harap Isi form terlebih dahulu');
 				redirect(base_url('index.php/pembayaran'));
 			}
+		}
+		$redirect = $this->input->post('redirect');
+		if(!empty($redirect)){
+			redirect(base_url('index.php/' . $redirect));
 		}
 		
 		$data['nama_santri'] = $siswa_id;
@@ -253,8 +262,8 @@ $msg_old = 'untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar'
 					$message = '[ dari payment.ppatq-rf.id ]
 
 
-Yth. Bp/Ibu *' . $atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melakukan melaporkan  pembayaran bulan *' . $this->bulan[(int)$this->input->post('periode')] . '* sebesar Rp. ' . $jumlah . '
-dengan rincian sbb : 
+Yth. Bp/Ibu *' . $atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melaporkan pembayaran bulan *' . $this->bulan[(int)$this->input->post('periode')] . '* 
+Rp. ' . $jumlah . ' rincian sbb : 
 ';
 $jenis = $this->jenis->get_all();
 $list_jenis = array();
@@ -267,8 +276,11 @@ foreach($detail as $row){
 ';
 
 }
+// $message .= '
+// Tunggu beberapa waktu, kami akan melakukan pencatatan & segera memberikan status pembayaran tersebut.
+// ';
 $message .= '
-Tunggu beberapa waktu, kami akan melakukan pencatatan & segera memberikan status pembayaran tersebut.
+Tunggu beberapa saat, pencatatan akan dilakukan & segera memberikan status pembayaran tersebut.
 ';
 $message .= '
 Riwayat Pelaporan : 
@@ -291,11 +303,36 @@ Riwayat Pelaporan :
 						}
 					}
 					$message .= '
-Bila ada yang perlu diklarifikasi dapat menghubungi  WA di nomor +62877-6757-2025. 
+No. WA konfirmasi di +62877-6757-2025. 
+
 untuk penyampaian masukan melalui https://saran.ppatq-rf.id
+
 Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-rf.id
 ';
+//riwayat kesehatan
 
+$riwayat = $this->db->order_by('id','desc')->limit(5)->get_where('tb_kesehatan',array('santri_id'=>$santri_detail->no_induk))->result();
+if($riwayat){
+$message .= '
+----Riwayat Kesehatan----
+';
+foreach($riwayat as $rows){
+	$message .= $rows->sakit . " ( " . date('d-m-Y',$rows->tanggal_sakit) . " )
+";
+}
+}
+//riwayat ketahfidzan
+
+$tahfidz = $this->db->select('detail_santri_tahfidz.*,kode_juz.nama as nama_juz')->order_by("detail_santri_tahfidz.id","desc")->limit(5)->join('kode_juz','kode_juz.id = detail_santri_tahfidz.kode_juz_surah')->get_where('detail_santri_tahfidz',array('no_induk'=>$santri_detail->no_induk))->result();
+if($tahfidz){
+$message .= '
+----Riwayat Ketahfidzan----
+';
+foreach($tahfidz as $row){
+	$message .= $row->nama_juz . "  (" . $this->bulan[$row->bulan] . " " . $row->tahun . " ) 
+";
+} 
+}
 $message .= '
 ----agenda sampai akhir tahun----
 ';
