@@ -15,6 +15,10 @@ Class Wa_model extends CI_Model{
 		$message = '
 *Pesan ini otomatis dikirim dari sistem manajemen  laporan pembayaran*
 
+INFO TERHANGAT:
+Pendaftaran Santri Baru 2025 akan segera dibuka, dengan mengakses psb.ppatq-rf.id
+Sebarkan informasi ini karena quota terbatas. 
+
 Yth. (Bp/Ibu) ' . $atas_nama . ', Alhamdulillah melalui petugas kami Bp. Rizqi, bulan  ini kami telah menerima : 
 
 ';
@@ -40,8 +44,12 @@ Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-
 					';
 		}elseif($status == 2){
 			//jika status pembayaran tidak valid
-			$message = '
-*Pesan ini otomatis dikirim dari sistem*
+			$message = '*Pesan ini otomatis dikirim dari sistem*
+
+INFO TERHANGAT:
+Pendaftaran Santri Baru 2025 akan segera dibuka, dengan mengakses psb.ppatq-rf.id
+Sebarkan informasi ini karena quota terbatas.
+
 Yth. (Bp/Ibu) ' . $atas_nama . ', Berdasarkan dari laporan pembayaran yang telah dikirimkan dengan rincian sbg berikut : 
 
 ';
@@ -62,6 +70,11 @@ mohon diulang kembali';
 			//jika lapor pembayaran 
 			$message = '
 *Pesan ini otomatis dikirim dari sistem*
+
+INFO TERHANGAT:
+Pendaftaran Santri Baru 2025 akan segera dibuka, dengan mengakses psb.ppatq-rf.id
+Sebarkan informasi ini karena quota terbatas.
+
 Terima kasih Bp/Ibu ' . $atas_nama . ', telah melaporkan  pembayaran sebesar Rp. ' . $jumlah . '
 
 dengan rincian sbb :
@@ -267,6 +280,11 @@ Kami akan update sesuai yang disampaikan
 			//jika status pembayaran tidak valid
 			$message = '
 *Pesan ini otomatis dikirim dari sistem*
+
+INFO TERHANGAT:
+Pendaftaran Santri Baru 2025 akan segera dibuka, dengan mengakses psb.ppatq-rf.id
+Sebarkan informasi ini karena quota terbatas.
+
 Yth. (Bp/Ibu) ' . $atas_nama . ', Berdasarkan dari laporan pembayaran yang telah dikirimkan dengan rincian sbg berikut : 
 
 ';
@@ -287,6 +305,11 @@ mohon diulang kembali';
 			//jika lapor pembayaran 
 			$message = '
 *Pesan ini otomatis dikirim dari sistem*
+
+INFO TERHANGAT:
+Pendaftaran Santri Baru 2025 akan segera dibuka, dengan mengakses psb.ppatq-rf.id
+Sebarkan informasi ini karena quota terbatas.
+
 Terima kasih Bp/Ibu ' . $atas_nama . ', telah melaporkan  pembayaran sebesar Rp. ' . $jumlah . '
 
 dengan rincian sbb :
