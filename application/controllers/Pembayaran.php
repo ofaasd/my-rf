@@ -340,7 +340,7 @@ $message .= '
 ----agenda sampai akhir tahun----
 ';
 $tanggal_start_agenda = date('Y-m-d');
-$agenda = $this->db->where('tanggal_mulai >=',$tanggal_start_agenda)->get('agenda')->result();
+$agenda = $this->db->where('tanggal_mulai >=',$tanggal_start_agenda)->order_by("tanggal_mulai", "asc")->get('agenda')->result();
 // echo $this->db->last_query();
 foreach($agenda as $rows){
 	$message .= $rows->judul .'
