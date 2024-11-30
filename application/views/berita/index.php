@@ -14,7 +14,7 @@
 					<h5><?= $row->judul?></h5>
 				</div>
 				<div class="card-content">
-                    <img src="https://manajemen.ppatq-rf.id/assets/img/upload/berita/thumbnail/<?= $row->thumbnail?>" class="img-fluid mb-4" alt="gambar thumbnail <?= $row->judul ?>">
+                    <img src="<?= $row->thumbnail?>" class="img-fluid mb-4" alt="gambar thumbnail <?= $row->judul ?>">
                     <p class="card-text"><?= (strip_tags(strlen($row->isi_berita)) > 100) ? strip_tags(substr($row->isi_berita,0,150)) . ' [...]': strip_tags($row->isi_berita)?></p>
 					<small class="text-muted font-italic"><i class="bi bi-calendar-day-fill mr-2"></i><?= Carbon::parse($row->created_at)->diffForHumans()?></small>
 					</div>

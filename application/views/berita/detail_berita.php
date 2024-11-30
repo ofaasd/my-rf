@@ -9,7 +9,7 @@
 		<div class="col-md-12 col mb-3">
 			<div class="shadow-sm">
 				<div class="card-content d-flex flex-column justify-content-center">
-                    <img src="https://manajemen.ppatq-rf.id/assets/img/upload/berita/foto_isi/<?= $berita->gambar_dalam ?>" class="img-fluid mb-4 w-50" alt="gambar thumbnail <?= $berita->judul ?>">
+                    <img src="<?= $berita->thumbnail ?>" class="img-fluid mb-4 w-50" alt="gambar thumbnail <?= $berita->judul ?>">
 
                     <small class="text-muted font-italic"><i class="bi bi-calendar-day-fill mr-2"></i><?= Carbon::parse($berita->created_at)->format('d M Y') ?></small>
 					
@@ -20,4 +20,4 @@
 	</div>
 	
 </div>
-	<br />
+<br />

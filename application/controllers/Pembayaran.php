@@ -261,6 +261,9 @@ class Pembayaran extends CI_Controller {
 $msg_old = 'untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar';
 					$message = '[ dari payment.ppatq-rf.id ]
 
+INFO TERHANGAT:
+Pendaftaran Santri Baru 2025 akan segera dibuka, dengan mengakses psb.ppatq-rf.id
+Sebarkan informasi ini karena quota terbatas. 
 
 Yth. Bp/Ibu *' . $atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melaporkan pembayaran bulan *' . $this->bulan[(int)$this->input->post('periode')] . '* 
 Rp. ' . $jumlah . ' rincian sbb : 
@@ -337,7 +340,7 @@ $message .= '
 ----agenda sampai akhir tahun----
 ';
 $tanggal_start_agenda = date('Y-m-d');
-$agenda = $this->db->where('tanggal_mulai >=',$tanggal_start_agenda)->get('agenda')->result();
+$agenda = $this->db->where('tanggal_mulai >=',$tanggal_start_agenda)->order_by("tanggal_mulai", "asc")->get('agenda')->result();
 // echo $this->db->last_query();
 foreach($agenda as $rows){
 	$message .= $rows->judul .'

@@ -103,7 +103,7 @@
                 <a href="<?php echo base_url('index.php/berita/detail/' . $row->id) ?>" class="text-decoration-none text-dark mb-2">
                 <div class="col">
                     <div class="shadow-sm d-flex flex-row">
-                        <img src="https://manajemen.ppatq-rf.id/assets/img/upload/berita/thumbnail/<?= $row->thumbnail?>" class="img-fluid col-4 px-0 p-2" style="height: 205px;" alt="gambar thumbnail <?= $row->judul?>">
+                        <img src="<?= $row->thumbnail?>" class="img-fluid col-6 col-sm-4 px-0 p-2" style="height: 205px;" alt="gambar thumbnail <?= $row->judul?>">
                         
                         <div class="card-body">
                             <h5><?=$row->judul?></h5>
