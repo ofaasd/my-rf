@@ -262,7 +262,7 @@ $msg_old = 'untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar'
 					$message = '[ dari payment.ppatq-rf.id ]
 
 INFO TERHANGAT:
-Pendaftaran Santri Baru 2025 akan segera dibuka, dengan mengakses psb.ppatq-rf.id
+Pendaftaran Santri Baru 2025 dapat mendaftar mulai tanggal 08 Desember 2024 s/d 05 Februari 2025 melalui url psb.ppatq-rf.id
 Sebarkan informasi ini karena quota terbatas. 
 
 Yth. Bp/Ibu *' . $atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melaporkan pembayaran bulan *' . $this->bulan[(int)$this->input->post('periode')] . '* 
