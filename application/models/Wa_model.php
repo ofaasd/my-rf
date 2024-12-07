@@ -1,7 +1,7 @@
 <?php
 Class Wa_model extends CI_Model{
 	
-	public $number_key = 'l4y8vs7e3Cig7Ty3';
+	public $number_key = '9qrE9KWANsXXHCA9';
 	public $wa_api = "X2Y7UZOZT0WVQVTG";
 	
     public function validasi($id, $status){
@@ -367,7 +367,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 						$no_wa = "087767572025";
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
-						$dataSending["number_key"] = "l4y8vs7e3Cig7Ty3";
+						$dataSending["number_key"] = "9qrE9KWANsXXHCA9";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
 						

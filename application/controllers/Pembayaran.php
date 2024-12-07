@@ -355,7 +355,7 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
                         echo $this->db->last_query(); */
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
-						$dataSending["number_key"] = "l4y8vs7e3Cig7Ty3";
+						$dataSending["number_key"] = "9qrE9KWANsXXHCA9";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
 
@@ -382,7 +382,7 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 						$no_wa = "087767572025";
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
-						$dataSending["number_key"] = "l4y8vs7e3Cig7Ty3";
+						$dataSending["number_key"] = "9qrE9KWANsXXHCA9";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
 						
