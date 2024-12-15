@@ -556,6 +556,7 @@ class Pembayaran extends CI_Controller {
 		$pembayaran = $data['pembayaran'];
 		$detail_pembayaran = $data['detail_pembayaran'];
 		$santri_detail = $data['nama_santri'];
+		$bulan = $data['bulan'];
 		$message = '[ dari admin payment.ppatq-rf.id ]
 
 Yth. Bp/Ibu *' . $pembayaran->atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melaporkan pembayaran bulan *' . $bulan[(int)$pembayaran->periode] . '* 
@@ -590,9 +591,9 @@ Riwayat Pelaporan :
 							$new_bulan = (12 + $i);
 						}
 						$tahun = date('Y');
-						$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$id_santri)->where('is_hapus',0)->get('tb_pembayaran')->result();
+						$pembayaran2 = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$data['pembayaran']->nama_santri)->where('is_hapus',0)->get('tb_pembayaran')->result();
 						
-						foreach($pembayaran as $row){
+						foreach($pembayaran2 as $row){
 							$message .= '*' . $this->bulan[$new_bulan] .'* ';
 							$message .= $row->tanggal_bayar .' : Rp. ' . number_format($row->jumlah,0,',','.') . '
 ';
@@ -601,7 +602,7 @@ Riwayat Pelaporan :
 					$message .= '
 No. WA konfirmasi di +62877-6757-2025. 
 
-untuk penyampaian masukan melalui https://saran.ppatq-rf.id
+untuk penyampaian masukan melalui https://payment.ppatq-rf.id/index.php/keluhan	
 
 Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-rf.id
 ';
@@ -643,7 +644,7 @@ foreach($agenda as $rows){
 }
 
 $message .= '
-Kami ucapkan banyak terima kasih kepada (Bp/Ibu) ' . $atas_nama . ', salam kami kepada keluarga.
+Kami ucapkan banyak terima kasih kepada (Bp/Ibu) ' . $pembayaran->atas_nama . ', salam kami kepada keluarga.
 
 Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang banyak dan berkah, aamiin.
 ';
