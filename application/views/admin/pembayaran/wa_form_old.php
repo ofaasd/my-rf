@@ -85,7 +85,47 @@ $santri_detail = $nama_santri;
 	<input type="text" name="no_wa" id="no_wa" class="form-control" value="<?= $pembayaran->no_wa?>">
 	
 	<label for="pesan">Pesan</label>
-	<textarea name="message" class="form-control" rows="15" id="message"><?= $message ?></textarea>
+	<textarea name="message" class="form-control" rows="15" id="message">
+*Pesan ini otomatis dikirim dari sistem*
+Yth. (Bp/Ibu) <?=$pembayaran->atas_nama?>, telah melakukan melaporkan pembayaran bulan November sebesar <?=number_format($pembayaran->jumlah,0,",",".")?> 
+
+dengan rincian sbb :
+
+<?php foreach($detail_pembayaran as $detail){?>
+	• <?=$jenis_pembayaran[$detail->id_jenis_pembayaran]?> sebesar Rp. <?=number_format($detail->nominal,0,",",".");?>&#13;
+<?php } ?>
+
+Kami mengucapkan banyak terima kasih (Bp/Ibu) <?=$pembayaran->atas_nama?> wali santri *<?=$nama_santri->nama?>* kelas *<?=$nama_santri->kelas?>* Yang telah melaporkan kepada kami.
+Tunggu beberapa waktu, kami akan melakukan pencatatan.
+Kami akan segera memberikan informasi apabila pembayaran tsb diatas telah sesuai.
+
+
+Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizqi yang banyak dan berkah, aamiin. 
+
+Notifikasi ini bertujuan untuk menjaga amanah Bp/Ibu kepada kami. Bila ada yang perlu diklarifikasi mohon bisa menghubungi kami via WA atau telepon kami di nomor +62897-9194-645. Atau melalui https://saran.ppatq-rf.id
+
+Riwayat Pelaporan : 
+<?php
+	$b = (int)date('m');
+	$tanggal = [];
+	$jumlah = [];
+	for($i=($b-1); $i>=$b-5; $i--){
+		$new_bulan = $i;
+		if($i <= 0 ){
+			$new_bulan = (12 + $i);
+		}
+		$tahun = date('Y');
+		$pembayaran = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$nama_santri->no_induk)->where('is_hapus',0)->get('tb_pembayaran')->result();
+		//echo $this->db->last_query();
+		foreach($pembayaran as $row){
+			echo '*' . $bulan[$new_bulan] .'* ';
+			echo $row->tanggal_bayar .' : Rp. ' . number_format($row->jumlah,0,',','.');
+			print('\n');
+		}
+		//echo $new_bulan;
+	}
+?>
+	</textarea>
 </div>
 <?php
 } ?>
