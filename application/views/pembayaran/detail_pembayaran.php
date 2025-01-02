@@ -168,7 +168,7 @@
 						<label class="form-label">Bank Pengirim</label>
 						<select name="bank_pengirim" class="form-control col-md-12">
 							<?php foreach($bank_pengirim as $bank){ ?>
-								<option value="<?=$bank->id?>"><?=$bank->nama?></option>
+								<option value="<?=$bank->id?>" <?= ($bank->kode == "002")?"selected":"" ?>><?=$bank->nama?></option>
 							<?php } ?>
 						</select>
 					</div>
