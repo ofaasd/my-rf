@@ -4,7 +4,7 @@ Class Bank_model extends CI_Model{
 
     public function get_all()
     {
-            $query = $this->db->get('ref_bank');
+            $query = $this->db->order_by('nama','asc')->get('ref_bank');
             return $query->result();
     }
 
