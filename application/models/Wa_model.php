@@ -411,7 +411,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 
 	public function get_all()
     {
-            $query = $this->db->join('tb_pembayaran','tb_pembayaran.id=tb_send_wa.id_pembayaran')->order_by('tb_send_wa.id','desc')->get('tb_send_wa');
+            $query = $this->db->select('tb_send_wa.*,tb_pembayaran.periode')->join('tb_pembayaran','tb_pembayaran.id=tb_send_wa.id_pembayaran')->order_by('tb_send_wa.id','desc')->get('tb_send_wa');
             return $query->result();
     }
 	public function get_not_send(){
