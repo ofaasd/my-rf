@@ -204,8 +204,6 @@ class Whatsapp extends CI_Controller {
             'no_wa' => $wa->no_wa,
             'pesan' => $wa->pesan,
         );
-		print_r($data);
-		exit;
         $send = $this->wa->send_wa($data);
         $decode = json_decode($send);
         $msg = "";
