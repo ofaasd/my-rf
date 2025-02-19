@@ -2,14 +2,16 @@
 Class Berita_model extends CI_Model{
 
     public function get_all(){
-        $query = $this->db->get('berita');
-            return $query->result();
+        $query = $this->db->where('berita.deleted_at', null)
+                          ->get('berita');
+        return $query->result();
     }
 
     public function get_pagination($limit = 3, $offset = 0) {
         $this->db->select('berita.*, kategori_berita.nama_kategori');
         $this->db->from('berita');
         $this->db->join('kategori_berita', 'berita.kategori_id = kategori_berita.id', 'left');
+        $this->db->where('berita.deleted_at', null);
         $this->db->order_by('berita.created_at', 'DESC');
         $this->db->limit($limit, $offset);
         $query = $this->db->get();
@@ -20,6 +22,7 @@ Class Berita_model extends CI_Model{
         $this->db->select('berita.*, kategori_berita.nama_kategori');
         $this->db->from('berita');
         $this->db->join('kategori_berita', 'berita.kategori_id = kategori_berita.id', 'left');
+        $this->db->where('berita.deleted_at', null);
         $this->db->order_by('berita.created_at', 'DESC'); // Urutkan berdasarkan kolom created_at dengan urutan menurun
         $this->db->limit(3); // Ambil hanya satu data paling baru
         $query = $this->db->get();
