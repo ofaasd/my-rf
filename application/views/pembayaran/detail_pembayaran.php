@@ -205,6 +205,7 @@
 														}
 													}
 													if($cek_jumlah == 0){
+														
 														$total += $row->harga;
 														echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control" value=" ' .number_format($row->harga,0,',','.') . '"';
 														echo ($row->id == 1||$row->id == 5 || $row->id == 16)?"readonly":"";
@@ -372,7 +373,7 @@
 		if(number){
         	return number.split('.').join('');
 		}else{
-			return "0";
+			return "";
 		}
     }
     
