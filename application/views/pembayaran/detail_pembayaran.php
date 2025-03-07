@@ -194,7 +194,7 @@
 									<?php
 										if($row->id == 1||$row->id == 5 || $row->id == 16){
 											if($kode == "6a" || $kode == "6b"){
-												if($row->id == 5){
+												if($row->id == 5 || $row->id == 16){
 													echo '<div class="col-md-8"><input type="text" onkeyup="splitInDots(this)" id="jenis_' . trim($row->id) . '"  placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
 												}else{
 													$cek_jumlah = 0;
