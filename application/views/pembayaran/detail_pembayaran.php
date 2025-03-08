@@ -373,7 +373,7 @@
 		if(number){
         	return number.split('.').join('');
 		}else{
-			return "";
+			return "0";
 		}
     }
     
