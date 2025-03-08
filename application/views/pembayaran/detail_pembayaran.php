@@ -207,7 +207,9 @@
 													if($cek_jumlah == 0){
 														
 														$total += $row->harga;
-														echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control" value=" ' . ($row->harga != 0)?number_format($row->harga,0,',','.'):"" . '"';
+														echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control" value="';
+														echo ($row->harga != 0)?number_format($row->harga,0,',','.'):"";
+														echo '" ';
 														echo ($row->id == 1||$row->id == 5 || $row->id == 16)?"readonly":"";
 														echo '></div>';
 											
