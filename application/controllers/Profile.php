@@ -160,7 +160,7 @@ class Profile extends CI_Controller {
 		$data['riwayat_sakit'] = $riwayat_sakit;
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('profile/kesehatan',$data,true);
-
+		echo $no_induk;
 
 		$this->load->view('layouts/main',$var);
 	}
