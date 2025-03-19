@@ -44,7 +44,8 @@ class Profile extends CI_Controller {
 		$this->load->view('layouts/main',$var);
 	}
 	
-	public function get_kota(){
+	public function get_kota()
+	{
 		$id_provinsi = $this->input->post('prov_id');
 		$kota = $this->db->where('prov_id',$id_provinsi)->get('cities')->result();
 		foreach($kota as $row){
@@ -53,7 +54,9 @@ class Profile extends CI_Controller {
 		
 		}
 	}
-	public function simpan(){
+
+	public function simpan()
+	{
 		$id_santri = $this->input->post('no_induk');
 		$santri = $this->db->where(['no_induk'=>$id_santri])->get("santri_detail")->row();
 		$nama_santri = $santri->nama;
@@ -103,7 +106,8 @@ class Profile extends CI_Controller {
             redirect(base_url('index.php/profile/index'));
         }
 	}
-	public function simpan_berkas(){
+	public function simpan_berkas()
+	{
 		$no_induk = $this->session->userdata('siswa_id');
 		$nama_file = array('file_kk','file_akta');
 		$array = array();
@@ -153,14 +157,55 @@ class Profile extends CI_Controller {
 		//$this->session->set_flashdata('message',$array);
         //redirect(base_url('index.php/profile/index'));
 	}
-	public function kesehatan(){
+	public function kesehatan()
+	{
 		$no_induk = $this->session->userdata('siswa_id');
-		$riwayat_sakit = $this->db->where('santri_id',$no_induk)->get('tb_kesehatan')->result();
+		$data['riwayat_sakit'] = $this->db->where('santri_id',$no_induk)->get('tb_kesehatan')->result();
 		$data['pemeriksaan'] = $this->db->where('no_induk',$no_induk)->get('tb_pemeriksaan')->result();
-		$data['riwayat_sakit'] = $riwayat_sakit;
+		$data['rawat_inap'] = $this->db->where('santri_no_induk',$no_induk)->get('rawat_inap')->result();
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('profile/kesehatan',$data,true);
 		echo $no_induk;
+
+		$this->load->view('layouts/main',$var);
+	}
+	public function ketahfidzan()
+	{
+		$no_induk = $this->session->userdata('siswa_id');
+		$ketahfidzan = $this->db
+			->select('detail_santri_tahfidz.*, kode_juz.nama AS nmJuz')
+			->from('detail_santri_tahfidz')
+			->join('kode_juz', 'kode_juz.kode = detail_santri_tahfidz.kode_juz_surah', 'left') 
+			->where('detail_santri_tahfidz.no_induk', $no_induk)
+			->order_by('detail_santri_tahfidz.tanggal', 'desc')
+			->get()
+			->result();
+
+		$groupedData = [];
+		foreach ($ketahfidzan as $row) {
+			$tahun = date('Y', strtotime($row->tanggal));
+			$bulan = date('m', strtotime($row->tanggal));
+
+			// Konversi bulan angka ke nama bulan Indonesia
+			$bulanNama = [
+				'01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April',
+				'05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus',
+				'09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
+			];
+
+			$namaBulan = $bulanNama[$bulan] ?? $bulan;
+
+			// Simpan data dalam array terstruktur per tahun
+			$groupedData[$tahun][$namaBulan][] = $row;
+		}
+
+		$data['detailSantri'] = $this->db->where('no_induk', $no_induk)->get('santri_detail')->row();
+
+		$data['ketahfidzan'] = $groupedData;
+
+
+		$var['title'] = 'PPATQ Roudlotul Falah';
+		$var['content'] = $this->load->view('profile/ketahfidzan',$data,true);
 
 		$this->load->view('layouts/main',$var);
 	}

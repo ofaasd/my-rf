@@ -30,6 +30,11 @@
         nav{
             background:#2dcc70;
         }
+
+        .color-hijau{
+            background-color:#2dcc70;
+            color: whitesmoke;
+        }
         body{
             background:url("<?php echo base_url('assets/images/background.jpg') ?>");
             background-repeat: no-repeat;
@@ -85,6 +90,9 @@
                     </li>
 					<li class="nav-item">
                         <a class="nav-link text-white active" aria-current="page" href="<?php echo base_url('index.php/profile/kesehatan') ?>">Kesehatan Santri</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link text-white active" aria-current="page" href="<?php echo base_url('index.php/profile/ketahfidzan') ?>">Ketahfidzan</a>
                     </li>
 					<li class="nav-item">
                         <a class="nav-link text-white active" aria-current="page" href="<?php echo base_url('index.php/agenda') ?>">Agenda Kegiatan</a>
