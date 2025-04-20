@@ -188,11 +188,43 @@
 								</button>
 							</div>
 						</div>
-							<?php $total = 0; foreach($jenis_pembayaran as $row) { ?>
+							<?php 
+								$generate = $this->db->get_where('generate_pembayaran',['no_induk' => $siswa->no_induk, 'bulan' => (int)$periode, 'tahun' => date('Y')]);
+								$total = 0; 
+								foreach($jenis_pembayaran as $row) { ?>
 								<div class="row" style="margin:10px auto">
 									<div class="col-md-4"><?=$row->jenis?><input type="hidden" name="id_jenis_pembayaran[]" value='<?= $row->id ?>'></div>
 									<?php
-										if($row->id == 1||$row->id == 5 || $row->id == 16){
+										
+										if($generate->num_rows() > 0){
+											//echo "mausk sini";
+											
+											$new_generate = $generate->row();
+											$detail = $this->db->get_where('generate_detail_pembayaran',['id_generate_pembayaran'=>$new_generate->id,'id_jenis'=>$row->id])->row();
+											if($detail){
+												$cek_jumlah = 0;
+												if(!empty($pembayaran_bulan)){
+													
+													foreach($pembayaran_bulan as $pem){
+														$cek_jumlah += $detail_pembayaran[$pem->id][$row->id]; 													
+													}
+												}
+												if($cek_jumlah == 0){
+													$total += $detail->jumlah;
+													echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control" value="';
+													echo ($detail->jumlah != 0)?number_format($detail->jumlah,0,',','.'):"";
+													echo '" ';
+													echo ($row->id == 1||$row->id == 5 || $row->id == 16)?"readonly":"";
+													echo '></div>';
+										
+												}else{
+													echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
+										
+												}
+											}else{
+												echo '<div class="col-md-8"><input type="text" onkeyup="splitInDots(this)" id="jenis_' . trim($row->id) . '"  placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
+											}
+										}elseif($row->id == 1||$row->id == 5 || $row->id == 16){
 											if($kode == "6a" || $kode == "6b"){
 												if($row->id == 5 || $row->id == 16){
 													echo '<div class="col-md-8"><input type="text" onkeyup="splitInDots(this)" id="jenis_' . trim($row->id) . '"  placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
