@@ -60,4 +60,32 @@
 		</tbody>
 	</table>
 </div>
-			
+
+<div class="card">
+<div class="card-header">
+    Rawat Inap
+</div>
+<div class="card-content">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>Tanggal Masuk</td>
+				<td>Keluhan</td>
+				<td>Terapi</td>
+				<td>Tanggal Keluar</td>
+			</tr>
+		</thead>
+		<tbody>
+			<?php 
+				foreach($rawat_inap as $row){
+					echo "<tr>";
+					echo "<td>" . date('d-m-Y', $row->tanggal_masuk) . "</td>";
+					echo "<td>" . $row->keluhan . "</td>";
+					echo "<td>" . $row->terapi . "</td>";
+					echo "<td>" . date('d-m-Y', $row->tanggal_keluar) . "</td>";
+					echo "</tr>";
+				}
+			?>
+		</tbody>
+	</table>
+</div>

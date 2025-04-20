@@ -1,7 +1,7 @@
 <?php
 Class Wa_model extends CI_Model{
 	
-	public $number_key = 'SpU2anDja9Ihtrbl';
+	public $number_key = '3EYdFkP7uhk5RX6D';
 	public $wa_api = "X2Y7UZOZT0WVQVTG";
 	
     public function validasi($id, $status){
@@ -40,8 +40,8 @@ Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-
 					';
 		}elseif($status == 2){
 			//jika status pembayaran tidak valid
-			$message = '
-*Pesan ini otomatis dikirim dari sistem*
+			$message = '*Pesan ini otomatis dikirim dari sistem*
+
 Yth. (Bp/Ibu) ' . $atas_nama . ', Berdasarkan dari laporan pembayaran yang telah dikirimkan dengan rincian sbg berikut : 
 
 ';
@@ -62,6 +62,7 @@ mohon diulang kembali';
 			//jika lapor pembayaran 
 			$message = '
 *Pesan ini otomatis dikirim dari sistem*
+
 Terima kasih Bp/Ibu ' . $atas_nama . ', telah melaporkan  pembayaran sebesar Rp. ' . $jumlah . '
 
 dengan rincian sbb :
@@ -267,6 +268,7 @@ Kami akan update sesuai yang disampaikan
 			//jika status pembayaran tidak valid
 			$message = '
 *Pesan ini otomatis dikirim dari sistem*
+
 Yth. (Bp/Ibu) ' . $atas_nama . ', Berdasarkan dari laporan pembayaran yang telah dikirimkan dengan rincian sbg berikut : 
 
 ';
@@ -287,6 +289,11 @@ mohon diulang kembali';
 			//jika lapor pembayaran 
 			$message = '
 *Pesan ini otomatis dikirim dari sistem*
+
+INFO TERHANGAT:
+Pendaftaran Santri Baru 2025 telah dibuka, dengan mengakses psb.ppatq-rf.id
+Sebarkan informasi ini karena quota terbatas.
+
 Terima kasih Bp/Ibu ' . $atas_nama . ', telah melaporkan  pembayaran sebesar Rp. ' . $jumlah . '
 
 dengan rincian sbb :
@@ -344,7 +351,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 						$no_wa = "087767572025";
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
-						$dataSending["number_key"] = "eBki5ua379TKv7Xl";
+						$dataSending["number_key"] = "3EYdFkP7uhk5RX6D";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
 						
@@ -388,7 +395,7 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 
 	public function get_all()
     {
-            $query = $this->db->join('tb_pembayaran','tb_pembayaran.id=tb_send_wa.id_pembayaran')->order_by('tb_send_wa.id','desc')->get('tb_send_wa');
+            $query = $this->db->select('tb_send_wa.*,tb_pembayaran.periode')->join('tb_pembayaran','tb_pembayaran.id=tb_send_wa.id_pembayaran')->order_by('tb_send_wa.id','desc')->get('tb_send_wa');
             return $query->result();
     }
 	public function get_not_send(){

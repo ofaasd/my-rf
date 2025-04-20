@@ -168,7 +168,7 @@
 						<label class="form-label">Bank Pengirim</label>
 						<select name="bank_pengirim" class="form-control col-md-12">
 							<?php foreach($bank_pengirim as $bank){ ?>
-								<option value="<?=$bank->id?>"><?=$bank->nama?></option>
+								<option value="<?=$bank->id?>" <?= ($bank->kode == "002")?"selected":"" ?>><?=$bank->nama?></option>
 							<?php } ?>
 						</select>
 					</div>
@@ -194,7 +194,7 @@
 									<?php
 										if($row->id == 1||$row->id == 5 || $row->id == 16){
 											if($kode == "6a" || $kode == "6b"){
-												if($row->id == 5){
+												if($row->id == 5 || $row->id == 16){
 													echo '<div class="col-md-8"><input type="text" onkeyup="splitInDots(this)" id="jenis_' . trim($row->id) . '"  placeholder="0" name="jenis_pembayaran[]" class="form-control"></div>';
 												}else{
 													$cek_jumlah = 0;
@@ -205,8 +205,11 @@
 														}
 													}
 													if($cek_jumlah == 0){
+														
 														$total += $row->harga;
-														echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control" value=" ' .number_format($row->harga,0,',','.') . '"';
+														echo '<div class="col-md-8"><input type="text" id="jenis_' . trim($row->id) . '"  onkeyup="splitInDots(this)" placeholder="0" name="jenis_pembayaran[]" class="form-control" value="';
+														echo ($row->harga != 0)?number_format($row->harga,0,',','.'):"";
+														echo '" ';
 														echo ($row->id == 1||$row->id == 5 || $row->id == 16)?"readonly":"";
 														echo '></div>';
 											

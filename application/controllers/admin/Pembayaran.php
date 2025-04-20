@@ -553,6 +553,102 @@ class Pembayaran extends CI_Controller {
 		foreach($jenis as $row){
 			$data['jenis_pembayaran'][$row->id] = $row->jenis;
 		}
+		$pembayaran = $data['pembayaran'];
+		$detail_pembayaran = $data['detail_pembayaran'];
+		$santri_detail = $data['nama_santri'];
+		$bulan = $data['bulan'];
+		$message = '[ dari admin payment.ppatq-rf.id ]
+
+Yth. Bp/Ibu *' . $pembayaran->atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melaporkan pembayaran bulan *' . $bulan[(int)$pembayaran->periode] . '* 
+Rp. ' . $pembayaran->jumlah . ' rincian sbb : 
+';
+$jenis = $this->jenis->get_all();
+$list_jenis = array();
+foreach($jenis as $row){
+	$list_jenis[$row->id] = $row->jenis;
+}
+$detail = $detail_pembayaran;
+foreach($detail as $row){
+	$message .= '• ' . $list_jenis[$row->id_jenis_pembayaran] .' sebesar Rp. ' . number_format($row->nominal,0,',','.') . ' 
+';
+
+}
+// $message .= '
+// Tunggu beberapa waktu, kami akan melakukan pencatatan & segera memberikan status pembayaran tersebut.
+// ';
+$message .= '
+Tunggu beberapa saat, pencatatan akan dilakukan & segera memberikan status pembayaran tersebut.
+';
+$message .= '
+Riwayat Pelaporan : 
+';
+					$bulan = (int)date('m');
+					$tanggal = [];
+					$jumlah = [];
+					for($i=($bulan-1); $i>=$bulan-5; $i--){
+						$new_bulan = $i;
+						if($i <= 0 ){
+							$new_bulan = (12 + $i);
+						}
+						$tahun = date('Y');
+						$pembayaran2 = $this->db->where('MONTH(tanggal_bayar)',$new_bulan)->where('YEAR(tanggal_bayar)',$tahun)->where('validasi',1)->where('nama_santri',$data['pembayaran']->nama_santri)->where('is_hapus',0)->get('tb_pembayaran')->result();
+						
+						foreach($pembayaran2 as $row){
+							$message .= '*' . $this->bulan[$new_bulan] .'* ';
+							$message .= $row->tanggal_bayar .' : Rp. ' . number_format($row->jumlah,0,',','.') . '
+';
+						}
+					}
+					$message .= '
+No. WA konfirmasi di +62877-6757-2025. 
+
+untuk penyampaian masukan melalui https://payment.ppatq-rf.id/index.php/keluhan	
+
+Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-rf.id
+';
+//riwayat kesehatan
+
+$riwayat = $this->db->order_by('id','desc')->limit(5)->get_where('tb_kesehatan',array('santri_id'=>$santri_detail->no_induk))->result();
+if($riwayat){
+$message .= '
+----Riwayat Kesehatan----
+';
+foreach($riwayat as $rows){
+	$message .= $rows->sakit . " ( " . date('d-m-Y',$rows->tanggal_sakit) . " )
+";
+}
+}
+//riwayat ketahfidzan
+
+$tahfidz = $this->db->select('detail_santri_tahfidz.*,kode_juz.nama as nama_juz')->order_by("detail_santri_tahfidz.id","desc")->limit(5)->join('kode_juz','kode_juz.id = detail_santri_tahfidz.kode_juz_surah')->get_where('detail_santri_tahfidz',array('no_induk'=>$santri_detail->no_induk))->result();
+if($tahfidz){
+$message .= '
+----Riwayat Ketahfidzan----
+';
+foreach($tahfidz as $row){
+	$message .= $row->nama_juz . "  (" . $this->bulan[$row->bulan] . " " . $row->tahun . " ) 
+";
+} 
+}
+$message .= '
+----agenda sampai akhir tahun----
+';
+$tanggal_start_agenda = date('Y-m-d');
+$agenda = $this->db->where('tanggal_mulai >=',$tanggal_start_agenda)->order_by("tanggal_mulai", "asc")->get('agenda')->result();
+// echo $this->db->last_query();
+foreach($agenda as $rows){
+	$message .= $rows->judul .'
+';
+	$message .= date('d-m-Y',strtotime($rows->tanggal_mulai)) . ' - ' . date('d-m-Y',strtotime($rows->tanggal_selesai)) . '
+';
+}
+
+$message .= '
+Kami ucapkan banyak terima kasih kepada (Bp/Ibu) ' . $pembayaran->atas_nama . ', salam kami kepada keluarga.
+
+Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang banyak dan berkah, aamiin.
+';
+$data['message'] = $message;
 		return $this->load->view('admin/pembayaran/wa_form',$data);
 	}
 	public function send_wa(){

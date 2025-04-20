@@ -11,11 +11,11 @@
 }
 </style>
 <?php use Carbon\Carbon;  Carbon::setLocale('id');?>
-    <div class="border-0 card-content ">
+    <div class="border-0 card-content">
         <div class="d-flex justify-content-center">
             <div class="col-11">
                 <h6 class="text-center d-sm-none d-block mb-4">Selamat Datang di website payment <a href="https://ppatq-rf.id/" class="text-decoration-none font-italic">PPATQ-RF</a></h6>
-                <div id="carouselExampleControls" class="carousel slide shadow-sm mb-3 rounded" data-ride="carousel">
+                <div id="carouselExampleControls" class="carousel slide  mb-3 rounded" data-ride="carousel">
                         <div class="carousel-inner rounded">
                             <div class="carousel-item active">
                                 <img class="d-block img-carousel" src="<?php echo base_url('assets/images/carousel-1-low.jpg') ?>"alt="First slide">
@@ -44,7 +44,7 @@
         <div class="row mb-5 d-flex justify-content-center">
             <div class="col-md-3 col-9">
                 <a href="https://payment.ppatq-rf.id/index.php/keluhan" class="text-dark text-decoration-none">
-                    <div class="shadow-sm">
+                    <div class="">
                         <div class="p-3">
                             <img src="<?= base_url('assets/images/kritikDanSaran.png') ?>" class="card-img-top btn btn-success" alt="gambar kritik dan saran" >
                         </div>
@@ -57,9 +57,9 @@
             </div>
             <div class="col-md-3 col-9">
                 <a href="https://payment.ppatq-rf.id/index.php/pembayaran" class="text-dark text-decoration-none">
-                    <div class="shadow-sm">
+                    <div class="">
                         <div class="p-3">
-                            <img src="<?= base_url('assets/images/konfirmasiCard.png') ?>" class="card-img-top btn shadow-sm" alt="website konfirmasi pembayaran">
+                            <img src="<?= base_url('assets/images/konfirmasiCard.png') ?>" class="card-img-top btn " alt="website konfirmasi pembayaran">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Konfirmasi Pembayaran</h5>
@@ -70,9 +70,9 @@
             </div>
             <div class="col-md-3 col-9">
                 <a href="https://www.ppatq-rf.sch.id/" class="text-dark text-decoration-none">
-                    <div class="shadow-sm">
+                    <div class="">
                         <div class="p-3">
-                            <img src="<?= base_url('assets/images/logo.png') ?>" class="card-img-top btn shadow-sm" alt="gambar website resmi">
+                            <img src="<?= base_url('assets/images/logo.png') ?>" class="card-img-top btn " alt="gambar website resmi">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Website Resmi</h5>
@@ -83,9 +83,9 @@
             </div>
             <div class="col-md-3 col-9">
                 <a href="https://psb.ppatqrf.sch.id/" class="text-dark text-decoration-none">
-                    <div class="shadow-sm">
+                    <div class="">
                         <div class="p-3">
-                            <img src="<?= base_url('assets/images/web.png') ?>" class="card-img-top btn shadow-sm" alt="gambar website psb">
+                            <img src="<?= base_url('assets/images/web.png') ?>" class="card-img-top btn" alt="gambar website psb">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Website PSB</h5>
@@ -102,8 +102,8 @@
             <?php foreach($berita as $row){?>
                 <a href="<?php echo base_url('index.php/berita/detail/' . $row->id) ?>" class="text-decoration-none text-dark mb-2">
                 <div class="col">
-                    <div class="shadow-sm d-flex flex-row">
-                        <img src="https://manajemen.ppatq-rf.id/assets/img/upload/berita/thumbnail/<?= $row->thumbnail?>" class="img-fluid col-4 px-0 p-2" style="height: 205px;" alt="gambar thumbnail <?= $row->judul?>">
+                    <div class=" d-flex flex-row">
+                        <img src="<?= $row->thumbnail?>" class="img-fluid col-6 col-sm-4 px-0 p-2" style="height: 205px;" alt="gambar thumbnail <?= $row->judul?>">
                         
                         <div class="card-body">
                             <h5><?=$row->judul?></h5>

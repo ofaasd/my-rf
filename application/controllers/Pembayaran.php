@@ -21,6 +21,10 @@ class Pembayaran extends CI_Controller {
 
 	public function index()
 	{
+		$redirect = "";
+		if(!empty($this->uri->segment(3))){
+			$redirect = $this->uri->segment(3) . "/" . $this->uri->segment(4);
+		}
 		if(!empty($this->session->userdata('siswa_id'))){
 			redirect(base_url('index.php/pembayaran/detail_pembayaran'));
 		}
@@ -30,6 +34,7 @@ class Pembayaran extends CI_Controller {
         $data['siswa'] = $this->siswa->get_all();
         $data['kode'] = $this->siswa->get_kelas_all();
 		$data['bulan'] = $this->bulan;
+		$data['redirect'] = $redirect;
 		$var['title'] = 'PPATQ Roudlotul Falah';
 		$var['content'] = $this->load->view('pembayaran/index',$data,true);
 
@@ -111,6 +116,10 @@ class Pembayaran extends CI_Controller {
 				$this->session->set_flashdata('error','Harap Isi form terlebih dahulu');
 				redirect(base_url('index.php/pembayaran'));
 			}
+		}
+		$redirect = $this->input->post('redirect');
+		if(!empty($redirect)){
+			redirect(base_url('index.php/' . $redirect));
 		}
 		
 		$data['nama_santri'] = $siswa_id;
@@ -252,7 +261,10 @@ class Pembayaran extends CI_Controller {
 $msg_old = 'untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar';
 					$message = '[ dari payment.ppatq-rf.id ]
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 29356571f30351d5bcf4f4fb1ccb8627b962337e
 Yth. Bp/Ibu *' . $atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melaporkan pembayaran bulan *' . $this->bulan[(int)$this->input->post('periode')] . '* 
 Rp. ' . $jumlah . ' rincian sbb : 
 ';
@@ -301,15 +313,34 @@ untuk penyampaian masukan melalui https://saran.ppatq-rf.id
 Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-rf.id
 ';
 //riwayat kesehatan
+
 $riwayat = $this->db->order_by('id','desc')->limit(5)->get_where('tb_kesehatan',array('santri_id'=>$santri_detail->no_induk))->result();
+if($riwayat){
+$message .= '
+----Riwayat Kesehatan----
+';
 foreach($riwayat as $rows){
-	echo $rows->sakit . "-" . date('d-m-Y',$rows->tanggal_sakit);
+	$message .= $rows->sakit . " ( " . date('d-m-Y',$rows->tanggal_sakit) . " )
+";
+}
+}
+//riwayat ketahfidzan
+
+$tahfidz = $this->db->select('detail_santri_tahfidz.*,kode_juz.nama as nama_juz')->order_by("detail_santri_tahfidz.id","desc")->limit(5)->join('kode_juz','kode_juz.id = detail_santri_tahfidz.kode_juz_surah')->get_where('detail_santri_tahfidz',array('no_induk'=>$santri_detail->no_induk))->result();
+if($tahfidz){
+$message .= '
+----Riwayat Ketahfidzan----
+';
+foreach($tahfidz as $row){
+	$message .= $row->nama_juz . "  (" . $this->bulan[$row->bulan] . " " . $row->tahun . " ) 
+";
+} 
 }
 $message .= '
 ----agenda sampai akhir tahun----
 ';
 $tanggal_start_agenda = date('Y-m-d');
-$agenda = $this->db->where('tanggal_mulai >=',$tanggal_start_agenda)->get('agenda')->result();
+$agenda = $this->db->where('tanggal_mulai >=',$tanggal_start_agenda)->order_by("tanggal_mulai", "asc")->get('agenda')->result();
 // echo $this->db->last_query();
 foreach($agenda as $rows){
 	$message .= $rows->judul .'
@@ -329,7 +360,7 @@ exit;
                         echo $this->db->last_query(); */
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
-						$dataSending["number_key"] = "SpU2anDja9Ihtrbl";
+						$dataSending["number_key"] = "3EYdFkP7uhk5RX6D";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
 
@@ -356,7 +387,7 @@ exit;
 						$no_wa = "087767572025";
 						$dataSending = Array();
 						$dataSending["api_key"] = "X2Y7UZOZT0WVQVTG";
-						$dataSending["number_key"] = "SpU2anDja9Ihtrbl";
+						$dataSending["number_key"] = "3EYdFkP7uhk5RX6D";
 						$dataSending["phone_no"] = $no_wa;
 						$dataSending["message"] = $message;
 						

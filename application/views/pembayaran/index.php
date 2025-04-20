@@ -17,7 +17,8 @@
         <br />
         <form method="POST" enctype='multipart/form-data' action="<?= base_url('index.php/pembayaran/detail_pembayaran') ?>">
             <div class="form-group">
-                <label class="form-label">Nama Santri</label><br />
+                <label class="form-label">Nama Santri</label><br />	
+				<input type="hidden" name="redirect" value="<?= $redirect ?>">
                 <select id="nama_santri" name="nama_santri" class="form-control col-md-6">
                     <option value=0>Masukan Nama Santri</option>
                     <?php
