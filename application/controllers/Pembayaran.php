@@ -253,8 +253,8 @@ $msg_old = 'untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar'
 					$message = '[ dari payment.ppatq-rf.id ]
 
 
-Yth. Bp/Ibu *' . $atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melakukan melaporkan  pembayaran bulan *' . $this->bulan[(int)$this->input->post('periode')] . '* sebesar Rp. ' . $jumlah . '
-dengan rincian sbb : 
+Yth. Bp/Ibu *' . $atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melaporkan pembayaran bulan *' . $this->bulan[(int)$this->input->post('periode')] . '* 
+Rp. ' . $jumlah . ' rincian sbb : 
 ';
 $jenis = $this->jenis->get_all();
 $list_jenis = array();
@@ -267,8 +267,11 @@ foreach($detail as $row){
 ';
 
 }
+// $message .= '
+// Tunggu beberapa waktu, kami akan melakukan pencatatan & segera memberikan status pembayaran tersebut.
+// ';
 $message .= '
-Tunggu beberapa waktu, kami akan melakukan pencatatan & segera memberikan status pembayaran tersebut.
+Tunggu beberapa saat, pencatatan akan dilakukan & segera memberikan status pembayaran tersebut.
 ';
 $message .= '
 Riwayat Pelaporan : 
@@ -291,11 +294,17 @@ Riwayat Pelaporan :
 						}
 					}
 					$message .= '
-Bila ada yang perlu diklarifikasi dapat menghubungi  WA di nomor +62877-6757-2025. 
+No. WA konfirmasi di +62877-6757-2025. 
+
 untuk penyampaian masukan melalui https://saran.ppatq-rf.id
+
 Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-rf.id
 ';
-
+//riwayat kesehatan
+$riwayat = $this->db->order_by('id','desc')->limit(5)->get_where('tb_kesehatan',array('santri_id'=>$santri_detail->no_induk))->result();
+foreach($riwayat as $rows){
+	echo $rows->sakit . "-" . date('d-m-Y',$rows->tanggal_sakit);
+}
 $message .= '
 ----agenda sampai akhir tahun----
 ';
@@ -314,6 +323,7 @@ Kami ucapkan banyak terima kasih kepada (Bp/Ibu) ' . $atas_nama . ', salam kami 
 
 Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang banyak dan berkah, aamiin.
 ';
+exit;
                     if($update){
                        /*  echo "berhasil";
                         echo $this->db->last_query(); */
