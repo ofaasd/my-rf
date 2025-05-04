@@ -354,7 +354,6 @@ Kami ucapkan banyak terima kasih kepada (Bp/Ibu) ' . $atas_nama . ', salam kami 
 
 Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang banyak dan berkah, aamiin.
 ';
-exit;
                     if($update){
                        /*  echo "berhasil";
                         echo $this->db->last_query(); */
