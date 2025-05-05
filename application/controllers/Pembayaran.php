@@ -261,10 +261,6 @@ class Pembayaran extends CI_Controller {
 $msg_old = 'untuk santri/wati ' . $nama_santri . ' kelas ' . $kelas . ' sebesar';
 					$message = '[ dari payment.ppatq-rf.id ]
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 29356571f30351d5bcf4f4fb1ccb8627b962337e
 Yth. Bp/Ibu *' . $atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melaporkan pembayaran bulan *' . $this->bulan[(int)$this->input->post('periode')] . '* 
 Rp. ' . $jumlah . ' rincian sbb : 
 ';
