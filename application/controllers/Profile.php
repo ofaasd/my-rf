@@ -173,10 +173,12 @@ class Profile extends CI_Controller {
 	{
 		$no_induk = $this->session->userdata('siswa_id');
 		$ketahfidzan = $this->db
-			->select('detail_santri_tahfidz.*, kode_juz.nama AS nmJuz')
+			->select('detail_santri_tahfidz.tanggal, kode_juz.kode, kode_juz.nama AS nmJuz')
 			->from('detail_santri_tahfidz')
-			->join('kode_juz', 'kode_juz.kode = detail_santri_tahfidz.kode_juz_surah', 'left') 
+			->join('kode_juz', 'kode_juz.kode = detail_santri_tahfidz.kode_juz_surah', 'left')
 			->where('detail_santri_tahfidz.no_induk', $no_induk)
+			->where('kode_juz.nama IS NOT NULL') // Hanya ambil jika nmJuz tidak NULL
+			->where('kode_juz.nama !=', '') // Pastikan tidak kosong
 			->order_by('detail_santri_tahfidz.tanggal', 'desc')
 			->get()
 			->result();

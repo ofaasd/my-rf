@@ -56,7 +56,7 @@
                     <?php
                         foreach($kode as $row){
                     ?>
-                        <option value="<?= $row->kode ?>"><?= $row->kode ?></option>
+                        <option value="<?= $row->kelas ?>"><?= $row->kelas ?></option>
                     <?php
                         }
                     ?>
