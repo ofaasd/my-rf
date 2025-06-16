@@ -560,7 +560,7 @@ class Siswa extends CI_Controller {
 					'status' => $row->status,
 					'tahun_lulus' => $angkatan_kelulusan,
 				);
-				$this->db->insert('tb_alumni_santri_detail',$data)
+				$this->db->insert('tb_alumni_santri_detail',$data);
 				$data = array(
 					'deleted_at' => date('Y-m-d H:i:s')
 				);
