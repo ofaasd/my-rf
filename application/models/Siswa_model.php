@@ -53,7 +53,7 @@ Class Siswa_model extends CI_Model{
     public function verifikasi_siswa(){
         $id_santri = $this->input->post('nama_santri');
         $kode = $this->input->post('kode');
-        $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where(['no_induk'=>$id_santri,'kode'=>$kode])->get('santri_detail');
+        $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where(['no_induk'=>$id_santri,'kelas'=>$kode])->get('santri_detail');
         if($query->num_rows() > 0){
             return true;
         }else{
