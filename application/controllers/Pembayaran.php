@@ -197,7 +197,7 @@ class Pembayaran extends CI_Controller {
 		$periode = $this->input->post('periode');
 		$tahun = $this->input->post('tahun');
 		$cek_nomor = $this->db->where(['nama_santri'=>$id_santri,'periode'=>$periode,'tahun'=>$tahun])->get('tb_pembayaran')->num_rows();
-		$santri = $this->db->where(['no_induk'=>$id_santri])->get("ref_siswa")->row();
+		$santri = $this->db->where(['no_induk'=>$id_santri])->get("santri_detail")->row();
 		$santri_detail = $this->db->where(['no_induk'=>$id_santri,"status"=>0])->get("santri_detail")->row();
 		$nama_santri = $santri->nama;
 		$kelas = $santri->kode;
@@ -404,7 +404,7 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 						$response = curl_exec($curl);
 
 						$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
-						$siswa = $this->db->where('id',$pembayaran->nama_santri)->get('ref_siswa')->row();
+						$siswa = $this->db->where('id',$pembayaran->nama_santri)->get('santri_detail')->row();
 						$convert_res = json_decode($response);
 						$status = 0;
 						if($convert_res->status == 200){
@@ -474,8 +474,8 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 	public function konfirmasi_pembayaran($id){
 		$data['id'] = $id;
 		$pembayaran = $this->db->where('id',$id)->get('tb_pembayaran')->row();
-		$siswa = $this->db->where('no_induk',$pembayaran->nama_santri)->get('ref_siswa')->row();
-		$kode = $siswa->kode;
+		$siswa = $this->db->where('no_induk',$pembayaran->nama_santri)->get('santri_detail')->row();
+		$kode = $siswa->kelas;
 		$data['siswa'] = $siswa;
 		$data['kode'] = $kode;
 		$data['wali_kelas'] = $this->db->where('code',strtolower($kode))->join('employee_new','employee_new.id=ref_kelas.employee_id')->get('ref_kelas')->row();
