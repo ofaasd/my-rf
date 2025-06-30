@@ -31,7 +31,7 @@ class Pembayaran extends CI_Controller {
         $data['bukatutup'] = $this->db->order_by('id','desc')->limit(1)->get("tb_bukatutup")->row();
 		$data['jenis_pembayaran'] = $this->jenis->get_all();
 		$data['bank_pengirim'] = $this->bank->get_all();
-        $data['siswa'] = $this->siswa->get_all();
+        $data['siswa'] = $this->siswa->get_all_detail();
         $data['kode'] = $this->siswa->get_kelas_all();
 		$data['bulan'] = $this->bulan;
 		$data['redirect'] = $redirect;
