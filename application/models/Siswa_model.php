@@ -33,7 +33,7 @@ Class Siswa_model extends CI_Model{
     }
     public function get_by_ni($no_induk)
     {
-            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('no_induk',$no_induk)->get('ref_siswa');
+            $query = $this->db->where('deleted_at is NULL', NULL, FALSE)->where('no_induk',$no_induk)->get('santri_detail');
             return $query->row();
     }
     public function get_by_ni2($no_induk)
