@@ -558,6 +558,8 @@ class Pembayaran extends CI_Controller {
 		$santri_detail = $data['nama_santri'];
 		$bulan = $data['bulan'];
 		$message = '[ dari admin payment.ppatq-rf.id ]
+Dapatkan Aplikasi Mobile Wali Santri
+https://new.ppatq-rf.sch.id/app-wali-santri
 
 Yth. Bp/Ibu *' . $pembayaran->atas_nama . '*, Wali Santri *' . $santri_detail->nama . '* kelas *' . $santri_detail->kelas . '* telah melaporkan pembayaran bulan *' . $bulan[(int)$pembayaran->periode] . '* 
 Rp. ' . $pembayaran->jumlah . ' rincian sbb : 

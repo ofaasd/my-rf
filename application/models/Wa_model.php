@@ -14,6 +14,8 @@ Class Wa_model extends CI_Model{
 		//jika status pembayaran valid
 		$message = '
 *Pesan ini otomatis dikirim dari sistem manajemen  laporan pembayaran*
+Dapatkan Aplikasi Mobile Wali Santri
+https://new.ppatq-rf.sch.id/app-wali-santri
 
 Yth. (Bp/Ibu) ' . $atas_nama . ', Alhamdulillah melalui petugas kami Bp. Rizqi, bulan  ini kami telah menerima : 
 
@@ -41,6 +43,8 @@ Informasi mengenai berita dan detail santri dapat diakses melalui https://ppatq-
 		}elseif($status == 2){
 			//jika status pembayaran tidak valid
 			$message = '*Pesan ini otomatis dikirim dari sistem*
+Dapatkan Aplikasi Mobile Wali Santri
+https://new.ppatq-rf.sch.id/app-wali-santri
 
 Yth. (Bp/Ibu) ' . $atas_nama . ', Berdasarkan dari laporan pembayaran yang telah dikirimkan dengan rincian sbg berikut : 
 
@@ -62,6 +66,8 @@ mohon diulang kembali';
 			//jika lapor pembayaran 
 			$message = '
 *Pesan ini otomatis dikirim dari sistem*
+Dapatkan Aplikasi Mobile Wali Santri
+https://new.ppatq-rf.sch.id/app-wali-santri
 
 Terima kasih Bp/Ibu ' . $atas_nama . ', telah melaporkan  pembayaran sebesar Rp. ' . $jumlah . '
 
@@ -154,6 +160,8 @@ Semoga pekerjaan dan usahanya diberi kelancaran dan keberkahan menghasilkan Rizq
 			if($tipe == "Bank"){
 $message = '
 [ Admin Bendahara PPATQRF- Transfer ]
+Dapatkan Aplikasi Mobile Wali Santri
+https://new.ppatq-rf.sch.id/app-wali-santri
 
 Yth. Bp/Ibu ' . $nama_ayah . '/' . $nama_ibu . ', Wali Santri ' . $siswa->nama . ' kelas ' . $siswa->kelas . ', kami telah menginputkan data pembayaran melalui sistem manajemen keuangan sesuai Kwitansi yang terbayarkan secara *transfer* untuk bulan ' . $bulan[$pembayaran->periode] . ' sebesar Rp. ' . number_format($pembayaran->jumlah,0,',','.') . ' pada tanggal ' . date('d-m-Y', strtotime($pembayaran->tanggal_bayar)) . ' melalui Bank ' . $bank->nama . ' atas nama ' . $atas_nama . '	
 dengan rincian sbb : 
@@ -210,6 +218,8 @@ Kami akan update sesuai yang disampaikan
 			}else{
 $message = '
 [ Admin Bendahara PPATQRF- Tunai ]
+Dapatkan Aplikasi Mobile Wali Santri
+https://new.ppatq-rf.sch.id/app-wali-santri
 
 Yth. Bp/Ibu ' . $nama_ayah . '/' . $nama_ibu . ', Wali Santri ' . $siswa->nama . ' kelas ' . $siswa->kelas . ', kami telah menginputkan data pembayaran melalui sistem manajemen keuangan sesuai Kwitansi yang terbayarkan secara *tunai/cash* untuk bulan ' . $bulan[$pembayaran->periode] . ' sebesar Rp. ' . number_format($pembayaran->jumlah,0,',','.') . ' pada tanggal ' . date('d-m-Y', strtotime($pembayaran->tanggal_bayar)) . ' melalui Bank ' . $bank->nama . ' atas nama ' . $atas_nama . '	
 dengan rincian sbb : 
@@ -268,6 +278,8 @@ Kami akan update sesuai yang disampaikan
 			//jika status pembayaran tidak valid
 			$message = '
 *Pesan ini otomatis dikirim dari sistem*
+Dapatkan Aplikasi Mobile Wali Santri
+https://new.ppatq-rf.sch.id/app-wali-santri
 
 Yth. (Bp/Ibu) ' . $atas_nama . ', Berdasarkan dari laporan pembayaran yang telah dikirimkan dengan rincian sbg berikut : 
 
@@ -289,6 +301,8 @@ mohon diulang kembali';
 			//jika lapor pembayaran 
 			$message = '
 *Pesan ini otomatis dikirim dari sistem*
+Dapatkan Aplikasi Mobile Wali Santri
+https://new.ppatq-rf.sch.id/app-wali-santri
 
 INFO TERHANGAT:
 Pendaftaran Santri Baru 2025 telah dibuka, dengan mengakses psb.ppatq-rf.id
