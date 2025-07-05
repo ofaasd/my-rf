@@ -32,6 +32,7 @@ Class Keluhan_model extends CI_Model{
             'saran' => $this->input->post('saran'),
             'rating' => $this->input->post('rating'),
             'jenis' => $this->input->post('jenis'),
+            'tanggal' => $this->input->post('tanggal'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );

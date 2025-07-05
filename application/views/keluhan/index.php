@@ -28,6 +28,10 @@
                 <input class="form-control col-md-6" type="text" name="nama_pelapor" required>
             </div>
             <div class="form-group">
+                <label class="form-label">Tanggal</label>
+                <input class="form-control col-md-6" type="date" name="tanggal" value="<?= date('Y-m-d') ?>" required>
+            </div>
+            <div class="form-group">
                 <label class="form-label">Email</label>
                 <input class="form-control col-md-6" type="email" name="email" >
                 <small id="passwordHelp" class="form-text text-muted">* Email Tidak Wajib Diisi</small>
