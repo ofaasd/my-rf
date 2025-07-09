@@ -49,7 +49,7 @@ class Pembayaran extends CI_Controller {
         $data['bukatutup'] = $this->db->order_by('id','desc')->limit(1)->get("tb_bukatutup")->row();
 		$data['jenis_pembayaran'] = $this->jenis->get_all();
 		$data['bank_pengirim'] = $this->bank->get_all();
-        $data['siswa'] = $this->siswa->get_all();
+        $data['siswa'] = $this->siswa->get_all_detail();
         $data['kode'] = $this->siswa->get_kelas_all();
 		$data['bulan'] = $this->bulan;
 		$var['title'] = 'PPATQ Roudlotul Falah';
@@ -518,27 +518,28 @@ Semoga pekerjaan dan usahanya diberikan kelancaran dan menghasilkan Rizqi yang b
 		curl_close($curl);
 		echo $response;
 	} */
-	/* public function generate_password_siswa(){
-		$siswa = $this->db->get('ref_siswa')->result();
+	public function generate_password_siswa(){
+		$siswa = $this->db->get('santri_detail')->result();
 		$jumlah = 0;
 		foreach($siswa as $row){
-			$detail = $this->db->where('no_induk',$row->no_induk)->get('tb_siswa_detail')->row();
-			$tanggal_lahir = (!empty($detail->tanggal_lahir))?$detail->tanggal_lahir:date('Ymd');
-			$tanggal = date('dmy', strtotime($tanggal_lahir));
-			$gabung = $tanggal . strtoupper($detail->jenis_kelamin);
-			//echo $detail->tanggal_lahir;
-			$data = array(
-				'password' => md5($gabung),
-			);
-			$where = array(
-				'id' => $row->id,
-			);
-			$hasil = $this->db->update('ref_siswa',$data,$where);
-			if($hasil){
-				$jumlah++;
+			if(empty($row->password)){
+				$tanggal_lahir = (!empty($row->tanggal_lahir))?$row->tanggal_lahir:date('Ymd');
+				$tanggal = date('dmy', strtotime($tanggal_lahir));
+				$gabung = $tanggal . strtoupper($row->jenis_kelamin);
+				//echo $detail->tanggal_lahir;
+				$data = array(
+					'password' => md5($gabung),
+				);
+				$where = array(
+					'id' => $row->id,
+				);
+				$hasil = $this->db->update('santri_detail',$data,$where);
+				if($hasil){
+					$jumlah++;
+				}
 			}
 		}
-	} */
+	}
 	
 	public function get_riwayat(){
 		$bulan = $this->input->post('bulan');
