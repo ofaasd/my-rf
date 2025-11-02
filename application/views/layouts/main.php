@@ -167,6 +167,41 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+<script>
+    window.addEventListener('load', function() {
+  
+  // Ambil elemen-elemen popup
+  const popupOverlay = document.getElementById('popup-overlay');
+  const popupClose = document.getElementById('popup-close');
 
+  // --- OPSI 1: Tampilkan SETIAP KALI halaman di-load ---
+  // Hapus tanda '//' pada baris di bawah ini untuk menggunakannya
+  // popupOverlay.style.display = 'flex';
+
+  // --- OPSI 2: Tampilkan HANYA PADA KUNJUNGAN PERTAMA ---
+  // Ini adalah opsi yang lebih baik agar tidak mengganggu pengunjung
+  if (!localStorage.getItem('popupPernahTampil')) {
+    // Tampilkan popup
+    popupOverlay.style.display = 'flex';
+    
+    // Simpan data di browser agar tidak tampil lagi
+    localStorage.setItem('popupPernahTampil', 'true');
+  }
+
+  // Fungsi untuk menutup popup
+  popupClose.addEventListener('click', function() {
+    popupOverlay.style.display = 'none';
+  });
+
+  // Opsional: Tutup juga saat klik di luar area popup
+  popupOverlay.addEventListener('click', function(event) {
+    // Cek apakah yang diklik adalah area overlay (latar belakang)
+    if (event.target === popupOverlay) {
+      popupOverlay.style.display = 'none';
+    }
+  });
+  
+});
+</script>
 </body>
 </html>

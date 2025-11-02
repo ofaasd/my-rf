@@ -198,39 +198,3 @@
     </a>
   </div>
 </div>
-<script>
-    window.addEventListener('load', function() {
-  
-  // Ambil elemen-elemen popup
-  const popupOverlay = document.getElementById('popup-overlay');
-  const popupClose = document.getElementById('popup-close');
-
-  // --- OPSI 1: Tampilkan SETIAP KALI halaman di-load ---
-  // Hapus tanda '//' pada baris di bawah ini untuk menggunakannya
-  // popupOverlay.style.display = 'flex';
-
-  // --- OPSI 2: Tampilkan HANYA PADA KUNJUNGAN PERTAMA ---
-  // Ini adalah opsi yang lebih baik agar tidak mengganggu pengunjung
-  if (!localStorage.getItem('popupPernahTampil')) {
-    // Tampilkan popup
-    popupOverlay.style.display = 'flex';
-    
-    // Simpan data di browser agar tidak tampil lagi
-    localStorage.setItem('popupPernahTampil', 'true');
-  }
-
-  // Fungsi untuk menutup popup
-  popupClose.addEventListener('click', function() {
-    popupOverlay.style.display = 'none';
-  });
-
-  // Opsional: Tutup juga saat klik di luar area popup
-  popupOverlay.addEventListener('click', function(event) {
-    // Cek apakah yang diklik adalah area overlay (latar belakang)
-    if (event.target === popupOverlay) {
-      popupOverlay.style.display = 'none';
-    }
-  });
-  
-});
-</script>
