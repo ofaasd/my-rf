@@ -167,35 +167,6 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
-<script>
- window.addEventListener('load', function() {
-  const popupOverlay = document.getElementById('popup-overlay');
-  const popupClose = document.getElementById('popup-close');
 
-  // --- TAMBAHKAN PENGECEKAN INI ---
-  if (popupOverlay && popupClose) { 
-    // OPSI 2: Tampilkan HANYA PADA KUNJUNGAN PERTAMA
-    if (!localStorage.getItem('popupPernahTampil')) {
-      popupOverlay.style.display = 'flex';
-      localStorage.setItem('popupPernahTampil', 'true');
-    }
-
-    // Fungsi untuk menutup popup
-    popupClose.addEventListener('click', function() {
-      popupOverlay.style.display = 'none';
-    });
-
-    // Opsional: Tutup juga saat klik di luar area popup
-    popupOverlay.addEventListener('click', function(event) {
-      if (event.target === popupOverlay) {
-        popupOverlay.style.display = 'none';
-      }
-    });
-  } else {
-    // Ini akan muncul di console browser jika elemen tidak ditemukan
-    console.error("Error: Elemen popup-overlay atau popup-close tidak ditemukan di HTML.");
-  }
-});
-</script>
 </body>
 </html>
