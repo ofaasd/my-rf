@@ -9,6 +9,78 @@
     max-width: 100%; /* Agar gambar tidak melebihi lebar kontainer */
     max-height: 100%
 }
+/* Lapisan Latar Belakang Gelap */
+#popup-overlay {
+  /* Sembunyi secara default */
+  display: none; 
+  
+  /* Tampilkan di atas segalanya */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Warna hitam transparan */
+  z-index: 999;
+
+  /* Membuat konten di tengah */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Konten Popup (Kotaknya) */
+#popup-content {
+  position: relative;
+  width: 90%; /* Lebar popup di layar HP */
+  max-width: 500px; /* Lebar maksimal di desktop */
+  background-color: #fff;
+  border-radius: 10px; /* Sesuaikan dengan desain gambar */
+  
+  /* Efek animasi muncul */
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Gambar di dalam popup */
+#popup-content img {
+  width: 100%;
+  display: block; /* Menghilangkan spasi ekstra di bawah gambar */
+  border-radius: 10px; /* Sesuaikan dengan desain gambar */
+}
+
+/* Tombol Close (Tanda 'x') */
+#popup-close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  
+  width: 35px;
+  height: 35px;
+  background-color: #ffffff;
+  color: #333;
+  border: 2px solid #333;
+  border-radius: 50%; /* Membuatnya bulat */
+  
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 32px;
+  text-align: center;
+  
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Animasi sederhana */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 </style>
 <?php use Carbon\Carbon;  Carbon::setLocale('id');?>
     <div class="border-0 card-content">
@@ -118,3 +190,47 @@
         </div>
     </div>
 	<br />
+<div id="popup-content">
+    <span id="popup-close">&times;</span>
+    
+    <a href="https://play.google.com/store/apps/details?id=com.ppatq.walsan" target="_blank">
+      <img src="assets/images/apps.png" alt="Download Aplikasi PPATQ Raudhatul Falah">
+    </a>
+  </div>
+</div>
+<script>
+    window.addEventListener('load', function() {
+  
+  // Ambil elemen-elemen popup
+  const popupOverlay = document.getElementById('popup-overlay');
+  const popupClose = document.getElementById('popup-close');
+
+  // --- OPSI 1: Tampilkan SETIAP KALI halaman di-load ---
+  // Hapus tanda '//' pada baris di bawah ini untuk menggunakannya
+  // popupOverlay.style.display = 'flex';
+
+  // --- OPSI 2: Tampilkan HANYA PADA KUNJUNGAN PERTAMA ---
+  // Ini adalah opsi yang lebih baik agar tidak mengganggu pengunjung
+  if (!localStorage.getItem('popupPernahTampil')) {
+    // Tampilkan popup
+    popupOverlay.style.display = 'flex';
+    
+    // Simpan data di browser agar tidak tampil lagi
+    localStorage.setItem('popupPernahTampil', 'true');
+  }
+
+  // Fungsi untuk menutup popup
+  popupClose.addEventListener('click', function() {
+    popupOverlay.style.display = 'none';
+  });
+
+  // Opsional: Tutup juga saat klik di luar area popup
+  popupOverlay.addEventListener('click', function(event) {
+    // Cek apakah yang diklik adalah area overlay (latar belakang)
+    if (event.target === popupOverlay) {
+      popupOverlay.style.display = 'none';
+    }
+  });
+  
+});
+</script>
