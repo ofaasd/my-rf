@@ -191,41 +191,47 @@
     </div>
 	<br />
 <div id="popup-overlay">
-  <div id="popup-content">
-    <span id="popup-close">&times;</span>
-    
-    <a href="LINK_KE_GOOGLE_PLAY_ANDA" target="_blank">
-      <img src="nama-gambar-popup.png" alt="Download Aplikasi PPATQ Raudhatul Falah">
-    </a>
-  </div>
+    <div id="popup-content">
+        <span id="popup-close">&times;</span>
+
+        <a href="https://play.google.com/store/apps/details?id=com.ppatq.walsan" target="_blank">
+            <img src="assets/images/apps.png" alt="Download Aplikasi PPATQ Raudhatul Falah">
+        </a>
+    </div>
 </div>
 <script>
- window.addEventListener('load', function() {
+    window.addEventListener('load', function() {
+  
+  // Ambil elemen-elemen popup
   const popupOverlay = document.getElementById('popup-overlay');
   const popupClose = document.getElementById('popup-close');
 
-  // --- TAMBAHKAN PENGECEKAN INI ---
-  if (popupOverlay && popupClose) { 
-    // OPSI 2: Tampilkan HANYA PADA KUNJUNGAN PERTAMA
-    if (!localStorage.getItem('popupPernahTampil')) {
-      popupOverlay.style.display = 'flex';
-      localStorage.setItem('popupPernahTampil', 'true');
-    }
+  // --- OPSI 1: Tampilkan SETIAP KALI halaman di-load ---
+  // Hapus tanda '//' pada baris di bawah ini untuk menggunakannya
+  // popupOverlay.style.display = 'flex';
 
-    // Fungsi untuk menutup popup
-    popupClose.addEventListener('click', function() {
-      popupOverlay.style.display = 'none';
-    });
-
-    // Opsional: Tutup juga saat klik di luar area popup
-    popupOverlay.addEventListener('click', function(event) {
-      if (event.target === popupOverlay) {
-        popupOverlay.style.display = 'none';
-      }
-    });
-  } else {
-    // Ini akan muncul di console browser jika elemen tidak ditemukan
-    console.error("Error: Elemen popup-overlay atau popup-close tidak ditemukan di HTML.");
+  // --- OPSI 2: Tampilkan HANYA PADA KUNJUNGAN PERTAMA ---
+  // Ini adalah opsi yang lebih baik agar tidak mengganggu pengunjung
+  if (!localStorage.getItem('popupPernahTampil')) {
+    // Tampilkan popup
+    popupOverlay.style.display = 'flex';
+    
+    // Simpan data di browser agar tidak tampil lagi
+    localStorage.setItem('popupPernahTampil', 'true');
   }
+
+  // Fungsi untuk menutup popup
+  popupClose.addEventListener('click', function() {
+    popupOverlay.style.display = 'none';
+  });
+
+  // Opsional: Tutup juga saat klik di luar area popup
+  popupOverlay.addEventListener('click', function(event) {
+    // Cek apakah yang diklik adalah area overlay (latar belakang)
+    if (event.target === popupOverlay) {
+      popupOverlay.style.display = 'none';
+    }
+  });
+  
 });
 </script>
